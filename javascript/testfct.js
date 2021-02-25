@@ -9,12 +9,12 @@ var compteurNombreProduit = function () {
 var ajoutNouveauProduit = function (name, age) {
        
     const nouveauProduit = compteurNombreProduit() + 1;
-
+    console.log(nouveauProduit)
     const categorie = document.getElementById("categorie")
 
     const produit = document.createElement("div")
     produit.classList.add("produit", + nouveauProduit)
-
+    
     const nomtest = document.createElement("p")
     nomtest.classList.add("nom")
 
@@ -27,6 +27,8 @@ var ajoutNouveauProduit = function (name, age) {
 
     nomtest.innerHTML = name
     agetest.innerHTML = age
+    console.log(nomtest)
+    console.log(agetest)
 }
 
 /* TEST RECUP DONNEES TABLEAU */
@@ -43,14 +45,11 @@ let tableauObjest = [{
     }
 ]
 
+
 for (let i=0; i < tableauObjest.length; i++) {  
+    console.log(i)
     ajoutNouveauProduit(tableauObjest[i].name, tableauObjest[i].age);
-    console.log(ajoutNouveauProduit())
 }
 
-let testtab = [1,2,3]
-console.log(testtab)
 
-for (let i=0; i < testtab.length; i++) {
-    ajoutNouveauProduit(testtab[i], testtab[i])
-}
+

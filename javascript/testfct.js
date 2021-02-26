@@ -9,7 +9,7 @@ var compteurNombreProduit = function () {
 var ajoutNouveauProduit = function (name, age) {
        
     const nouveauProduit = compteurNombreProduit() + 1;
-    console.log(nouveauProduit)
+
     const categorie = document.getElementById("categorie")
 
     const produit = document.createElement("div")
@@ -27,29 +27,52 @@ var ajoutNouveauProduit = function (name, age) {
 
     nomtest.innerHTML = name
     agetest.innerHTML = age
-    console.log(nomtest)
-    console.log(agetest)
+    
 }
 
 /* TEST RECUP DONNEES TABLEAU */
 let tableauObjest = [{
         name: "toto",
-        age: "35"
+        age: "35",
+        id: "12345"
     },{
         name: "toto2",
-        age: "40"
+        age: "40",
+        id: "1234567"
     },
     {
         name: "toto3",
-        age: "50"
+        age: "50",
+        id: "12345678"
     }
 ]
 
-
-for (let i=0; i < tableauObjest.length; i++) {  
-    console.log(i)
+const recuperationDonneesAPI = function() {
+    
+    for (let i=0; i < tableauObjest.length; i++) {      
     ajoutNouveauProduit(tableauObjest[i].name, tableauObjest[i].age);
+    }
 }
 
+console.log(recuperationDonneesAPI())
+
+/* TEST FONCTIONNALITE AJOUT PANIER */
+
+const recuperationIdProduit = function(itbtn){
+
+    let idProduit = document.getElementById(itbtn).id
+    let tableauPanier = []
+    console.log(idProduit)
+    
+    for (let i=0; i < tableauObjest.length; i++) {  
+        console.log(tableauObjest[i].id)    
+        
+        if (idProduit === tableauObjest[i].id) {
+            tableauPanier[0] = {test: tableauObjest[i].age, testnom: tableauObjest[i].name}
+            console.log(tableauPanier)
+        } else ("id n'existe pas")
+    }  
+}    
 
 
+console.log(recuperationIdProduit("12345678"))

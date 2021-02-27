@@ -14,7 +14,7 @@ var teddies = [
 ]
 
 var get = function (url) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
     var request = new XMLHttpRequest();
     request.open("GET", url);
 
@@ -23,25 +23,25 @@ var get = function (url) {
                 resolve(request.responseText)
                 console.log(request)
             ;} /* else {
-                reject(request) 
+                reject('erreur') 
             } */
         };
     request.send(); 
     })
 }
 
-var getPromise = async function () {
+var getPromise = async function (idTeddy) {
     var response = await get("http://localhost:3000/api/teddies/")
     var donnees = JSON.parse(response);
-    console.log(donnees[0].name)
+    console.log(donnees)
    
-    response = await get ("http://localhost:3000/api/teddies/" + teddies[0].id)
+    response = await get ("http://localhost:3000/api/teddies/" + idTeddy)
     var posts = JSON.parse(response); 
     console.log(posts)
     return posts
 }
 
-getPromise().then(function(posts) {
+getPromise(teddies[0].id).then(function(posts) {
     document.getElementById("testrecup").innerHTML = posts._id
 })
 

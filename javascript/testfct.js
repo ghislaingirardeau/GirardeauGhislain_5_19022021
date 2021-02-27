@@ -1,32 +1,28 @@
 
-var compteurNombreProduit = function () {
-
-    const NombreProduit = document.getElementsByClassName("produit").length;
-    return (NombreProduit)
-}
-
-
-var ajoutNouveauProduit = function (name, age) {
-       
-    const nouveauProduit = compteurNombreProduit() + 1;
+var ajoutNouveauProduit = function (nom, description, prix) {
 
     const categorie = document.getElementById("categorie")
 
     const produit = document.createElement("div")
-    produit.classList.add("produit", + nouveauProduit)
+    produit.classList.add("produit")
     
-    const nomtest = document.createElement("p")
-    nomtest.classList.add("nom")
+    const nomProduit = document.createElement("p")
+    nomProduit.classList.add("nom")
 
-    const agetest = document.createElement("p")
-    agetest.classList.add("age")
+    const descriptionProduit = document.createElement("p")
+    descriptionProduit.classList.add("description")
+
+    const prixProduit = document.createElement("p")
+    prixProduit.classList.add("prix")
 
     categorie.appendChild(produit)
-    produit.appendChild(nomtest)
-    produit.appendChild(agetest)
+    produit.appendChild(nomProduit)
+    produit.appendChild(descriptionProduit)
+    produit.appendChild(prixProduit)
 
-    nomtest.innerHTML = name
-    agetest.innerHTML = age
+    nomProduit.innerHTML = "Nom: " + nom
+    descriptionProduit.innerHTML = "Description: " + description
+    prixProduit.innerHTML = "Prix: " + prix + " $"
     
 }
 
@@ -50,11 +46,11 @@ let tableauObjest = [{
 const recuperationDonneesAPI = function() {
     
     for (let i=0; i < tableauObjest.length; i++) {      
-    ajoutNouveauProduit(tableauObjest[i].name, tableauObjest[i].age);
+    ajoutNouveauProduit(tableauObjest[i].name, tableauObjest[i].age, tableauObjest[i].id);
     }
 }
 
-console.log(recuperationDonneesAPI())
+
 
 /* TEST FONCTIONNALITE AJOUT PANIER */
 
@@ -64,11 +60,10 @@ const recuperationIdProduit = function(itbtn){
     let tableauPanier = []
     console.log(idProduit)
     
-    for (let i=0; i < tableauObjest.length; i++) {  
-        console.log(tableauObjest[i].id)    
+    for (let i=0; i < tableauObjest.length; i++) {     
         
         if (idProduit === tableauObjest[i].id) {
-            tableauPanier[0] = {test: tableauObjest[i].age, testnom: tableauObjest[i].name}
+            tableauPanier[0] = {test: tableauObjest[i].age, testnom: tableauObjest[i].name, testid: tableauObjest[i].id}
             console.log(tableauPanier)
         } else ("id n'existe pas")
     }  

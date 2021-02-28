@@ -1,14 +1,10 @@
 /* RECUPERE LE NOM DE LA PAGE PROPRE AU PRODUIT POUR Y RECUPERER LES INFOS */
 
 let identifiantProduit = window.name
-console.log(identifiantProduit)
 
+/* == RECUPERATION DES DONNEES PRETES */
 
-
-/* == RECUPERATION DES DONNES PRETES */
-
-
-/* var request = new XMLHttpRequest();
+var request = new XMLHttpRequest();
 request.onreadystatechange = function (identifiantProduit) {
 
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
@@ -28,8 +24,24 @@ request.onreadystatechange = function (identifiantProduit) {
 };
 
 request.open("GET", "http://localhost:3000/api/teddies/" + identifiantProduit);
-request.send();   */
+request.send();   
 
 
 
 
+/* TEST FONCTIONNALITE AJOUT PANIER */
+
+/* const recuperationIdProduit = function(itbtn){
+
+    let idProduit = document.getElementById(itbtn).id
+    let tableauPanier = []
+    console.log(idProduit)
+    
+    for (let i=0; i < tableauObjest.length; i++) {     
+        
+        if (idProduit === tableauObjest[i].id) {
+            tableauPanier[0] = {test: tableauObjest[i].age, testnom: tableauObjest[i].name, testid: tableauObjest[i].id}
+            console.log(tableauPanier)
+        } else ("id n'existe pas")
+    }  
+}  */ 

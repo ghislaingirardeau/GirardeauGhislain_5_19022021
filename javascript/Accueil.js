@@ -5,7 +5,9 @@ var ajoutNouveauProduit = function (nom, description, prix, id) {
 
     const produit = document.createElement("a")
     produit.setAttribute("id", "produit") /* Ajout de l'ID qui sera incrémenter par l'ID du produit a la recup des donnes */
-    produit.setAttribute("href", "javascript:recupId(" + id + ")") /* lien commun vers ma page produit */
+    produit.setAttribute("href", "javascript:ouverturePageProduit(" + id + ")") /* lien commun vers ma page produit */
+    console.log(produit)
+
 
     const nomProduit = document.createElement("p")
     nomProduit.classList.add("nom")
@@ -26,7 +28,7 @@ var ajoutNouveauProduit = function (nom, description, prix, id) {
     descriptionProduit.innerHTML = "Description: " + description
     prixProduit.innerHTML = "Prix: " + prix + " $"
 }
-console.log(ajoutNouveauProduit())
+
 
 
 
@@ -37,31 +39,37 @@ let tableauObjest = [{
         name: "toto",
         description: "35",
         prix: "50",
-        id: "1545"
+        _id: "5beaa8bf1c9d440000a57d94"
     },{
         name: "toto2",
         description: "40",
         prix: "30",
-        id: "12"
+        _id: "sdf"
     },
     {
         name: "toto3",
         description: "50",
         prix: "20",
-        id: "15"
+        _id: "15"
     }
 ]
 
 const recuperationDonneesAPI = function() {
     
     for (let i=0; i < tableauObjest.length; i++) {      
-    ajoutNouveauProduit(tableauObjest[i].name, tableauObjest[i].description, tableauObjest[i].prix, tableauObjest[i].id);
+    ajoutNouveauProduit(tableauObjest[i].name, tableauObjest[i].description, 
+        tableauObjest[i].prix, tableauObjest[i]._id);
     }
+
 }
 
 console.log (recuperationDonneesAPI())
 
+let ouverturePageProduit = function(id) {
+    console.log(id)
+    window.open("produit.html", id);
 
+}
 
 
 

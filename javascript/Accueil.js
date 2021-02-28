@@ -1,13 +1,15 @@
 
-var ajoutNouveauProduit = function (nom, description, prix) {
+var ajoutNouveauProduit = function (nom, description, prix, id) {
 
     const categorie = document.getElementById("categorie")
 
-    const produit = document.createElement("div")
-    produit.classList.add("produit")
-    
+    const produit = document.createElement("a")
+    produit.setAttribute("id", "produit") /* Ajout de l'ID qui sera incrémenter par l'ID du produit a la recup des donnes */
+    produit.setAttribute("href", "javascript:recupId(" + id + ")") /* lien commun vers ma page produit */
+
     const nomProduit = document.createElement("p")
     nomProduit.classList.add("nom")
+
 
     const descriptionProduit = document.createElement("p")
     descriptionProduit.classList.add("description")
@@ -23,38 +25,49 @@ var ajoutNouveauProduit = function (nom, description, prix) {
     nomProduit.innerHTML = "Nom: " + nom
     descriptionProduit.innerHTML = "Description: " + description
     prixProduit.innerHTML = "Prix: " + prix + " $"
-    
 }
+console.log(ajoutNouveauProduit())
+
+
+
+
 
 /* TEST RECUP DONNEES TABLEAU */
 let tableauObjest = [{
         name: "toto",
-        age: "35",
-        id: "12345"
+        description: "35",
+        prix: "50",
+        id: "1545"
     },{
         name: "toto2",
-        age: "40",
-        id: "1234567"
+        description: "40",
+        prix: "30",
+        id: "12"
     },
     {
         name: "toto3",
-        age: "50",
-        id: "12345678"
+        description: "50",
+        prix: "20",
+        id: "15"
     }
 ]
 
 const recuperationDonneesAPI = function() {
     
     for (let i=0; i < tableauObjest.length; i++) {      
-    ajoutNouveauProduit(tableauObjest[i].name, tableauObjest[i].age, tableauObjest[i].id);
+    ajoutNouveauProduit(tableauObjest[i].name, tableauObjest[i].description, tableauObjest[i].prix, tableauObjest[i].id);
     }
 }
+
+console.log (recuperationDonneesAPI())
+
+
 
 
 
 /* TEST FONCTIONNALITE AJOUT PANIER */
 
-const recuperationIdProduit = function(itbtn){
+/* const recuperationIdProduit = function(itbtn){
 
     let idProduit = document.getElementById(itbtn).id
     let tableauPanier = []
@@ -67,7 +80,11 @@ const recuperationIdProduit = function(itbtn){
             console.log(tableauPanier)
         } else ("id n'existe pas")
     }  
-}    
+}  */   
 
 
-console.log(recuperationIdProduit("12345678"))
+
+
+
+
+

@@ -7,11 +7,11 @@
 */
 
 /* TEST FONCTION PROMESSE RECUP DE DONNEES */
-var teddies = [
+/* var teddies = [
     {
         id: "5beaaa8f1c9d440000a57d95"
     }
-]
+] */
 
 var get = function (url) {
     return new Promise(function (resolve) {
@@ -21,7 +21,6 @@ var get = function (url) {
         request.onreadystatechange = function () {
             if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
                 resolve(request.responseText)
-                console.log(request)
             ;} /* else {
                 reject('erreur') 
             } */
@@ -30,21 +29,25 @@ var get = function (url) {
     })
 }
 
-var getPromise = async function (idTeddy) {
+var getPromise = async function () {
+
     var response = await get("http://localhost:3000/api/teddies/")
     var donnees = JSON.parse(response);
     console.log(donnees)
-   
-    response = await get ("http://localhost:3000/api/teddies/" + idTeddy)
+
+   for (let i=0; i < donnees.length; i++) {
+
+    response = await get ("http://localhost:3000/api/teddies/" + donnees[i]._id)
     var posts = JSON.parse(response); 
-    console.log(posts)
+    }
     return posts
 }
 
-getPromise(teddies[0].id).then(function(posts) {
-    document.getElementById("testrecup").innerHTML = posts._id
-})
+getPromise().then(function(posts) {
+    
+    console.log(posts)
 
+})
 
 /* var request = new XMLHttpRequest();
 request.onreadystatechange = function (e) {
@@ -53,5 +56,5 @@ request.onreadystatechange = function (e) {
         console.log(response)
     ;} 
 };
-request.open("GET", "http://localhost:3000/api/cameras/5be1ed3f1c9d44000030b061");
+request.open("GET", "http://localhost:3000/api/teddies/");
 request.send();   */

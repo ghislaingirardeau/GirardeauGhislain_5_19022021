@@ -4,21 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" />
     
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <script src="https://kit.fontawesome.com/2cf556db96.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-    <h1>Oriteddy</h1>
-    <section id="section">
-        <h2>Liste des peluches</h2>
-    <article id="categorie"> 
+    <header class="container">
         
-    </article>
+        <nav class="navbar navbar-expand row ">
+            <h1 class="navbar-brand col-3">Oriteddy</h1>
+            <ul class="navbar-nav col-9 justify-content-end text-right">
+                <li class="nav-item active">
+                    <a href="index.html" class="nav-link pt-4 pr-5">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="panier.html" class="nav-link text-center">
+                    <i class="fas fa-shopping-cart"></i><p>Mon Panier</p> </a>
+                </li>
+
+            </ul>
+        </nav>
+        
+    </header>
+    
+    <section id="section" class="container">
+        <h2 class="row col-12 py-4">Liste des peluches</h2>
+        <article id="categorie" class="row"> 
+        
+        </article>
     </section>
 
 
    
     <!-- <script src="/javascript/recupdonnee.js"> </script> -->
     <script src="/javascript/Accueil.js"> </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>

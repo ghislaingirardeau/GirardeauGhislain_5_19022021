@@ -1,4 +1,10 @@
-.produit {
-    border: 2px red solid;
-    width: 30%;
+h2 {
+    border-top: grey 2px solid;
+    border-bottom: grey 2px solid;
+}
+
+
+img{
+    object-fit: cover;
+    width: 25%;
 }

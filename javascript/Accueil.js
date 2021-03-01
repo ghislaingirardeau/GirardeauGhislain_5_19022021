@@ -4,22 +4,23 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
 
     const categorie = document.getElementById("categorie")
 
-    const produit = document.createElement("a")
-    produit.setAttribute("id", "produit") 
+    const produit = document.createElement("a") 
     produit.setAttribute("href", "produit.html?" + "'" + id + "'") 
-    console.log(produit)
+    produit.classList.add("container")
 
     const nomProduit = document.createElement("h3")
-    nomProduit.classList.add("nom")
+    nomProduit.classList.add("nom", "col-6")
 
     const descriptionProduit = document.createElement("p")
-    descriptionProduit.classList.add("description")
+    descriptionProduit.classList.add("description", "col-6")
 
     const prixProduit = document.createElement("p")
-    prixProduit.classList.add("prix")
+    prixProduit.classList.add("prix", "col-6")
 
-    const imageProduit = document.createElement("img") 
+    const imageProduit = document.createElement("img")
+    imageProduit.classList.add("float-right", "col-6")
     imageProduit.setAttribute("src", image)
+    imageProduit.setAttribute("alt", "image de l'ourson " + nom)
 
     categorie.appendChild(produit)
     produit.appendChild(nomProduit)

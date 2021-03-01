@@ -26,8 +26,9 @@ var ajoutNouveauProduit = function (nom, description, prix, id) {
     const categorie = document.getElementById("categorie")
 
     const produit = document.createElement("a")
-    produit.setAttribute("id", "produit") /* Ajout de l'ID qui sera incrémenter par l'ID du produit a la recup des donnes */
-    produit.setAttribute("href", "javascript:ouverturePageProduit(" + "'" + id + "'" + ")") /* lien commun vers ma page produit */
+    produit.setAttribute("id", "produit") 
+    produit.setAttribute("href", "produit.html?id=" + "'" + id + "'") 
+    console.log(produit)
 
     const nomProduit = document.createElement("p")
     nomProduit.classList.add("nom")
@@ -56,20 +57,12 @@ const recuperationDonneesAPI = function() {
     ajoutNouveauProduit(tableauObjest[i].name, tableauObjest[i].description, 
         tableauObjest[i].prix, tableauObjest[i]._id);
     }
-
 }
 
 console.log (recuperationDonneesAPI())
 
-/* == AU CLICK APPEL DE LA PAGE PRODUIT == */
 
-let ouverturePageProduit = function(id) {
-   
-    window.open("produit.html", id);
-    
-}
 
-console.log(ouverturePageProduit())
 
 
 

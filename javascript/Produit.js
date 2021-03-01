@@ -1,6 +1,8 @@
 /* RECUPERE LE NOM DE LA PAGE PROPRE AU PRODUIT POUR Y RECUPERER LES INFOS */
 
-let identifiantProduit = window.name
+let identifiantProduit = window.location.search.slice(7, 31)
+
+console.log(identifiantProduit)
 
 /* == RECUPERATION DES DONNEES PRETES */
 

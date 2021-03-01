@@ -1,17 +1,7 @@
-/* URL TEDDIES
-5be9c8541c9d440000665243
-5beaa8bf1c9d440000a57d94
-5beaaa8f1c9d440000a57d95
-5beaabe91c9d440000a57d96
-5beaabe91c9d440000a57d96
-*/
+
 
 /* TEST FONCTION PROMESSE RECUP DE DONNEES */
-/* var teddies = [
-    {
-        id: "5beaaa8f1c9d440000a57d95"
-    }
-] */
+
 
 var get = function (url) {
     return new Promise(function (resolve) {

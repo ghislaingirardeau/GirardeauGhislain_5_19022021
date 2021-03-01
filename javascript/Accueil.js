@@ -1,29 +1,3 @@
-
-
-/* TEST TABLEAU IDEM API */
-
-/* let tableauObjest = [{
-    name: "toto",
-    description: "35",
-    price: "50",
-    _id: "5beaa8bf1c9d440000a57d94",
-    imageUrl: "http://localhost:3000/images/teddy_1.jpg"
-},{
-    name: "toto2",
-    description: "40",
-    price: "30",
-    _id: "5beaaa8f1c9d440000a57d95",
-    imageUrl: "http://localhost:3000/images/teddy_2.jpg"
-},
-{
-    name: "toto3",
-    description: "50",
-    price: "20",
-    _id: "5beaabe91c9d440000a57d96",
-    imageUrl: "http://localhost:3000/images/teddy_3.jpg"
-}
-] */
-
 /* == AJOUT DU BLOC HTML RECEVANT LE CONTENU == */
 
 var ajoutNouveauProduit = function (nom, description, prix, id, image) {
@@ -46,7 +20,6 @@ var ajoutNouveauProduit = function (nom, description, prix, id, image) {
 
     const imageProduit = document.createElement("img") 
     imageProduit.setAttribute("src", image)
-    
 
     categorie.appendChild(produit)
     produit.appendChild(nomProduit)
@@ -59,27 +32,52 @@ var ajoutNouveauProduit = function (nom, description, prix, id, image) {
     prixProduit.innerHTML = "Prix: " + prix + " $"
 }
 
-/* == RECUPERATION DES DONNEES VIA LE TABLEAU API == */
+/* == ENVOIE DES DONNES SUR LA PAGE ACCUEIL == */
 
-const recuperationDonneesAPI = function(tableau) {
+const listeProduitsAccueil = function(tableau) {
     
     for (let i=0; i < tableau.length; i++) {      
     ajoutNouveauProduit(tableau[i].name, tableau[i].description, 
         tableau[i].price, tableau[i]._id, tableau[i].imageUrl);
     }
 }
- 
-var request = new XMLHttpRequest();
-request.onreadystatechange = function (e) {
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        var response = JSON.parse(this.responseText);
-        console.log(response)
 
-        recuperationDonneesAPI(response)
-    ;} 
-};
-request.open("GET", "http://localhost:3000/api/teddies/");
-request.send();   
+/* == RECUPERATION DES DONNEES API == */
+
+var recuperationDonneesApi = function (url) {
+    return new Promise(function (resolve) {
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
+
+        request.onreadystatechange = function () {
+            if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                resolve(request.responseText)
+            ;} /* else {
+                reject('erreur') 
+            } */
+        };
+    request.send(); 
+    })
+}
+
+/* == RECUPERE LA PROMESSE == */
+
+var getPromise = async function () {
+
+    var response = await recuperationDonneesApi("http://localhost:3000/api/teddies/")
+    var donnees = JSON.parse(response);
+    
+    return donnees
+}
+console.log(getPromise())
+
+/* == LA PROMESSE EST UN SUCCES, JE PEUX UTILISER LES DONNEES == */
+
+getPromise().then(function(donnees) {
+    
+    listeProduitsAccueil(donnees)
+
+})
 
 
 

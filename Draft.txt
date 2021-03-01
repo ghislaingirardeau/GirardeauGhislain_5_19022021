@@ -1,0 +1,42 @@
+/* TEST FONCTIONNALITE AJOUT PANIER */
+
+/* const recuperationIdProduit = function(itbtn){
+
+    let idProduit = document.getElementById(itbtn).id
+    let tableauPanier = []
+    console.log(idProduit)
+    
+    for (let i=0; i < tableauObjest.length; i++) {     
+        
+        if (idProduit === tableauObjest[i].id) {
+            tableauPanier[0] = {test: tableauObjest[i].age, testnom: tableauObjest[i].name, testid: tableauObjest[i].id}
+            console.log(tableauPanier)
+        } else ("id n'existe pas")
+    }  
+}  */ 
+
+
+
+/* TEST TABLEAU IDEM API */
+
+/* let tableauObjest = [{
+    name: "toto",
+    description: "35",
+    price: "50",
+    _id: "5beaa8bf1c9d440000a57d94",
+    imageUrl: "http://localhost:3000/images/teddy_1.jpg"
+},{
+    name: "toto2",
+    description: "40",
+    price: "30",
+    _id: "5beaaa8f1c9d440000a57d95",
+    imageUrl: "http://localhost:3000/images/teddy_2.jpg"
+},
+{
+    name: "toto3",
+    description: "50",
+    price: "20",
+    _id: "5beaabe91c9d440000a57d96",
+    imageUrl: "http://localhost:3000/images/teddy_3.jpg"
+}
+] */

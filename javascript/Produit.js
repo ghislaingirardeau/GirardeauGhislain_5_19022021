@@ -1,8 +1,37 @@
 /* RECUPERE LE NOM DE LA PAGE PROPRE AU PRODUIT POUR Y RECUPERER LES INFOS */
 
-let identifiantProduit = window.location.search.slice(7, 31)
+var identifiantProduit = window.location.search.slice(7, 31)
 
 console.log(identifiantProduit)
+
+/* == AJOUT DU BLOC HTML RECEVANT LE CONTENU == */
+
+var descriptifProduits = function (nom, description, prix, image) {
+
+    const categorie = document.getElementById("categorie")
+
+    const nomProduit = document.createElement("h2")
+    nomProduit.classList.add("nom")
+
+    const descriptionProduit = document.createElement("p")
+    descriptionProduit.classList.add("description")
+
+    const prixProduit = document.createElement("p")
+    prixProduit.classList.add("prix")
+
+    const imageProduit = document.createElement("img") 
+    imageProduit.setAttribute("src", image)
+
+    categorie.appendChild(produit)
+    produit.appendChild(nomProduit)
+    produit.appendChild(descriptionProduit)
+    produit.appendChild(prixProduit)
+    produit.appendChild(imageProduit)
+
+    nomProduit.innerHTML = "Nom: " + nom
+    descriptionProduit.innerHTML = "Description: " + description
+    prixProduit.innerHTML = "Prix: " + prix + " $"
+}
 
 /* == RECUPERATION DES DONNEES PRETES */
 
@@ -13,14 +42,7 @@ request.onreadystatechange = function (identifiantProduit) {
         var response = JSON.parse(this.responseText);
         console.log(response)
 
-        let nomProduit = document.getElementById("nom_produit")
-        nomProduit.innerHTML = response.name
-
-        let descriptionProduit = document.getElementById("descritpion_produit")
-        descriptionProduit.innerHTML = response.description
-
-        let prixProduit = document.getElementById("prix_produit")
-        prixProduit.innerHTML = response.price
+        
     ;}
 
 };
@@ -30,20 +52,37 @@ request.send();
 
 
 
+var recuperationDonneesApi = function (url) {
+    return new Promise(function (resolve) {
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
 
-/* TEST FONCTIONNALITE AJOUT PANIER */
+        request.onreadystatechange = function () {
+            if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                resolve(request.responseText)
+            ;} /* else {
+                reject('erreur') 
+            } */
+        };
+    request.send(); 
+    })
+}
 
-/* const recuperationIdProduit = function(itbtn){
+/* == RECUPERE LA PROMESSE == */
 
-    let idProduit = document.getElementById(itbtn).id
-    let tableauPanier = []
-    console.log(idProduit)
+var getPromise = async function () {
+
+    var response = await recuperationDonneesApi("http://localhost:3000/api/teddies/")
+    var donnees = JSON.parse(response);
     
-    for (let i=0; i < tableauObjest.length; i++) {     
-        
-        if (idProduit === tableauObjest[i].id) {
-            tableauPanier[0] = {test: tableauObjest[i].age, testnom: tableauObjest[i].name, testid: tableauObjest[i].id}
-            console.log(tableauPanier)
-        } else ("id n'existe pas")
-    }  
-}  */ 
+    return donnees
+}
+console.log(getPromise())
+
+/* == LA PROMESSE EST UN SUCCES, JE PEUX UTILISER LES DONNEES == */
+
+getPromise().then(function(donnees) {
+    
+    listeProduitsAccueil(donnees)
+
+})

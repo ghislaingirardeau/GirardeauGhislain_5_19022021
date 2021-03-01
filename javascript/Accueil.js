@@ -6,7 +6,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
 
     const produit = document.createElement("a")
     produit.setAttribute("id", "produit") 
-    produit.setAttribute("href", "produit.html?id=" + "'" + id + "'") 
+    produit.setAttribute("href", "produit.html?" + "'" + id + "'") 
     console.log(produit)
 
     const nomProduit = document.createElement("h3")
@@ -37,7 +37,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
 const listeProduitsAccueil = function(tableau) {
     
     for (let i=0; i < tableau.length; i++) {      
-    creationBlocHTMLAccueil(tableau[i].name, tableau[i].description, 
+        creationBlocHtmlAccueil(tableau[i].name, tableau[i].description, 
         tableau[i].price, tableau[i]._id, tableau[i].imageUrl);
     }
 }

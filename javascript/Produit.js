@@ -1,6 +1,6 @@
 /* RECUPERE LE NOM DE LA PAGE PROPRE AU PRODUIT POUR Y RECUPERER LES INFOS */
 
-var identifiantProduit = window.location.search.slice(7, 31)
+var identifiantProduit = window.location.search.slice(4, 28)
 
 console.log(identifiantProduit)
 
@@ -9,6 +9,8 @@ console.log(identifiantProduit)
 var creationBlocHtmlProduit = function (nom, description, prix, image) {
 
     const categorie = document.getElementById("categorie")
+
+    const produit = document.createElement("article")
 
     const nomProduit = document.createElement("h2")
     nomProduit.classList.add("nom")
@@ -35,10 +37,9 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
 
 const insertionDescriptifProduits = function(tableau) {
     
-    /* for (let i=0; i < tableau.length; i++) {      
-    ajoutNouveauProduit(tableau[i].name, tableau[i].description, 
-        tableau[i].price, tableau[i].imageUrl);
-    } */
+    creationBlocHtmlProduit(tableau.name, tableau.description, 
+        tableau.price, tableau.imageUrl)
+
 }
 
 /* == CREATION DE LA PROMESSE */
@@ -64,7 +65,6 @@ var recuperationDonneesApi = function (url, identifiantProduit) {
 var getPromise = async function () {
 
     var response = await recuperationDonneesApi("http://localhost:3000/api/teddies/", identifiantProduit)
-    console.log(recuperationDonneesApi)
     var donnees = JSON.parse(response);
     
     return donnees
@@ -75,6 +75,7 @@ console.log(getPromise())
 
 getPromise().then(function(donnees) {
     
-    console.log(donnees)
+    insertionDescriptifProduits(donnees)
+    console.log(donnees.colors)
 
 })

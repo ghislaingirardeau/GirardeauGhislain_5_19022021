@@ -6,16 +6,19 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
 
     const produit = document.createElement("a") 
     produit.setAttribute("href", "produit.html?" + "'" + id + "'") 
-    produit.classList.add("container")
+    produit.classList.add("row", "py-5")
+
+    const elementProduit = document.createElement("div")
+    elementProduit.classList.add ("col-6")
 
     const nomProduit = document.createElement("h3")
-    nomProduit.classList.add("nom", "col-6")
+    nomProduit.classList.add("nom")
 
     const descriptionProduit = document.createElement("p")
-    descriptionProduit.classList.add("description", "col-6")
+    descriptionProduit.classList.add("description")
 
     const prixProduit = document.createElement("p")
-    prixProduit.classList.add("prix", "col-6")
+    prixProduit.classList.add("prix")
 
     const imageProduit = document.createElement("img")
     imageProduit.classList.add("float-right", "col-6")
@@ -23,9 +26,10 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
     imageProduit.setAttribute("alt", "image de l'ourson " + nom)
 
     categorie.appendChild(produit)
-    produit.appendChild(nomProduit)
-    produit.appendChild(descriptionProduit)
-    produit.appendChild(prixProduit)
+    produit.appendChild(elementProduit)
+    elementProduit.appendChild(nomProduit)
+    elementProduit.appendChild(descriptionProduit)
+    elementProduit.appendChild(prixProduit)
     produit.appendChild(imageProduit)
 
     nomProduit.innerHTML = "Nom: " + nom

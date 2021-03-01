@@ -1,6 +1,6 @@
 /* == AJOUT DU BLOC HTML RECEVANT LE CONTENU == */
 
-var ajoutNouveauProduit = function (nom, description, prix, id, image) {
+var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
 
     const categorie = document.getElementById("categorie")
 
@@ -37,7 +37,7 @@ var ajoutNouveauProduit = function (nom, description, prix, id, image) {
 const listeProduitsAccueil = function(tableau) {
     
     for (let i=0; i < tableau.length; i++) {      
-    ajoutNouveauProduit(tableau[i].name, tableau[i].description, 
+    creationBlocHTMLAccueil(tableau[i].name, tableau[i].description, 
         tableau[i].price, tableau[i]._id, tableau[i].imageUrl);
     }
 }

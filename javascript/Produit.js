@@ -6,7 +6,7 @@ console.log(identifiantProduit)
 
 /* == AJOUT DU BLOC HTML RECEVANT LE CONTENU == */
 
-var descriptifProduits = function (nom, description, prix, image) {
+var creationBlocHtmlProduit = function (nom, description, prix, image) {
 
     const categorie = document.getElementById("categorie")
 
@@ -33,29 +33,20 @@ var descriptifProduits = function (nom, description, prix, image) {
     prixProduit.innerHTML = "Prix: " + prix + " $"
 }
 
-/* == RECUPERATION DES DONNEES PRETES */
+const insertionDescriptifProduits = function(tableau) {
+    
+    /* for (let i=0; i < tableau.length; i++) {      
+    ajoutNouveauProduit(tableau[i].name, tableau[i].description, 
+        tableau[i].price, tableau[i].imageUrl);
+    } */
+}
 
-var request = new XMLHttpRequest();
-request.onreadystatechange = function (identifiantProduit) {
+/* == CREATION DE LA PROMESSE */
 
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        var response = JSON.parse(this.responseText);
-        console.log(response)
-
-        
-    ;}
-
-};
-
-request.open("GET", "http://localhost:3000/api/teddies/" + identifiantProduit);
-request.send();   
-
-
-
-var recuperationDonneesApi = function (url) {
+var recuperationDonneesApi = function (url, identifiantProduit) {
     return new Promise(function (resolve) {
     var request = new XMLHttpRequest();
-    request.open("GET", url);
+    request.open("GET", url + identifiantProduit);
 
         request.onreadystatechange = function () {
             if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
@@ -72,7 +63,8 @@ var recuperationDonneesApi = function (url) {
 
 var getPromise = async function () {
 
-    var response = await recuperationDonneesApi("http://localhost:3000/api/teddies/")
+    var response = await recuperationDonneesApi("http://localhost:3000/api/teddies/", identifiantProduit)
+    console.log(recuperationDonneesApi)
     var donnees = JSON.parse(response);
     
     return donnees
@@ -83,6 +75,6 @@ console.log(getPromise())
 
 getPromise().then(function(donnees) {
     
-    listeProduitsAccueil(donnees)
+    console.log(donnees)
 
 })

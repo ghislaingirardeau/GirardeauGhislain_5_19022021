@@ -11,16 +11,16 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     const categorie = document.getElementById("categorie")
 
     const nomProduit = document.createElement("h3")
-    nomProduit.classList.add("text-dark", "col-12", "p-3")
+    nomProduit.classList.add("text-secondary", "col-12", "p-3")
 
     const elementProduit = document.createElement("div")
     elementProduit.classList.add("col-5", "mb-3")
 
     const descriptionProduit = document.createElement("p")
-    descriptionProduit.classList.add("text-dark", "pt-5")
+    descriptionProduit.classList.add("text-secondary", "pt-5")
 
     const prixProduit = document.createElement("p")
-    prixProduit.classList.add("text-dark", "pt-5")
+    prixProduit.classList.add("text-secondary", "pt-5", "font-weight-bold")
 
     const imageProduit = document.createElement("img") 
     imageProduit.setAttribute("src", image)

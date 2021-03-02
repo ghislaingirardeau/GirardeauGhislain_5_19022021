@@ -8,3 +8,11 @@ img{
     object-fit: cover;
     width: 100%;
 }
+
+section {
+    background-color: rgb(64, 105, 241);
+}
+
+article{
+    background-color: white;
+}

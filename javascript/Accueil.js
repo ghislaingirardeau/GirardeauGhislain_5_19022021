@@ -4,9 +4,12 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
 
     const categorie = document.getElementById("categorie")
 
-    const produit = document.createElement("a") 
-    produit.setAttribute("href", "produit.html?" + "'" + id + "'") 
-    produit.classList.add("row", "py-5")
+    const produit = document.createElement("article")
+    produit.classList.add("container", "p-5")
+
+    const lienProduit = document.createElement("a") 
+    lienProduit.setAttribute("href", "produit.html?" + "'" + id + "'") 
+    lienProduit.classList.add("row", "py-5")
 
     const elementProduit = document.createElement("div")
     elementProduit.classList.add ("col-6")
@@ -26,11 +29,13 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
     imageProduit.setAttribute("alt", "image de l'ourson " + nom)
 
     categorie.appendChild(produit)
-    produit.appendChild(elementProduit)
+    produit.appendChild(lienProduit)
+    lienProduit.appendChild(elementProduit)
+    
     elementProduit.appendChild(nomProduit)
     elementProduit.appendChild(descriptionProduit)
     elementProduit.appendChild(prixProduit)
-    produit.appendChild(imageProduit)
+    lienProduit.appendChild(imageProduit)
 
     nomProduit.innerHTML = "Nom: " + nom
     descriptionProduit.innerHTML = "Description: " + description

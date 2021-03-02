@@ -39,7 +39,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
 
     nomProduit.innerHTML = nom
     descriptionProduit.innerHTML = "Description: " + description
-    prixProduit.innerHTML = "Prix: " + prix + " $"
+    prixProduit.innerHTML = "Prix: " + prix + " €"
 }
 
 /* == ENVOIE DES DONNES SUR LA PAGE ACCUEIL == */

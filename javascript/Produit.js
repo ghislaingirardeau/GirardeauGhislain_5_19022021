@@ -10,29 +10,34 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
 
     const categorie = document.getElementById("categorie")
 
-    const produit = document.createElement("article")
+    const nomProduit = document.createElement("h3")
+    nomProduit.classList.add("text-dark", "col-12")
 
-    const nomProduit = document.createElement("h2")
-    nomProduit.classList.add("nom")
+    const elementProduit = document.createElement("div")
+    elementProduit.classList.add("col-5")
 
     const descriptionProduit = document.createElement("p")
-    descriptionProduit.classList.add("description")
+    descriptionProduit.classList.add("text-dark")
 
     const prixProduit = document.createElement("p")
-    prixProduit.classList.add("prix")
+    prixProduit.classList.add("text-dark")
 
     const imageProduit = document.createElement("img") 
     imageProduit.setAttribute("src", image)
+    imageProduit.classList.add("col-6")
 
-    categorie.appendChild(produit)
-    produit.appendChild(nomProduit)
-    produit.appendChild(descriptionProduit)
-    produit.appendChild(prixProduit)
-    produit.appendChild(imageProduit)
+    categorie.appendChild(nomProduit)
+    
 
-    nomProduit.innerHTML = "Nom: " + nom
+    categorie.appendChild(elementProduit)
+    elementProduit.appendChild(descriptionProduit)
+    elementProduit.appendChild(prixProduit)
+
+    categorie.appendChild(imageProduit)
+
+    nomProduit.innerHTML = "Ourson : " + nom
     descriptionProduit.innerHTML = "Description: " + description
-    prixProduit.innerHTML = "Prix: " + prix + " $"
+    prixProduit.innerHTML = "Prix: " + prix + " €"
 }
 
 const insertionDescriptifProduits = function(tableau) {

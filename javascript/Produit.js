@@ -11,20 +11,20 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     const categorie = document.getElementById("categorie")
 
     const nomProduit = document.createElement("h3")
-    nomProduit.classList.add("text-dark", "col-12")
+    nomProduit.classList.add("text-dark", "col-12", "p-3")
 
     const elementProduit = document.createElement("div")
-    elementProduit.classList.add("col-5")
+    elementProduit.classList.add("col-5", "mb-3")
 
     const descriptionProduit = document.createElement("p")
-    descriptionProduit.classList.add("text-dark")
+    descriptionProduit.classList.add("text-dark", "pt-5")
 
     const prixProduit = document.createElement("p")
-    prixProduit.classList.add("text-dark")
+    prixProduit.classList.add("text-dark", "pt-5")
 
     const imageProduit = document.createElement("img") 
     imageProduit.setAttribute("src", image)
-    imageProduit.classList.add("col-6")
+    imageProduit.classList.add("col-7", "mb-3")
 
     categorie.appendChild(nomProduit)
     
@@ -36,8 +36,13 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     categorie.appendChild(imageProduit)
 
     nomProduit.innerHTML = "Ourson : " + nom
-    descriptionProduit.innerHTML = "Description: " + description
-    prixProduit.innerHTML = "Prix: " + prix + " €"
+    nomProduit.style.fontStyle = "italic"
+
+    descriptionProduit.innerHTML = "Description : " + description
+    descriptionProduit.style.fontSize = "1.3rem"
+    
+    prixProduit.innerHTML = "Prix : " + prix + " €"
+    prixProduit.style.fontSize = "1.4rem"
 }
 
 const insertionDescriptifProduits = function(tableau) {

@@ -1,6 +1,6 @@
 /* == AJOUT DU BLOC HTML RECEVANT LE CONTENU == */
 
-var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
+var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* Parametre correspondant aux donnees API de chaque element */
 
     const categorie = document.getElementById("categorie")
 
@@ -8,7 +8,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
     produit.classList.add("container", "p-4", "col-5", "justify-content-around")
 
     const lienProduit = document.createElement("a") 
-    lienProduit.setAttribute("href", "produit.html?" + "'" + id + "'") 
+    lienProduit.setAttribute("href", "produit.html?" + "'" + id + "'") /* AJOUT LE PARAMETRE ID DU PRODUIT A L'URL POUR LA RECUPERER SUR LA PAGE */
     lienProduit.classList.add("row", "py-5", "bg-light", "rounded")
 
     const elementProduit = document.createElement("div")
@@ -25,8 +25,8 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
 
     const imageProduit = document.createElement("img")
     imageProduit.classList.add("float-right", "col-6")
-    imageProduit.setAttribute("src", image)
-    imageProduit.setAttribute("alt", "image de l'ourson " + nom)
+    imageProduit.setAttribute("src", image) /* AJOUT DU PARAMETRE IMAGE QUI RECUPERE L'URL DE L'IMAGE CORRESPONDANTE */
+    imageProduit.setAttribute("alt", "image de l'ourson " + nom) /* AJOUT DU NOM DE L'OURSON */
 
     categorie.appendChild(produit)
     produit.appendChild(lienProduit)
@@ -35,9 +35,10 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
     elementProduit.appendChild(nomProduit)
     elementProduit.appendChild(descriptionProduit)
     elementProduit.appendChild(prixProduit)
+
     lienProduit.appendChild(imageProduit)
 
-    nomProduit.innerHTML = nom
+    nomProduit.innerHTML = nom  /* INJECTE LES DONNEES EN PARAMETRES DANS LE HTML AUX EMPLACEMENTS DEFINIS */
     descriptionProduit.innerHTML = "Description: " + description
     prixProduit.innerHTML = "Prix: " + prix + " €"
 }

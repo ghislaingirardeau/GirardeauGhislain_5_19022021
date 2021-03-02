@@ -10,6 +10,8 @@
     
     <script src="https://kit.fontawesome.com/2cf556db96.js" crossorigin="anonymous"></script>
 
+    <script src="https://kit.fontawesome.com/2cf556db96.js" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -19,25 +21,44 @@
         
         <nav class="navbar navbar-expand row ">
             <h1 class="col-3 text-dark pl-5 ">Oriteddy</h1>
-            <ul class="navbar-nav col-9 justify-content-end text-right font-weight-bold">
-                <li class="nav-item active">
-                    <a href="index.html" class="nav-link pt-4 pr-5 ">Accueil</a>
+            <ul class="navbar-nav col-9 justify-content-end text-right font-weight-bold pt-2">
+                <li class="nav-item active col-4">
+                    <a href="index.html" class="lien_nav nav-link">Accueil</a>
                 </li>
-                <li class="nav-item">
-                    <a href="panier.html" class="nav-link text-center">
-                    <i class="fas fa-shopping-cart"></i><p>Mon Panier</p> </a>
+                <li class="nav-item col-4">
+                    <a href="panier.html" class="lien_nav nav-link text-center">
+                        <i class="fas fa-shopping-cart"></i> 
+                        <p class=" list-inline-item">Mon Panier</p> 
+                    </a>
                 </li>
-
             </ul>
         </nav>
         
     </header>
 
-    <section class="container bg-primary rounded">
+    <section class="container bg-primary rounded pb-4">
         
-        <h2 class="col-12 px-5 py-4 border-bottom border-dark">Produit et option de personnalisation</h2>
+    <nav class="row px-5 py-4 border-bottom border-dark">
+
+        <h2 class="col-11 ">Personnaliser votre ourson</h2>
+
+        <button class="navbar-toggler bg-light float-right" type="button" data-toggle="collapse" data-target="#navbarContent">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div id="navbarContent" class="navbar-nav collapse navbar-collapse bg-light mt-3">
+            <ul class="navbar-nav col-12">
+                <li class="nav-item active border-bottom border-dark">
+                    <p class="lien_nav nav-link text-primary font-weight-bold m-2">Accueil</p>
+                </li>
+                <li class="nav-item">
+                    <p class="lien_nav nav-link text-primary font-weight-bold m-2">Cours</p>
+                </li>
+            </ul>
+        </div>
+    </nav>
         
-        <article id="categorie" class="row my-5 mx-4 bg-light rounded align-middle"> 
+        <article id="categorie" class="row m-4 bg-light rounded align-middle"> 
 
         </article> 
         

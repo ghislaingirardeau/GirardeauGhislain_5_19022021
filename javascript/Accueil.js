@@ -5,23 +5,23 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
     const categorie = document.getElementById("categorie")
 
     const produit = document.createElement("article")
-    produit.classList.add("container", "p-5")
+    produit.classList.add("container", "p-4", "col-5", "justify-content-around")
 
     const lienProduit = document.createElement("a") 
     lienProduit.setAttribute("href", "produit.html?" + "'" + id + "'") 
-    lienProduit.classList.add("row", "py-5")
+    lienProduit.classList.add("row", "py-5", "bg-light", "rounded")
 
     const elementProduit = document.createElement("div")
     elementProduit.classList.add ("col-6")
 
     const nomProduit = document.createElement("h3")
-    nomProduit.classList.add("nom")
+    nomProduit.classList.add("text-secondary")
 
     const descriptionProduit = document.createElement("p")
-    descriptionProduit.classList.add("description")
+    descriptionProduit.classList.add("text-secondary")
 
     const prixProduit = document.createElement("p")
-    prixProduit.classList.add("prix")
+    prixProduit.classList.add("text-secondary")
 
     const imageProduit = document.createElement("img")
     imageProduit.classList.add("float-right", "col-6")
@@ -37,7 +37,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) {
     elementProduit.appendChild(prixProduit)
     lienProduit.appendChild(imageProduit)
 
-    nomProduit.innerHTML = "Nom: " + nom
+    nomProduit.innerHTML = nom
     descriptionProduit.innerHTML = "Description: " + description
     prixProduit.innerHTML = "Prix: " + prix + " $"
 }

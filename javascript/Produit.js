@@ -20,6 +20,7 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     descriptionProduit.classList.add("text-secondary", "pt-5")
 
     const prixProduit = document.createElement("p")
+    prixProduit.setAttribute("id", "prix")
     prixProduit.classList.add("text-secondary", "pt-5", "font-weight-bold")
 
     const imageProduit = document.createElement("img") 
@@ -45,7 +46,7 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     prixProduit.style.fontSize = "1.4rem"
 }
 
-const insertionDescriptifProduits = function(donnees) {
+const descriptifProduit = function(donnees) {
     
     creationBlocHtmlProduit(donnees.name, donnees.description, 
         donnees.price, donnees.imageUrl)
@@ -91,6 +92,9 @@ var menuPresonnalisation = function (donnees) {
     }
 }
 
+/* == BOUTON PANIER == */
+
+
 
 /* == CREATION DE LA PROMESSE */
 
@@ -125,16 +129,60 @@ var getPromise = async function () {
 
 getPromise().then(function(donnees) {
     
-    insertionDescriptifProduits(donnees)
-    console.log(donnees.colors)
-    menuPresonnalisation(donnees.colors)   
+    descriptifProduit(donnees)
+    
+    menuPresonnalisation(donnees.colors)  
 
 })
 
 
 /* TEST FONCTION BOUTON PANIER */
 
-var prixPanier = document.querySelector ("article div ")
+let tableauObjest = [{
+    name: "toto",
+    description: "35",
+    price: "50",
+    _id: "5beaa8bf1c9d440000a57d94"
+},{
+    name: "toto2",
+    description: "40",
+    price: "30",
+    _id: "5beaaa8f1c9d440000a57d95"
+},
+{
+    name: "toto3",
+    description: "50",
+    price: "20",
+    _id: "5beaabe91c9d440000a57d96"
+}
+] 
 
+
+
+var clickBoutonPanier = function(clickFait) {
+
+    var boutonPanier = document.getElementById("btn_panier")
+    
+    var click = 0
+    var clickDejaFait = clickFait
+    console.log(clickDejaFait)
+
+
+    boutonPanier.addEventListener('click', function (clickDejaFait){
+            
+        var somme = clickDejaFait + click++
+        console.log(click)
+        var testPanier = document.querySelector("article h3").innerText
+        console.log(testPanier)
+        localStorage.setItem(somme, testPanier)
+
+        var clickFait = click
+        console.log(clickFait)
+    })
+
+}
+
+console.log(clickBoutonPanier(0))
+console.log(localStorage)
 
 

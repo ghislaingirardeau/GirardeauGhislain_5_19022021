@@ -4,7 +4,7 @@ var identifiantProduit = window.location.search.slice(4, 28)
 
 console.log(identifiantProduit)
 
-/* == AJOUT DU BLOC HTML RECEVANT LE CONTENU == */
+/* == LES FONCTION POUR AFFICHER LE CONTENU PRODUIT DE LA PAGE == */
 
 var creationBlocHtmlProduit = function (nom, description, prix, image) {
 
@@ -52,6 +52,46 @@ const insertionDescriptifProduits = function(donnees) {
 
 }
 
+/* == LES FONCTION POUR LA PERSONNALISATION DU PRODUIT ET SON MENU DEROULANT == */
+
+var nouvelOngletPersonnalisation = function (element) {
+
+    var ongletMenu = document.querySelector("#navbarContent ul")
+
+    var itemMenu = document.createElement("li")
+    itemMenu.classList.add("nav-item", "border-bottom", "border-dark")
+
+    var contenuItem = document.createElement("a")
+    contenuItem.classList.add("lien_nav", "nav-link", "text-primary", "font-weight-bold", "m-2")
+    contenuItem.setAttribute("href", "#")
+
+    ongletMenu.appendChild(itemMenu)
+    itemMenu.appendChild(contenuItem)
+
+    contenuItem.innerHTML = element
+}
+
+var menuPresonnalisation = function (donnees) {
+
+    var boutonPersonnalisation = document.getElementById("btn_personnalisation")
+    var premierItemMenu = document.querySelector("#navbarContent ul li a")
+
+    if (donnees == undefined || donnees.length == 0) { /* Si il n'y a pas de données ou que le tableau n'existe pas */
+        boutonPersonnalisation.setAttribute("disabled", "")
+        throw ("les donnees ou le tableau n'existent pas")
+
+    } else {
+
+        premierItemMenu.innerHTML= donnees[0] /* Renvoie a la 1ere données pour conserver la class active (bootstrap) des items du menu */
+
+        for (i=1; i < donnees.length; i++) { /* commence au 2eme élement du tableau car la 1ere est deja incrementer */
+            
+            nouvelOngletPersonnalisation (donnees[i])
+        }
+    }
+}
+
+
 /* == CREATION DE LA PROMESSE */
 
 var recuperationDonneesApi = function (url, identifiantProduit) {
@@ -86,56 +126,12 @@ var getPromise = async function () {
 getPromise().then(function(donnees) {
     
     insertionDescriptifProduits(donnees)
-    
+    console.log(donnees.colors)
+    menuPresonnalisation(donnees.colors)   
 
 })
 
 
-let testtableau = {
-    name: "toto",
-    age: "35",
-    tab: ["blue", "brown", "beige"]
-}
 
-
-var menuHTMLPersonnalisation = function (element) {
-
-    var ongletMenu = document.querySelector("#navbarContent ul")
-
-    var itemMenu = document.createElement("li")
-    itemMenu.classList.add("nav-item", "border-bottom", "border-dark")
-
-    var contenuItem = document.createElement("p")
-    contenuItem.classList.add("lien_nav", "nav-link", "text-primary", "font-weight-bold", "m-2")
-
-    ongletMenu.appendChild(itemMenu)
-    itemMenu.appendChild(contenuItem)
-
-    contenuItem.innerHTML = element
-
-}
-
-
-/* var insertionDonnéesPresonnalisation = function (donnees) {
-
-    var boutonPersonnalisation = document.getElementById("btn_personnalisation")
-
-    if (donnees.tab.length == 0) {
-        boutonPersonnalisation.setAttribute("disabled", "")
-        
-    } else {
-        for (i=0; i < donnees.tab.length; i++) {
-            if (i = 0) {
-                Document.querySelector("#navbarContent ul li p")= donnees.tab[0]
-            }
-            if (i > 0) {
-                menuHTMLPersonnalisation (donnees.tab[i])
-            }
-            
-        }
-
-    }
-}
-console.log (insertionDonnéesPresonnalisation(testtableau)) */
 
 

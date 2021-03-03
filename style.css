@@ -8,5 +8,10 @@ img{
 }
 
 .lien_nav {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
+
+/* nav a:hover {
+    border-top: blue 4px solid;
+}
+ */

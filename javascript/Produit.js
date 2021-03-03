@@ -24,7 +24,7 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
 
     const imageProduit = document.createElement("img") 
     imageProduit.setAttribute("src", image)
-    imageProduit.classList.add("col-7", "mb-3")
+    imageProduit.classList.add("col-7", "mb-3", "rounded")
 
     categorie.appendChild(nomProduit)
     
@@ -45,10 +45,10 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     prixProduit.style.fontSize = "1.4rem"
 }
 
-const insertionDescriptifProduits = function(tableau) {
+const insertionDescriptifProduits = function(donnees) {
     
-    creationBlocHtmlProduit(tableau.name, tableau.description, 
-        tableau.price, tableau.imageUrl)
+    creationBlocHtmlProduit(donnees.name, donnees.description, 
+        donnees.price, donnees.imageUrl)
 
 }
 
@@ -79,13 +79,63 @@ var getPromise = async function () {
     
     return donnees
 }
-console.log(getPromise())
+
 
 /* == LA PROMESSE EST UN SUCCES, JE PEUX UTILISER LES DONNEES == */
 
 getPromise().then(function(donnees) {
     
     insertionDescriptifProduits(donnees)
-    console.log(donnees.colors)
+    
 
 })
+
+
+let testtableau = {
+    name: "toto",
+    age: "35",
+    tab: ["blue", "brown", "beige"]
+}
+
+
+var menuHTMLPersonnalisation = function (element) {
+
+    var ongletMenu = document.querySelector("#navbarContent ul")
+
+    var itemMenu = document.createElement("li")
+    itemMenu.classList.add("nav-item", "border-bottom", "border-dark")
+
+    var contenuItem = document.createElement("p")
+    contenuItem.classList.add("lien_nav", "nav-link", "text-primary", "font-weight-bold", "m-2")
+
+    ongletMenu.appendChild(itemMenu)
+    itemMenu.appendChild(contenuItem)
+
+    contenuItem.innerHTML = element
+
+}
+
+
+/* var insertionDonnéesPresonnalisation = function (donnees) {
+
+    var boutonPersonnalisation = document.getElementById("btn_personnalisation")
+
+    if (donnees.tab.length == 0) {
+        boutonPersonnalisation.setAttribute("disabled", "")
+        
+    } else {
+        for (i=0; i < donnees.tab.length; i++) {
+            if (i = 0) {
+                Document.querySelector("#navbarContent ul li p")= donnees.tab[0]
+            }
+            if (i > 0) {
+                menuHTMLPersonnalisation (donnees.tab[i])
+            }
+            
+        }
+
+    }
+}
+console.log (insertionDonnéesPresonnalisation(testtableau)) */
+
+

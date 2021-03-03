@@ -8,7 +8,7 @@ console.log(identifiantProduit)
 
 var creationBlocHtmlProduit = function (nom, description, prix, image) {
 
-    const categorie = document.getElementById("categorie")
+    const article = document.getElementById("article")
 
     const nomProduit = document.createElement("h3")
     nomProduit.classList.add("text-secondary", "col-12", "p-3")
@@ -26,14 +26,14 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     imageProduit.setAttribute("src", image)
     imageProduit.classList.add("col-7", "mb-3", "rounded")
 
-    categorie.appendChild(nomProduit)
+    article.appendChild(nomProduit)
     
 
-    categorie.appendChild(elementProduit)
+    article.appendChild(elementProduit)
     elementProduit.appendChild(descriptionProduit)
     elementProduit.appendChild(prixProduit)
 
-    categorie.appendChild(imageProduit)
+    article.appendChild(imageProduit)
 
     nomProduit.innerHTML = "Ourson : " + nom
     nomProduit.style.fontStyle = "italic"
@@ -132,6 +132,9 @@ getPromise().then(function(donnees) {
 })
 
 
+/* TEST FONCTION BOUTON PANIER */
+
+var prixPanier = document.querySelector ("article div ")
 
 
 

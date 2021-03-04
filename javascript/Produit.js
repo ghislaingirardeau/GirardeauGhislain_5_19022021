@@ -157,43 +157,35 @@ let tableauObjest = [{
 }
 ] 
 
-window.addEventListener("DOMContentLoaded", (event) => {
-    localStorage.setItem(identifiantProduit, "0")
-  });
-
-
 
 var boutonPanier = document.getElementById("btn_panier")
 
 boutonPanier.addEventListener('click', function (){
-    
+
     var testPanier = identifiantProduit
-    console.log(testPanier)
     var click = 0
-    var premierClick = 0
     
     for (i=0; i < localStorage.length; i++) {
-        
-        if (testPanier == localStorage.key(i)){
-            console.log(testPanier)
-            console.log(localStorage.key(i))
-            click++
-            
-            var valuei = parseInt(localStorage.getItem(localStorage.key(i)))
-            console.log(valuei)
-            var cumulClick = valuei + click
-            localStorage.setItem(testPanier, cumulClick)
-            
-        } /* else {
-            localStorage.setItem(testPanier, premierClick)
-            console.log(testPanier)
-            console.log(localStorage.key(i))
-        } */
 
+        var valeurCle = localStorage.key(i)
+
+        if (testPanier === valeurCle) {
+            var result = 1
+            var valeur =  localStorage.key(i)
+        } 
     }
-/* localStorage.setItem(testPanier, click) */
+    console.log(result)
+
+   if (result == 1) {
+                
+        click++
+        var valuei = parseInt(localStorage.getItem(valeur))
+        var cumulClick = valuei + click
+        localStorage.setItem(valeur, cumulClick)
+    }  else {
+        localStorage.setItem(testPanier, "1")
+    }
     console.log(localStorage)
 })
 
     console.log(localStorage)
-/* var testPanier = document.querySelector("article h3").innerText */

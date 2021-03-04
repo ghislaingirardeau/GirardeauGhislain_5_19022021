@@ -90,7 +90,14 @@ getPromise().then(function(donnees) {
 
 })
 
+var setPanier = function(article) {
+    var ajout = localStorage.setItem(article, "0")
+}
+
+
 console.log(localStorage)
+
+
 
 
 

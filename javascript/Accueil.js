@@ -90,7 +90,7 @@ getPromise().then(function(donnees) {
 
 })
 
-
+console.log(localStorage)
 
 
 

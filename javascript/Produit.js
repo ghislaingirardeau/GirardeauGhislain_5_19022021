@@ -157,32 +157,43 @@ let tableauObjest = [{
 }
 ] 
 
+window.addEventListener("DOMContentLoaded", (event) => {
+    localStorage.setItem(identifiantProduit, "0")
+  });
 
 
-var clickBoutonPanier = function(clickFait) {
 
-    var boutonPanier = document.getElementById("btn_panier")
+var boutonPanier = document.getElementById("btn_panier")
+
+boutonPanier.addEventListener('click', function (){
     
+    var testPanier = identifiantProduit
+    console.log(testPanier)
     var click = 0
-    var clickDejaFait = clickFait
-    console.log(clickDejaFait)
-
-
-    boutonPanier.addEventListener('click', function (clickDejaFait){
+    var premierClick = 0
+    
+    for (i=0; i < localStorage.length; i++) {
+        
+        if (testPanier == localStorage.key(i)){
+            console.log(testPanier)
+            console.log(localStorage.key(i))
+            click++
             
-        var somme = clickDejaFait + click++
-        console.log(click)
-        var testPanier = document.querySelector("article h3").innerText
-        console.log(testPanier)
-        localStorage.setItem(somme, testPanier)
+            var valuei = parseInt(localStorage.getItem(localStorage.key(i)))
+            console.log(valuei)
+            var cumulClick = valuei + click
+            localStorage.setItem(testPanier, cumulClick)
+            
+        } /* else {
+            localStorage.setItem(testPanier, premierClick)
+            console.log(testPanier)
+            console.log(localStorage.key(i))
+        } */
 
-        var clickFait = click
-        console.log(clickFait)
-    })
+    }
+/* localStorage.setItem(testPanier, click) */
+    console.log(localStorage)
+})
 
-}
-
-console.log(clickBoutonPanier(0))
-console.log(localStorage)
-
-
+    console.log(localStorage)
+/* var testPanier = document.querySelector("article h3").innerText */

@@ -8,7 +8,7 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     nomProduit.classList.add("text-secondary", "col-12", "p-3")
 
     const elementProduit = document.createElement("div")
-    elementProduit.classList.add("col-5", "mb-3")
+    elementProduit.classList.add("col-md-5", "mb-3")
 
     const descriptionProduit = document.createElement("p")
     descriptionProduit.classList.add("text-secondary", "pt-5")
@@ -19,7 +19,7 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
 
     const imageProduit = document.createElement("img") 
     imageProduit.setAttribute("src", image)
-    imageProduit.classList.add("col-7", "mb-3", "rounded")
+    imageProduit.classList.add("col-md-7", "mb-3", "rounded")
 
     article.appendChild(nomProduit)
     

@@ -12,7 +12,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* 
     lienProduit.classList.add("row", "py-5", "bg-light", "rounded")
 
     const elementProduit = document.createElement("div")
-    elementProduit.classList.add ("col-6")
+    elementProduit.classList.add ("col-sm-6")
 
     const nomProduit = document.createElement("h3")
     nomProduit.classList.add("text-secondary")
@@ -24,7 +24,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* 
     prixProduit.classList.add("text-secondary")
 
     const imageProduit = document.createElement("img")
-    imageProduit.classList.add("float-right", "col-6")
+    imageProduit.classList.add("float-right", "col-sm-6")
     imageProduit.setAttribute("src", image) /* AJOUT DU PARAMETRE IMAGE QUI RECUPERE L'URL DE L'IMAGE CORRESPONDANTE */
     imageProduit.setAttribute("alt", "image de l'ourson " + nom) /* AJOUT DU NOM DE L'OURSON */
 

@@ -5,7 +5,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* 
     const categorie = document.getElementById("categorie")
 
     const produit = document.createElement("article")
-    produit.classList.add("container", "p-4", "col-5", "justify-content-around")
+    produit.classList.add("p-4", "col-12", "col-md-6", "col-lg-5")
 
     const lienProduit = document.createElement("a") 
     lienProduit.setAttribute("href", "produit.html?id=" + id ) /* AJOUT LE PARAMETRE ID DU PRODUIT A L'URL POUR LA RECUPERER SUR LA PAGE */

@@ -144,6 +144,41 @@ var menuPresonnalisation = function (donnees) {
     }
 }
 
+/* FONCTION CLICK BOUTON PANIER */
+
+var clickBoutonPanier = function (identifiantProduit) {
+
+    var boutonPanier = document.getElementById("btn_panier")
+
+    boutonPanier.addEventListener('click', function (){
+
+        var click = 0
+    
+        for (i=0; i < localStorage.length; i++) { /* Je compare l'Id a chacune des clés du tableau, si l'ID est deja presente retourne true */
+
+            var valeurCache = localStorage.key(i)
+
+            if (identifiantProduit === valeurCache) {
+                var result = "true"
+                var valeurCle =  localStorage.key(i)
+            } 
+        }
+
+        if (result == "true") { /* Si l'id est présente, j'applique cette fonction */
+                
+            click++
+            var nombreClickFait = parseInt(localStorage.getItem(valeurCle))
+            var totalClick = nombreClickFait + click
+            localStorage.setItem(valeurCle, totalClick)
+        }  
+    
+        else { /* Si l'id n'est pas presente alors je l'insere dans le cache */
+
+            localStorage.setItem(identifiantProduit, "1")
+        }
+    })
+}
+
 /* == RECUPERATION DES DONNEES API == */
 
 var recuperationDonneesApi = async function () {
@@ -183,6 +218,7 @@ var recuperationDonneesApi = async function () {
 
                     descriptifProduit(donnees)
                     menuPresonnalisation(donnees.colors)
+                    clickBoutonPanier(identifiantProduit)
                 })
 
             } else {
@@ -194,6 +230,7 @@ var recuperationDonneesApi = async function () {
 }
 
 recuperationDonneesApi()
+console.log(localStorage)
 
 
 

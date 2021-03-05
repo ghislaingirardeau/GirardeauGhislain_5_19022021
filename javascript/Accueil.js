@@ -1,5 +1,3 @@
-
-
 /* == AJOUT DU BLOC HTML RECEVANT LE CONTENU == */
 
 var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* Parametre correspondant aux donnees API de chaque element */
@@ -58,37 +56,54 @@ const listeProduitsAccueil = function(tableau) {
 
 /* == RECUPERATION DES DONNEES API == */
 
-var recuperationDonneesApi = async function (url, identifiantProduit) {
+var recuperationDonneesApi = async function () {
+
+    let idproduit = window.location.search
+
+    let getid = new URLSearchParams(idproduit)
+
+    let identifiantProduit = getid.get("id")
     
-    if (identifiantProduit === undefined) {
-        let request = await fetch (url)
+    if (identifiantProduit === null) {
+        let request = await fetch ("http://localhost:3000/api/teddies/")
         .then (async function(response) {
+
             if (response.ok) {
+
                 let data = await response.json()
+
                 .then (function(donnees) {
                     listeProduitsAccueil(donnees)
                 })
+
             } else {
-                console.log('mauvaise réponse du serveur')
+                console.log("Cette URL n'est pas disponible")
+                alert("Cette URL n'est pas disponible")
             }            
         })
     }   else {
-        let request = await fetch (url + identifiantProduit)
+        let request = await fetch ("http://localhost:3000/api/teddies/" + identifiantProduit)
         .then (async function(response) {
+
             if (response.ok) {
+
                 let data = await response.json()
+
                 .then (function(donnees) {
+
                     descriptifProduit(donnees)
-    
                     menuPresonnalisation(donnees.colors)
                 })
+
             } else {
-                console.log('mauvaise réponse du serveur')
+                console.log("Ce produit n'existe plus")
+                alert("Ce produit n'existe plus")
             } 
         })
     }
 }
-recuperationDonneesApi("http://localhost:3000/api/teddies/")
+
+recuperationDonneesApi()
 
 
 

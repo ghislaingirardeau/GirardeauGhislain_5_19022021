@@ -136,56 +136,44 @@ var recuperationDonneesApi = async function () {
 recuperationDonneesApi()
 
 
-/* TEST FONCTION BOUTON PANIER */
+/* FONCTION CLICK BOUTON PANIER */
 
-let tableauObjest = [{
-    name: "toto",
-    description: "35",
-    price: "50",
-    _id: "5beaa8bf1c9d440000a57d94"
-},{
-    name: "toto2",
-    description: "40",
-    price: "30",
-    _id: "5beaaa8f1c9d440000a57d95"
-},
-{
-    name: "toto3",
-    description: "50",
-    price: "20",
-    _id: "5beaabe91c9d440000a57d96"
-}
-] 
+let idproduit = window.location.search
 
+    let getid = new URLSearchParams(idproduit)
 
-var boutonPanier = document.getElementById("btn_panier")
+    let identifiantProduit = getid.get("id")
 
-boutonPanier.addEventListener('click', function (){
+    var boutonPanier = document.getElementById("btn_panier")
 
-    var testPanier = identifiantProduit
-    var click = 0
+    boutonPanier.addEventListener('click', function (){
+
+        var click = 0
     
-    for (i=0; i < localStorage.length; i++) {
+        for (i=0; i < localStorage.length; i++) { /* Je compare l'Id a chacune des clés du tableau, si l'ID est deja presente retourne true */
 
-        var valeurCle = localStorage.key(i)
+            var valeurCache = localStorage.key(i)
 
-        if (testPanier === valeurCle) {
-            var result = 1
-            var valeur =  localStorage.key(i)
-        } 
-    }
-    console.log(result)
+            if (identifiantProduit === valeurCache) {
+                var result = "true"
+                var valeurCle =  localStorage.key(i)
+            } 
+        }
 
-   if (result == 1) {
+        if (result == "true") { /* Si l'id est présente, j'applique cette fonction */
                 
-        click++
-        var valuei = parseInt(localStorage.getItem(valeur))
-        var cumulClick = valuei + click
-        localStorage.setItem(valeur, cumulClick)
-    }  else {
-        localStorage.setItem(testPanier, "1")
-    }
-    console.log(localStorage)
-})
+            click++
+            var nombreClickFait = parseInt(localStorage.getItem(valeurCle))
+            var totalClick = nombreClickFait + click
+            localStorage.setItem(valeurCle, totalClick)
+        }  
+    
+        else { /* Si l'id n'est pas presente alors je l'insere dans le cache */
 
-    console.log(localStorage)
+            localStorage.setItem(identifiantProduit, "1")
+        }
+    })
+
+
+
+console.log(localStorage)

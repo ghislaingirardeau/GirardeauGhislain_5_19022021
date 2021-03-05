@@ -8,7 +8,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* 
     produit.classList.add("container", "p-4", "col-5", "justify-content-around")
 
     const lienProduit = document.createElement("a") 
-    lienProduit.setAttribute("href", "produit.html?" + "'" + id + "'") /* AJOUT LE PARAMETRE ID DU PRODUIT A L'URL POUR LA RECUPERER SUR LA PAGE */
+    lienProduit.setAttribute("href", "produit.html?id=" + id ) /* AJOUT LE PARAMETRE ID DU PRODUIT A L'URL POUR LA RECUPERER SUR LA PAGE */
     lienProduit.classList.add("row", "py-5", "bg-light", "rounded")
 
     const elementProduit = document.createElement("div")
@@ -50,6 +50,7 @@ const listeProduitsAccueil = function(tableau) {
     for (let i=0; i < tableau.length; i++) {      
         creationBlocHtmlAccueil(tableau[i].name, tableau[i].description, 
         tableau[i].price, tableau[i]._id, tableau[i].imageUrl);
+        console.log(...tableau[i])
     }
 }
 

@@ -1,3 +1,5 @@
+
+
 /* == AJOUT DU BLOC HTML RECEVANT LE CONTENU == */
 
 var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* Parametre correspondant aux donnees API de chaque element */
@@ -50,53 +52,45 @@ const listeProduitsAccueil = function(tableau) {
     for (let i=0; i < tableau.length; i++) {      
         creationBlocHtmlAccueil(tableau[i].name, tableau[i].description, 
         tableau[i].price, tableau[i]._id, tableau[i].imageUrl);
-        console.log(...tableau[i])
+       
     }
 }
 
 /* == RECUPERATION DES DONNEES API == */
 
-var recuperationDonneesApi = function (url) {
-    return new Promise(function (resolve) {
-    var request = new XMLHttpRequest();
-    request.open("GET", url);
-
-        request.onreadystatechange = function () {
-            if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-                resolve(request.responseText)
-            ;} /* else {
-                reject('erreur') 
-            } */
-        };
-    request.send(); 
-    })
-}
-
-/* == RECUPERE LA PROMESSE == */
-
-var getPromise = async function () {
-
-    var response = await recuperationDonneesApi("http://localhost:3000/api/teddies/")
-    var donnees = JSON.parse(response);
+var recuperationDonneesApi = async function (url, identifiantProduit) {
     
-    return donnees
-}
-console.log(getPromise())
-
-/* == LA PROMESSE EST UN SUCCES, JE PEUX UTILISER LES DONNEES == */
-
-getPromise().then(function(donnees) {
+    if (identifiantProduit === undefined) {
+        let request = await fetch (url)
+        .then (async function(response) {
+            if (response.ok) {
+                let data = await response.json()
+                .then (function(donnees) {
+                    listeProduitsAccueil(donnees)
+                })
+            } else {
+                console.log('mauvaise réponse du serveur')
+            }            
+        })
+    }   else {
+        let request = await fetch (url + identifiantProduit)
+        .then (async function(response) {
+            if (response.ok) {
+                let data = await response.json()
+                .then (function(donnees) {
+                    descriptifProduit(donnees)
     
-    listeProduitsAccueil(donnees)
-
-})
-
-var setPanier = function(article) {
-    var ajout = localStorage.setItem(article, "0")
+                    menuPresonnalisation(donnees.colors)
+                })
+            } else {
+                console.log('mauvaise réponse du serveur')
+            } 
+        })
+    }
 }
+recuperationDonneesApi("http://localhost:3000/api/teddies/")
 
 
-console.log(localStorage)
 
 
 

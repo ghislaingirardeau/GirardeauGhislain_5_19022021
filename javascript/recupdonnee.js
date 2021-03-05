@@ -23,8 +23,7 @@ var recuperationDonneesApi = async function (url, identifiantProduit) {
                 })
             } else {
                 console.log('mauvaise réponse du serveur')
-            }
-            
+            } 
         })
     }
 }

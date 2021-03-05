@@ -1,6 +1,14 @@
 /* RECUPERE LE NOM DE LA PAGE PROPRE AU PRODUIT POUR Y RECUPERER LES INFOS */
 
-var identifiantProduit = window.location.search.slice(4, 28)
+let idproduit = window.location.search
+
+console.log(idproduit)
+
+let getid = new URLSearchParams(idproduit)
+
+console.log(getid)
+
+let identifiantProduit = getid.get("id")
 
 console.log(identifiantProduit)
 
@@ -92,48 +100,40 @@ var menuPresonnalisation = function (donnees) {
     }
 }
 
-/* == BOUTON PANIER == */
 
+/* == RECUPERATION DES DONNEES API == */
 
+var recuperationDonneesApi = async function (url, identifiantProduit) {
+    
+    if (identifiantProduit === undefined) {
+        let request = await fetch (url)
+        .then (async function(response) {
+            if (response.ok) {
+                let data = await response.json()
+                .then (function(donnees) {
+                    listeProduitsAccueil(donnees)
+                })
+            } else {
+                console.log('mauvaise réponse du serveur')
+            }            
+        })
+    }   else {
+        let request = await fetch (url + identifiantProduit)
+        .then (async function(response) {
+            if (response.ok) {
+                let data = await response.json()
+                .then (function(donnees) {
 
-/* == CREATION DE LA PROMESSE */
-
-var recuperationDonneesApi = function (url, identifiantProduit) {
-    return new Promise(function (resolve) {
-    var request = new XMLHttpRequest();
-    request.open("GET", url + identifiantProduit);
-
-        request.onreadystatechange = function () {
-            if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-                resolve(request.responseText)
-            ;} /* else {
-                reject('erreur') 
-            } */
-        };
-    request.send(); 
-    })
+                    descriptifProduit(donnees)
+                    menuPresonnalisation(donnees.colors)
+                })
+            } else {
+                console.log('mauvaise réponse du serveur')
+            } 
+        })
+    }
 }
-
-/* == RECUPERE LA PROMESSE == */
-
-var getPromise = async function () {
-
-    var response = await recuperationDonneesApi("http://localhost:3000/api/teddies/", identifiantProduit)
-    var donnees = JSON.parse(response);
-    
-    return donnees
-}
-
-
-/* == LA PROMESSE EST UN SUCCES, JE PEUX UTILISER LES DONNEES == */
-
-getPromise().then(function(donnees) {
-    
-    descriptifProduit(donnees)
-    
-    menuPresonnalisation(donnees.colors)  
-
-})
+recuperationDonneesApi("http://localhost:3000/api/teddies/", identifiantProduit)
 
 
 /* TEST FONCTION BOUTON PANIER */

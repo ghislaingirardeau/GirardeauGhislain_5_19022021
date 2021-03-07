@@ -18,12 +18,12 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     elementProduit.classList.add ("col-9")
 
     const nomProduit = document.createElement("p")
-    nomProduit.classList.add("text-secondary", "list-inline-item")
+    nomProduit.classList.add("text-secondary", "list-inline-item", "px-4")
 
     const prixProduit = document.createElement("p")
-    prixProduit.classList.add("text-secondary", "list-inline-item")
+    prixProduit.classList.add("text-secondary", "list-inline-item", "px-4")
 
-    const quantiteProduit = document.createElement("p")
+    const quantiteProduit = document.createElement("span")
     quantiteProduit.classList.add("text-secondary", "list-inline-item")
 
     const totalProduit = document.createElement("p")
@@ -44,7 +44,7 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
 
     nomProduit.innerHTML = nom
     prixProduit.innerHTML = parseFloat(prix / 100) + " €"
-    quantiteProduit.innerHTML = quantite
+    
     
     totalProduit.innerHTML = quantite * parseFloat(prix / 100)
     
@@ -53,16 +53,21 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
         const boutonPlus = document.createElement("button")
         boutonPlus.classList.add("text-secondary")
         boutonPlus.setAttribute("type", "button")
+
+        const compteurQuantite = document.createElement("strong")
+        compteurQuantite.classList.add("text-secondary", "px-2")
     
         const boutonMoins = document.createElement("button")
         boutonMoins.classList.add("text-secondary")
         boutonMoins.setAttribute("type", "button")
 
-        quantiteProduit.appendChild(boutonPlus)
         quantiteProduit.appendChild(boutonMoins)
+        quantiteProduit.appendChild(compteurQuantite)
+        quantiteProduit.appendChild(boutonPlus)
 
         boutonPlus.innerHTML = "+"
         boutonMoins.innerHTML = "-"
+        compteurQuantite.innerHTML = quantite
 
         boutonPlus.addEventListener('click', function (){
            
@@ -135,7 +140,6 @@ var viderPanier = function() {
         localStorage.clear()
         document.location.reload();
     })
-
 }
 
 /* == LISTE PRODUITS PAGE PANIER == */

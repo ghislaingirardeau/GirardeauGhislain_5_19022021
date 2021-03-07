@@ -5,7 +5,7 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     const produitPanier = document.getElementById("produit_Panier")
 
     const produit = document.createElement("tr")
-    produit.classList.add("row", "text-center")
+    produit.classList.add("row", "text-center", 'py-4')
 
     const blocimage = document.createElement("td")
     blocimage.classList.add ("col-4")
@@ -40,7 +40,6 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
 
     nomProduit.innerHTML = nom
     prixProduit.innerHTML = parseFloat(prix / 100) + " €"
-    
     
     totalProduit.innerHTML = quantite * parseFloat(prix / 100)
     
@@ -113,7 +112,6 @@ var panierVide = function() {
 var nombreProduitsPanier = function() {
     
     var quantiteTotale = document.querySelector(".recapitulatif .quantite")
-    console.log(quantiteTotale)
     var compteur = 0
     for (i=0; i < localStorage.length; i++) {
         
@@ -127,9 +125,6 @@ var nombreProduitsPanier = function() {
         quantiteTotale.innerHTML = "0"
     }
 }
-
-var test = document.querySelector("table tfoot tr td ")
-console.log(test)
 
 /* VIDER LE PANIER */
 
@@ -154,6 +149,7 @@ var ListeProduitsPanier = function(donnees) {
 
     var idEnCache = Object.keys(localStorage)   /* Je charge le localstorage dans 1 tableau regroupant les cles */
     var valeurEnCache = Object.values(localStorage) /* puis dans un tableau regroupant les valeurs. L'index permet d'associer l'id a sa valeur */
+    var totalCompteur = 0
 
     for (i=0; i < donnees.length; i++) {
 
@@ -166,8 +162,13 @@ var ListeProduitsPanier = function(donnees) {
 
             creationBlocHtmlPanier(donnees[getIndexDonneesAPI].imageUrl, donnees[getIndexDonneesAPI].name,
              donnees[getIndexDonneesAPI].price, getIndexValeurCache, donnees[getIndexDonneesAPI]._id)
+            
+            var calculTotal = donnees[getIndexDonneesAPI].price * getIndexValeurCache  /* pour le calcul du prix totale */
+            totalCompteur += calculTotal
         }        
     }
+    var prixTotalPanier = document.querySelector(".recapitulatif .prix")
+    prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100)
 } 
 
 /* == RECUPERATION DES DONNEES API == */
@@ -193,8 +194,6 @@ var recuperationDonneesApi = async function () {
                     nombreProduitsPanier()
                     viderPanier()
                     ListeProduitsPanier(donnees)
-                    /* var gettotalval = document.getElementById("totalunitaire")
-                    console.log(gettotalval.textContent) */
 
                 })
 

@@ -40,7 +40,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* 
 
     nomProduit.innerHTML = nom  /* INJECTE LES DONNEES EN PARAMETRES DANS LE HTML AUX EMPLACEMENTS DEFINIS */
     descriptionProduit.innerHTML = "Description: " + description
-    prixProduit.innerHTML = "Prix: " + prix + " €"
+    prixProduit.innerHTML = "Prix: " + parseFloat(prix / 100) + " €"
 }
 
 /* == ENVOIE DES DONNEES SUR LA PAGE ACCUEIL == */
@@ -92,7 +92,7 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     descriptionProduit.innerHTML = "Description : " + description
     descriptionProduit.style.fontSize = "1.3rem"
     
-    prixProduit.innerHTML = "Prix : " + prix + " €"
+    prixProduit.innerHTML = "Prix : " + parseFloat(prix / 100) + " €"
     prixProduit.style.fontSize = "1.4rem"
 }
 

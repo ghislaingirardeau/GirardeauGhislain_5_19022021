@@ -52,11 +52,11 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite) { /* Parametr
     elementProduit.appendChild(totalProduit)
 
     nomProduit.innerHTML = nom
-    prixProduit.innerHTML = prix + " €"
+    prixProduit.innerHTML = parseFloat(prix / 100) + " €"
     quantiteProduit.innerHTML = quantite
     boutonPlus.innerHTML = "+"
     boutonMoins.innerHTML = "-"
-    totalProduit.innerHTML = "Montant Total Unitaire: "
+    totalProduit.innerHTML = "Montant Total Unitaire: " + quantite * parseFloat(prix / 100)
 
 }
 
@@ -189,3 +189,4 @@ var recuperationDonneesApi = async function () {
 
 recuperationDonneesApi()
 console.log(localStorage)
+

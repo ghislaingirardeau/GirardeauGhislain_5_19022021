@@ -96,10 +96,11 @@ var panierVide = function() {
 
     const produitPanier = document.getElementById("produit_Panier")
 
-    const produit = document.createElement("article")
-    produit.classList.add("p-4", "row", "bg-light")
+    const produit = document.createElement("tr")
+    produit.classList.add("text-left", "col-12")
 
-    const ContentPanierVide = document.createElement("p")
+    const ContentPanierVide = document.createElement("td")
+    ContentPanierVide.classList.add("p-3")
 
     produitPanier.appendChild(produit)
     produit.appendChild(ContentPanierVide)

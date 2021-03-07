@@ -36,40 +36,35 @@
     <main class="container bg-primary rounded">
         <h2 class="row col-12 px-md-5 py-4 border-bottom border-dark">Récapitulatif de mon panier</h2>
         
-        <table class="container bg-light">
-            <tbody  id="produit_Panier">
-            <tr class="row text-center">
-                <td class="col-4">Résumé du produit</td>
+        <table class="container bg-primary">
+            <tbody  id="produit_Panier" class="bg-light">
+            <tr class="row text-center py-3 justify-content-end">
+                <td class="col-4"></td>
                 <td class="col-2">nom</td>
                 <td class="col-1">prix</td>
                 <td class="col-2">quantités</td>
-                <td class="col-3">Prix Total Unitaire</td>
+                <td class="col-3">Total Unitaire</td>
             </tr>
-            
             </tbody>
-            <!-- <tfoot>
-                <tr class="row justify-content-end" class="recapitulatifbis">
-                    <td class="col-1">
-                    <td class="col-2">Quantité totale</td><strong class="quantitebis"></strong>
-                    <td class="col-2">Prix totale</td>
+
+            <tfoot class="bg-light pb-4">
+                <tr class="row justify-content-end text-center">
+                    <td class="col-2">Quantité total</td><strong></strong>
+                    <td class="col-3">Prix total</td><strong></strong>
                 </tr>
-            </tfoot> -->
+                <tr class="row justify-content-end text-center border">
+                    <td class="col-7 text-right"><button type="button" id="btn_paniervide" class="col-4 btn btn-secondary">Vider le panier</button></td>
+                    <td class="col-2 align-middle"></td>
+                    <td class="col-3" ></td>
+                </tr>
+            </tfoot>
         </table>
 
-        <div class="recapitulatif row justify-content-end"> 
-            <button type="button" id="btn_paniervide" class="col-2">Vider le panier</button>
-            <p class="col-1">Quantité totale</p>
-            <strong class="quantite"></strong>
-            <p class="col-2">Prix totale</p><strong class="prix"></strong>
-        </div>
+        <div>form</div>
+
     </main>
 
-    
 
-    
-
-
-   
     <!-- <script src="/javascript/recupdonnee.js"> </script> -->
     <script src="javascript/panier test.js"> </script>
 
@@ -82,3 +77,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
+</html>

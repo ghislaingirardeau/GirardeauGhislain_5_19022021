@@ -5,7 +5,7 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     const produitPanier = document.getElementById("produit_Panier")
 
     const produit = document.createElement("tr")
-    produit.classList.add("row", "text-center", 'py-4')
+    produit.classList.add("row", "text-center", 'py-4', "border")
 
     const blocimage = document.createElement("td")
     blocimage.classList.add ("col-4")
@@ -13,9 +13,10 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     const imageProduit = document.createElement("img")
     imageProduit.setAttribute("src", image) /* AJOUT DU PARAMETRE IMAGE QUI RECUPERE L'URL DE L'IMAGE CORRESPONDANTE */
     imageProduit.setAttribute("alt", "image de l'ourson " + nom) /* AJOUT DU NOM DE L'OURSON */
+    imageProduit.classList.add ("img--size")
 
     const nomProduit = document.createElement("td")
-    nomProduit.classList.add("text-secondary", "col-3", "align-text-bottom")
+    nomProduit.classList.add("text-secondary", "col-2")
 
     const prixProduit = document.createElement("td")
     prixProduit.classList.add("text-secondary", "col-1")
@@ -46,14 +47,14 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     var boutonChangeQuantite = function () {
 
         const boutonPlus = document.createElement("button")
-        boutonPlus.classList.add("text-secondary")
+        boutonPlus.classList.add("text-secondary", "btn", "btn-light", "border")
         boutonPlus.setAttribute("type", "button")
 
         const compteurQuantite = document.createElement("strong")
         compteurQuantite.classList.add("text-secondary", "px-2")
     
         const boutonMoins = document.createElement("button")
-        boutonMoins.classList.add("text-secondary")
+        boutonMoins.classList.add("text-secondary", "btn", "btn-light", "border")
         boutonMoins.setAttribute("type", "button")
 
         quantiteProduit.appendChild(boutonMoins)
@@ -106,13 +107,15 @@ var panierVide = function() {
     produit.appendChild(ContentPanierVide)
 
     ContentPanierVide.innerHTML = "Votre panier est vide"
+    ContentPanierVide.style.fontStyle = "italic"
+    ContentPanierVide.style.fontWeight = "bold"
 }
 
 /* NOMBRE PRODUIT PANIER */
 
 var nombreProduitsPanier = function() {
     
-    var quantiteTotale = document.querySelector(".recapitulatif .quantite")
+    var quantiteTotale = document.getElementsByTagName('table')[0].rows[2].cells[1];
     var compteur = 0
     for (i=0; i < localStorage.length; i++) {
         
@@ -168,7 +171,10 @@ var ListeProduitsPanier = function(donnees) {
             totalCompteur += calculTotal
         }        
     }
-    var prixTotalPanier = document.querySelector(".recapitulatif .prix")
+    var nombreLigne = document.getElementsByTagName('table')[0].rows.length - 1
+    console.log(nombreLigne)
+    var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[2];
+    console.log(prixTotalPanier)
     prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100)
 } 
 
@@ -225,4 +231,5 @@ var recuperationDonneesApi = async function () {
 
 recuperationDonneesApi()
 console.log(localStorage)
+
 

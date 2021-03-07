@@ -4,43 +4,39 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
 
     const produitPanier = document.getElementById("produit_Panier")
 
-    const produit = document.createElement("article")
-    produit.classList.add("p-4", "row", "bg-light")
+    const produit = document.createElement("tr")
+    produit.classList.add("row", "text-center")
 
-    const blocimage = document.createElement("div")
-    blocimage.classList.add ("col-3")
+    const blocimage = document.createElement("td")
+    blocimage.classList.add ("col-4")
 
     const imageProduit = document.createElement("img")
     imageProduit.setAttribute("src", image) /* AJOUT DU PARAMETRE IMAGE QUI RECUPERE L'URL DE L'IMAGE CORRESPONDANTE */
     imageProduit.setAttribute("alt", "image de l'ourson " + nom) /* AJOUT DU NOM DE L'OURSON */
 
-    const elementProduit = document.createElement("div")
-    elementProduit.classList.add ("col-9")
+    const nomProduit = document.createElement("td")
+    nomProduit.classList.add("text-secondary", "col-3", "align-text-bottom")
 
-    const nomProduit = document.createElement("p")
-    nomProduit.classList.add("text-secondary", "list-inline-item", "px-4")
+    const prixProduit = document.createElement("td")
+    prixProduit.classList.add("text-secondary", "col-1")
 
-    const prixProduit = document.createElement("p")
-    prixProduit.classList.add("text-secondary", "list-inline-item", "px-4")
+    const quantiteProduit = document.createElement("td")
+    quantiteProduit.classList.add("text-secondary", "col-2")
 
-    const quantiteProduit = document.createElement("span")
-    quantiteProduit.classList.add("text-secondary", "list-inline-item")
-
-    const totalProduit = document.createElement("p")
-    totalProduit.classList.add("text-secondary", "list-inline-item")
+    const totalProduit = document.createElement("td")
+    totalProduit.classList.add("text-secondary", "col-2")
     totalProduit.setAttribute("id", "totalunitaire")
     
     produitPanier.appendChild(produit)
     produit.appendChild(blocimage)
-    produit.appendChild(elementProduit)
 
     blocimage.appendChild(imageProduit)
     
-    elementProduit.appendChild(nomProduit)
-    elementProduit.appendChild(prixProduit)
-    elementProduit.appendChild(quantiteProduit)
+    produit.appendChild(nomProduit)
+    produit.appendChild(prixProduit)
+    produit.appendChild(quantiteProduit)
     
-    elementProduit.appendChild(totalProduit)
+    produit.appendChild(totalProduit)
 
     nomProduit.innerHTML = nom
     prixProduit.innerHTML = parseFloat(prix / 100) + " €"
@@ -117,6 +113,7 @@ var panierVide = function() {
 var nombreProduitsPanier = function() {
     
     var quantiteTotale = document.querySelector(".recapitulatif .quantite")
+    console.log(quantiteTotale)
     var compteur = 0
     for (i=0; i < localStorage.length; i++) {
         
@@ -130,6 +127,9 @@ var nombreProduitsPanier = function() {
         quantiteTotale.innerHTML = "0"
     }
 }
+
+var test = document.querySelector("table tfoot tr td ")
+console.log(test)
 
 /* VIDER LE PANIER */
 

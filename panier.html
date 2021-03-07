@@ -35,9 +35,27 @@
     
     <main class="container bg-primary rounded">
         <h2 class="row col-12 px-md-5 py-4 border-bottom border-dark">Récapitulatif de mon panier</h2>
-        <section id="produit_Panier" class="justify-content-around"> 
         
-        </section>
+        <table class="container bg-light">
+            <tbody  id="produit_Panier">
+            <tr class="row text-center">
+                <td class="col-4">image</td>
+                <td class="col-3">nom</td>
+                <td class="col-1">prix</td>
+                <td class="col-2">quentite</td>
+                <td class="col-2">totla</td>
+            </tr>
+            
+            </tbody>
+            <!-- <tfoot>
+                <tr class="row justify-content-end" id="recapitulatif">
+                    <td class="col-1">
+                    <td class="col-2">Quantité totale</td><strong id="quantitetotal"></strong>
+                    <td class="col-2">Prix totale</td><strong id="prixtotal"></strong>
+                </tr>
+            </tfoot> -->
+        </table>
+
         <div class="recapitulatif"> 
 
             <p>Quantité totale</p><strong class="quantite"></strong>
@@ -46,22 +64,9 @@
         </div>
     </main>
 
-    <table class="container">
-        <tr class="row text-center">
-            <td class="col-4 ">image</td>
-            <td class="col-3">nom</td>
-            <td class="col-1">prix</td>
-            <td class="col-2">quentite</td>
-            <td class="col-2">totla</td>
-        </tr>
-        <tr class="row justify-content-end">
-            <td class="col-1"><button type="button" id="btn_paniervide">Vider le panier</button>
-            </td>
-            <td class="col-2">Quantité totale</td>
-            <td class="col-2">Prix totale</td>
-        </tr>
+    
 
-    </table>
+    
 
 
    

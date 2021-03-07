@@ -1,6 +1,6 @@
 /* == BLOC HTML PAGE PANIER == */
 
-var creationBlocHtmlPanier = function (image, nom, prix, quantite) { /* Parametre correspondant aux donnees API de chaque element */
+var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Parametre correspondant aux donnees API de chaque element */
 
     const produitPanier = document.getElementById("produit_Panier")
 
@@ -26,14 +26,6 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite) { /* Parametr
     const quantiteProduit = document.createElement("p")
     quantiteProduit.classList.add("text-secondary", "list-inline-item")
 
-    const boutonPlus = document.createElement("button")
-    boutonPlus.classList.add("text-secondary")
-    boutonPlus.setAttribute("type", "button")
-
-    const boutonMoins = document.createElement("button")
-    boutonMoins.classList.add("text-secondary")
-    boutonMoins.setAttribute("type", "button")
-
     const totalProduit = document.createElement("p")
     totalProduit.classList.add("text-secondary", "list-inline-item")
     totalProduit.setAttribute("id", "totalunitaire")
@@ -47,18 +39,56 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite) { /* Parametr
     elementProduit.appendChild(nomProduit)
     elementProduit.appendChild(prixProduit)
     elementProduit.appendChild(quantiteProduit)
-    elementProduit.appendChild(boutonPlus)
-    elementProduit.appendChild(boutonMoins)
+    
     elementProduit.appendChild(totalProduit)
 
     nomProduit.innerHTML = nom
     prixProduit.innerHTML = parseFloat(prix / 100) + " €"
     quantiteProduit.innerHTML = quantite
-    boutonPlus.innerHTML = "+"
-    boutonMoins.innerHTML = "-"
-    totalProduit.innerHTML = "Montant Total Unitaire: " + quantite * parseFloat(prix / 100)
+    
+    totalProduit.innerHTML = quantite * parseFloat(prix / 100)
+    
+    var boutonChangeQuantite = function () {
 
+        const boutonPlus = document.createElement("button")
+        boutonPlus.classList.add("text-secondary")
+        boutonPlus.setAttribute("type", "button")
+    
+        const boutonMoins = document.createElement("button")
+        boutonMoins.classList.add("text-secondary")
+        boutonMoins.setAttribute("type", "button")
+
+        quantiteProduit.appendChild(boutonPlus)
+        quantiteProduit.appendChild(boutonMoins)
+
+        boutonPlus.innerHTML = "+"
+        boutonMoins.innerHTML = "-"
+
+        boutonPlus.addEventListener('click', function (){
+           
+            var valeurIDCache = parseInt(localStorage.getItem(id)) 
+            var ajoutUnClick = valeurIDCache + 1
+            localStorage.setItem(id, ajoutUnClick)
+            document.location.reload();
+        })
+
+        boutonMoins.addEventListener('click', function (){
+            
+            var valeurIDCache = parseInt(localStorage.getItem(id)) 
+            var ajoutUnClick = valeurIDCache - 1
+            localStorage.setItem(id, ajoutUnClick)
+
+            if(valeurIDCache === 0) {
+                localStorage.removeItem(id)
+            }
+            document.location.reload();
+        })
+    }
+
+    boutonChangeQuantite()
 }
+
+
 
 /* PANIER VIDE */
 
@@ -125,12 +155,13 @@ var ListeProduitsPanier = function(donnees) {
 
         var IdDonneesAPI = donnees[i]._id /* recuperer l'id de l'API a chaque boucle */
 
-        if (idEnCache.indexOf(IdDonneesAPI) != -1) { /* Si l'id correspond a un index du tableau regroupant les cles, alors je fais la fonction suivante */
+        if (idEnCache.indexOf(IdDonneesAPI) != -1) { /* Si l'id correspond a un index du tableau regroupant les cles, alors je fais la fonction suivante (-1 veut dire qu'il ne trouve pas l'index)*/
             
             var getIndexValeurCache = valeurEnCache[idEnCache.indexOf(IdDonneesAPI)]
             var getIndexDonneesAPI = i
+
             creationBlocHtmlPanier(donnees[getIndexDonneesAPI].imageUrl, donnees[getIndexDonneesAPI].name,
-             donnees[getIndexDonneesAPI].price, getIndexValeurCache)
+             donnees[getIndexDonneesAPI].price, getIndexValeurCache, donnees[getIndexDonneesAPI]._id)
         }        
     }
 } 
@@ -158,6 +189,8 @@ var recuperationDonneesApi = async function () {
                     nombreProduitsPanier()
                     viderPanier()
                     ListeProduitsPanier(donnees)
+                    /* var gettotalval = document.getElementById("totalunitaire")
+                    console.log(gettotalval.textContent) */
 
                 })
 
@@ -176,7 +209,6 @@ var recuperationDonneesApi = async function () {
 
                 .then (function(donnees) {
 
-                   
                 })
 
             } else {

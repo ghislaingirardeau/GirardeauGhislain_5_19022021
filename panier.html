@@ -72,26 +72,28 @@
         <form action="post" class="py-5 bg-light rounded container">
             <label for="firstName" class="row">
                 <p class="col-4">Prénom</p> 
-                <input type="text" id="firstName" class="col-6" required>
+                <input type="text" id="firstName" class="form-control col-6" required>
+                <div class="feedback"></div>
             </label>
             <label for="lastName" class="row">
                 <p class="col-4">Nom</p>
-                <input type="text" id="lastName" class="col-6" required>
+                <input type="text" id="lastName" class="form-control col-6" required>
+                <div class="feedback"></div>
             </label>
             <label for="adresse" class="row">
                 <p class="col-4">Votre adresse postale</p>
-                <input type="text" id="adresse" class="col-6" required>
+                <input type="text" id="adresse" class="form-control col-6" required>
             </label>
             <label for="ville" class="row">
                 <p class="col-4">Votre ville</p>
-                <input type="text" id="ville" class="col-6" required>
+                <input type="text" id="ville" class="form-control col-6" required>
             </label>
             <label for="email" class="row">
                 <p class="col-4">Votre adresse e-mail</p>
                 <input type="email" id="email" class="col-6" placeholder="Jean-dupont@mail.fr" required>
             </label>
             <label for="submit">
-                <input type="submit" id="submit" value="Envoyer" disabled>
+                <input type="submit" id="submit" value="Envoyer">
             </label>
         </form>
 

@@ -240,4 +240,30 @@ console.log(localStorage)
 
 
 
+var formulaireControle = function() {
+    
+    /* var inputForm = document.querySelector("#firstName") */
+    
+    var inputForm = document.getElementsByClassName("form-control")
+    /* var checkValid = document.querySelector("#firstName .feedback") */
+    let reg = /^[a-zA-Z\u00C0-\u00FF]*$/;
+    
+
+    for (i=0; i < inputForm.length; i++) {
+        
+        let champsText = inputForm[i]
+        champsText.addEventListener('keyup', function(e){
+            
+            if (reg.test(e.target.value)){
+                
+                champsText.style.border = "#49f09c 2px solid"
+               
+            } else {
+                champsText.style.border = "#fc7878 2px solid"
+            }
+        })
+    }   
+}
+
+console.log(formulaireControle())
 

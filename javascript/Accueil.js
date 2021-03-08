@@ -176,6 +176,7 @@ var clickBoutonPanier = function (identifiantProduit) {
 
             localStorage.setItem(identifiantProduit, "1")
         }
+        document.location.reload()
     })
 }
 

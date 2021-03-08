@@ -116,7 +116,7 @@ var panierVide = function() {
 var nombreProduitsPanier = function() {
     
     var quantiteTotale = document.getElementsByTagName('table')[0].rows[2].cells[1];
-    var iconeCompteur = document.getElementById("Compteur__panier")
+    var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
     var compteur = 0
     for (i=0; i < localStorage.length; i++) {
         
@@ -241,25 +241,34 @@ console.log(localStorage)
 
 
 var formulaireControle = function() {
-    
-    /* var inputForm = document.querySelector("#firstName") */
-    
-    var inputForm = document.getElementsByClassName("form-control")
-    /* var checkValid = document.querySelector("#firstName .feedback") */
-    let reg = /^[a-zA-Z\u00C0-\u00FF]*$/;
+        
+    var inputForm = document.getElementsByClassName("form-control") /* tous les champs ont la meme classe */
+    var checkValid = document.getElementsByClassName("feedback")
+    let reg = /^[a-zA-Z\u00C0-\u00FF]*$/; /* exclue tous les chiffres */
     
 
     for (i=0; i < inputForm.length; i++) {
         
         let champsText = inputForm[i]
-        champsText.addEventListener('keyup', function(e){
+        let feedback = checkValid[i]
+
+        champsText.addEventListener('input', function(e){
             
             if (reg.test(e.target.value)){
                 
                 champsText.style.border = "#49f09c 2px solid"
+                feedback.style.display = "unset"
+                feedback.style.color = "#49f09c"
+                feedback.setAttribute('class', "far fa-check-circle")
+                feedback.classList.add("col-2", "pt-2")
                
             } else {
+
                 champsText.style.border = "#fc7878 2px solid"
+                feedback.style.display = "unset"
+                feedback.style.color = "#fc7878"
+                feedback.setAttribute('class', "fas fa-times-circle")
+                feedback.classList.add("col-2", "pt-2")
             }
         })
     }   

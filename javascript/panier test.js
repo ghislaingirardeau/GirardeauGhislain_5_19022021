@@ -116,6 +116,7 @@ var panierVide = function() {
 var nombreProduitsPanier = function() {
     
     var quantiteTotale = document.getElementsByTagName('table')[0].rows[2].cells[1];
+    var iconeCompteur = document.getElementById("Compteur__panier")
     var compteur = 0
     for (i=0; i < localStorage.length; i++) {
         
@@ -125,8 +126,12 @@ var nombreProduitsPanier = function() {
 
     if (compteur > 0) {
         quantiteTotale.innerHTML = compteur
+        iconeCompteur.style.backgroundColor = "yellow"
+        iconeCompteur.innerHTML = compteur
+       
     } else {
         quantiteTotale.innerHTML = "0"
+        iconeCompteur.style.display = "none"
     }
 }
 

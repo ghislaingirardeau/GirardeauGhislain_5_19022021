@@ -9,7 +9,7 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* 
 
     const lienProduit = document.createElement("a") 
     lienProduit.setAttribute("href", "produit.html?id=" + id ) /* AJOUT LE PARAMETRE ID DU PRODUIT A L'URL POUR LA RECUPERER SUR LA PAGE */
-    lienProduit.classList.add("row", "py-5", "bg-light", "rounded")
+    lienProduit.classList.add("row", "py-5", "bg-light", "rounded", "text-decoration-none")
 
     const elementProduit = document.createElement("div")
     elementProduit.classList.add ("col-sm-6")

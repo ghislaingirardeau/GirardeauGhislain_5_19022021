@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <script src="https://kit.fontawesome.com/2cf556db96.js" crossorigin="anonymous"></script>
 
 </head>
@@ -25,20 +25,20 @@
                 <li class="nav-item col-8 col-md-6 col-lg-4 col-xl-3">
                     <a href="panier.html" class="lien_nav nav-link text-center text-md-right">
                         <Span id="Compteur__panier"></Span>
-                        <i class="fas fa-shopping-cart mr-2"></i> 
-                        <p class=" list-inline-item">Mon Panier</p> 
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        <p class=" list-inline-item">Mon Panier</p>
                     </a>
                 </li>
             </ul>
         </nav>
-        
+
     </header>
-    
-    <main class="container bg-primary rounded">
+
+    <main class="container bg-primary rounded pb-3">
         <h2 class="row col-12 px-md-5 py-4 border-bottom border-dark">Récapitulatif de mon panier</h2>
-        
-        <table class="container bg-primary">
-            <thead  class="bg-light font-weight-bold font-italic container border-dark border-bottom">
+
+        <table class="container">
+            <thead class="bg-light font-weight-bold font-italic container border-dark border-bottom">
                 <tr class="row text-center py-3 justify-content-end">
                     <td class="col-0 col-sm-3"></td>
                     <td class="col-6 col-sm-2">nom</td>
@@ -47,13 +47,13 @@
                     <td class="col-6 col-sm-2">Total Unitaire</td>
                 </tr>
             </thead>
-            <tbody  id="produit_Panier" class="bg-light container">
-           
+            <tbody id="produit_Panier" class="bg-light container">
+
             </tbody>
 
             <tfoot class="bg-light pb-4 font-weight-bold container border-dark border-top">
                 <tr class="row justify-content-end text-center">
-                   
+
                     <td class="col-4 col-sm-3">Quantité total <strong></strong></td>
                     <td class="col-4 col-sm-2">Prix total <strong></strong></td>
                 </tr>
@@ -62,13 +62,39 @@
                         <button type="button" id="btn_paniervide" class="btn btn-secondary">Vider le panier</button>
                     </td>
                     <td class="col-4 col-sm-3"></td>
-                    <td class="col-4 col-sm-2" ></td>
+                    <td class="col-4 col-sm-2"></td>
                 </tr>
             </tfoot>
         </table>
 
-        <div>form</div>
+        <h2 class="row col-12 px-md-5 py-4 border-bottom border-dark">Finaliser votre commande</h2>
         
+        <form action="post" class="py-5 bg-light rounded container">
+            <label for="firstName" class="row">
+                <p class="col-4">Prénom</p> 
+                <input type="text" id="firstName" class="col-6" required>
+            </label>
+            <label for="lastName" class="row">
+                <p class="col-4">Nom</p>
+                <input type="text" id="lastName" class="col-6" required>
+            </label>
+            <label for="adresse" class="row">
+                <p class="col-4">Votre adresse postale</p>
+                <input type="text" id="adresse" class="col-6" required>
+            </label>
+            <label for="ville" class="row">
+                <p class="col-4">Votre ville</p>
+                <input type="text" id="ville" class="col-6" required>
+            </label>
+            <label for="email" class="row">
+                <p class="col-4">Votre adresse e-mail</p>
+                <input type="email" id="email" class="col-6" placeholder="Jean-dupont@mail.fr" required>
+            </label>
+            <label for="submit">
+                <input type="submit" id="submit" value="Envoyer" disabled>
+            </label>
+        </form>
+
 
     </main>
 
@@ -76,13 +102,17 @@
     <!-- <script src="/javascript/recupdonnee.js"> </script> -->
     <script src="javascript/panier.js"> </script>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -180,6 +180,27 @@ var clickBoutonPanier = function (identifiantProduit) {
     })
 }
 
+/* NOMBRE PRODUIT PANIER */
+
+var nombreProduitsPanier = function() {
+    
+    var iconeCompteur = document.getElementById("Compteur__panier")
+    var compteur = 0
+    for (i=0; i < localStorage.length; i++) {
+        
+        var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
+        compteur += nombreClick
+    }
+
+    if (compteur > 0) {
+        iconeCompteur.style.backgroundColor = "yellow"
+        iconeCompteur.innerHTML = compteur
+       
+    } else {
+        iconeCompteur.style.display = "none"
+    }
+}
+
 /* == RECUPERATION DES DONNEES API == */
 
 var recuperationDonneesApi = async function () {
@@ -199,7 +220,9 @@ var recuperationDonneesApi = async function () {
                 let data = await response.json()
 
                 .then (function(donnees) {
+
                     listeProduitsAccueil(donnees)
+                    nombreProduitsPanier()
                 })
 
             } else {
@@ -220,6 +243,7 @@ var recuperationDonneesApi = async function () {
                     descriptifProduit(donnees)
                     menuPresonnalisation(donnees.colors)
                     clickBoutonPanier(identifiantProduit)
+                    nombreProduitsPanier()
                 })
 
             } else {

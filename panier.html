@@ -37,30 +37,37 @@
         <h2 class="row col-12 px-md-5 py-4 border-bottom border-dark">Récapitulatif de mon panier</h2>
         
         <table class="container bg-primary">
-            <tbody  id="produit_Panier" class="bg-light">
-            <tr class="row text-center py-3 justify-content-end">
-                <td class="col-4"></td>
-                <td class="col-2">nom</td>
-                <td class="col-1">prix</td>
-                <td class="col-2">quantités</td>
-                <td class="col-3">Total Unitaire</td>
-            </tr>
+            <thead  class="bg-light font-weight-bold font-italic container border-dark border-bottom">
+                <tr class="row text-center py-3 justify-content-end">
+                    <td class="col-0 col-sm-3"></td>
+                    <td class="col-6 col-sm-2">nom</td>
+                    <td class="col-6 col-sm-2">prix</td>
+                    <td class="col-6 col-sm-3">quantités</td>
+                    <td class="col-6 col-sm-2">Total Unitaire</td>
+                </tr>
+            </thead>
+            <tbody  id="produit_Panier" class="bg-light container">
+           
             </tbody>
 
-            <tfoot class="bg-light pb-4">
+            <tfoot class="bg-light pb-4 font-weight-bold container border-dark border-top">
                 <tr class="row justify-content-end text-center">
-                    <td class="col-2">Quantité total</td><strong></strong>
-                    <td class="col-3">Prix total</td><strong></strong>
+                   
+                    <td class="col-4 col-sm-3">Quantité total <strong></strong></td>
+                    <td class="col-4 col-sm-2">Prix total <strong></strong></td>
                 </tr>
-                <tr class="row justify-content-end text-center border">
-                    <td class="col-7 text-right"><button type="button" id="btn_paniervide" class="col-4 btn btn-secondary">Vider le panier</button></td>
-                    <td class="col-2 align-middle"></td>
-                    <td class="col-3" ></td>
+                <tr class="row justify-content-end text-center">
+                    <td class="col-4 col-sm-7 mt-n4 text-right" rowspan="2">
+                        <button type="button" id="btn_paniervide" class="btn btn-secondary">Vider le panier</button>
+                    </td>
+                    <td class="col-4 col-sm-3"></td>
+                    <td class="col-4 col-sm-2" ></td>
                 </tr>
             </tfoot>
         </table>
 
         <div>form</div>
+        
 
     </main>
 

@@ -15,7 +15,3 @@ img{
     font-size: 1.1rem;
 }
 
-.img--size{
-    object-fit: cover;
-    width: 60%;
-}

@@ -5,27 +5,27 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     const produitPanier = document.getElementById("produit_Panier")
 
     const produit = document.createElement("tr")
-    produit.classList.add("row", "text-center", 'py-4', "border")
+    produit.classList.add("row", "text-center", 'py-4')
 
     const blocimage = document.createElement("td")
-    blocimage.classList.add ("col-4")
+    blocimage.classList.add ("col-6", "col-sm-3")
 
     const imageProduit = document.createElement("img")
     imageProduit.setAttribute("src", image) /* AJOUT DU PARAMETRE IMAGE QUI RECUPERE L'URL DE L'IMAGE CORRESPONDANTE */
     imageProduit.setAttribute("alt", "image de l'ourson " + nom) /* AJOUT DU NOM DE L'OURSON */
-    imageProduit.classList.add ("img--size")
+    imageProduit.classList.add ("w-md-75")
 
     const nomProduit = document.createElement("td")
-    nomProduit.classList.add("text-secondary", "col-2")
+    nomProduit.classList.add("text-secondary", "col-3", "col-sm-2", "pt-3", "pt-md-5")
 
     const prixProduit = document.createElement("td")
-    prixProduit.classList.add("text-secondary", "col-1")
+    prixProduit.classList.add("text-secondary", "col-3", "col-sm-2", "pt-3", "pt-md-5")
 
     const quantiteProduit = document.createElement("td")
-    quantiteProduit.classList.add("text-secondary", "col-2")
+    quantiteProduit.classList.add("text-secondary", "col-6", "col-sm-3", "pt-3", "pt-md-5")
 
     const totalProduit = document.createElement("td")
-    totalProduit.classList.add("text-secondary", "col-2")
+    totalProduit.classList.add("text-secondary", "col-6", "col-sm-2", "pt-3", "pt-md-5")
     totalProduit.setAttribute("id", "totalunitaire")
     
     produitPanier.appendChild(produit)
@@ -42,7 +42,7 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     nomProduit.innerHTML = nom
     prixProduit.innerHTML = parseFloat(prix / 100) + " €"
     
-    totalProduit.innerHTML = quantite * parseFloat(prix / 100)
+    totalProduit.innerHTML = quantite * parseFloat(prix / 100) + " €"
     
     var boutonChangeQuantite = function () {
 
@@ -172,10 +172,11 @@ var ListeProduitsPanier = function(donnees) {
         }        
     }
     var nombreLigne = document.getElementsByTagName('table')[0].rows.length - 1
-    console.log(nombreLigne)
     var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[2];
-    console.log(prixTotalPanier)
-    prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100)
+    prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100) + " €"
+
+    var tableaudonneesPanier = [...idEnCache, ...valeurEnCache, totalCompteur]
+    console.log(tableaudonneesPanier)
 } 
 
 /* == RECUPERATION DES DONNEES API == */
@@ -231,5 +232,7 @@ var recuperationDonneesApi = async function () {
 
 recuperationDonneesApi()
 console.log(localStorage)
+
+
 
 

@@ -246,13 +246,15 @@ var formulaireControle = function() {
     var checkValid = document.getElementsByClassName("feedback")
     let reg = /^[a-zA-Z\u00C0-\u00FF]*$/; /* exclue tous les chiffres */
     
+    var recuperationFormulaire = []
+      
 
     for (i=0; i < inputForm.length; i++) {
         
         let champsText = inputForm[i]
         let feedback = checkValid[i]
 
-        champsText.addEventListener('input', function(e){
+        champsText.addEventListener('change', function(e){
             
             if (reg.test(e.target.value)){
                 
@@ -261,6 +263,10 @@ var formulaireControle = function() {
                 feedback.style.color = "#49f09c"
                 feedback.setAttribute('class', "far fa-check-circle")
                 feedback.classList.add("col-2", "pt-2")
+                recuperationFormulaire[i] = e.target.value
+                console.log(recuperationFormulaire)
+        /* A CORRIGER REGEX ESPACE ET TIRET
+        RECUPERATION DES DONNEES */
                
             } else {
 
@@ -271,7 +277,8 @@ var formulaireControle = function() {
                 feedback.classList.add("col-2", "pt-2")
             }
         })
-    }   
+    } 
+    
 }
 
 console.log(formulaireControle())

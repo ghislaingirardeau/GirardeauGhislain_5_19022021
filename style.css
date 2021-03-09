@@ -16,13 +16,14 @@ img{
 }
 
 article a:hover {
-    border: 2px solid black
+    border: 2px solid black;
 }
 
 #Compteur__panier {
     padding: 2px 7px;
     border-radius: 30px;
     font-size: 12px;
+    border: 1px solid black;
 }
 .feedback {
     display: none;

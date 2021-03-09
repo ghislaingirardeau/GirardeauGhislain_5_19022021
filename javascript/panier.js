@@ -247,7 +247,6 @@ var formulaireControle = function() {
     let reg = /^[a-zA-Z\u00C0-\u00FF]*$/; /* exclue tous les chiffres */
     
     var recuperationFormulaire = []
-      
 
     for (i=0; i < inputForm.length; i++) {
         
@@ -257,16 +256,15 @@ var formulaireControle = function() {
         champsText.addEventListener('change', function(e){
             
             if (reg.test(e.target.value)){
-                
+                console.log(champsText);
                 champsText.style.border = "#49f09c 2px solid"
                 feedback.style.display = "unset"
                 feedback.style.color = "#49f09c"
                 feedback.setAttribute('class', "far fa-check-circle")
                 feedback.classList.add("col-2", "pt-2")
-                recuperationFormulaire[i] = e.target.value
+                
+                recuperationFormulaire = "true"
                 console.log(recuperationFormulaire)
-        /* A CORRIGER REGEX ESPACE ET TIRET
-        RECUPERATION DES DONNEES */
                
             } else {
 
@@ -277,9 +275,48 @@ var formulaireControle = function() {
                 feedback.classList.add("col-2", "pt-2")
             }
         })
-    } 
-    
+    }
 }
 
 console.log(formulaireControle())
+
+var objetContactEnvoie = function (prenom, nom, adresse, ville, email) {
+
+    class contact {
+        constructor(firstname, lastname, adress, city, email) {
+    
+            this.firstname = firstname;
+            this.lastname = lastname;
+            this.adress = adress;
+            this.city = city;
+            this.email = email;
+            
+        }
+    }
+    
+    let mycontact = new contact (prenom, nom, adresse, ville, email)
+    
+    console.log(mycontact)
+
+}
+
+
+var contact = {
+firstName: "ghislain",
+lastName: "girardeau",
+address:"asd",
+city: "asd",
+email: "asd@toto.fr",
+
+} 
+
+var product_5beaa8bf1c9d440000a57d94 = ["trois"]
+
+var testcontact = {
+
+    contact,
+    product_5beaa8bf1c9d440000a57d94
+}
+console.log(JSON.stringify(testcontact))
+
 

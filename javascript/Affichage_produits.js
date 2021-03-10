@@ -68,7 +68,6 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     descriptionProduit.classList.add("pt-5")
 
     const prixProduit = document.createElement("p")
-    prixProduit.setAttribute("id", "prix")
     prixProduit.classList.add("pt-5", "font-weight-bold")
 
     const imageProduit = document.createElement("img") 

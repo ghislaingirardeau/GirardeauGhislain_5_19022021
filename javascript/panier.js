@@ -150,7 +150,7 @@ var viderPanier = function() {
 }
 
 /* == LISTE PRODUITS PAGE PANIER == */
-
+var tableauDonneesPanier
 var ListeProduitsPanier = function(donnees) {
    
     if (localStorage.length === 0) {
@@ -183,63 +183,8 @@ var ListeProduitsPanier = function(donnees) {
     var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[2];
     prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100) + " €"
 
-    var tableaudonneesPanier = [...idEnCache, ...valeurEnCache, totalCompteur]
-    console.log(tableaudonneesPanier)
+    tableauDonneesPanier = [...idEnCache, ...valeurEnCache, totalCompteur]
 } 
-
-/* == RECUPERATION DES DONNEES API == */
-
-var recuperationDonneesApi = async function () {
-
-    let idproduit = window.location.search
-
-    let getid = new URLSearchParams(idproduit)
-
-    let identifiantProduit = getid.get("id")
-    
-    if (identifiantProduit === null) {
-        let request = await fetch ("http://localhost:3000/api/teddies/")
-        .then (async function(response) {
-
-            if (response.ok) {
-
-                let data = await response.json()
-
-                .then (function(donnees) {
-                    
-                    nombreProduitsPanier()
-                    viderPanier()
-                    ListeProduitsPanier(donnees)
-
-                })
-
-            } else {
-                console.log("Cette URL n'est pas disponible")
-                alert("Cette URL n'est pas disponible")
-            }            
-        })
-    }   else {
-        let request = await fetch ("http://localhost:3000/api/teddies/" + identifiantProduit)
-        .then (async function(response) {
-
-            if (response.ok) {
-
-                let data = await response.json()
-
-                .then (function(donnees) {
-
-                })
-
-            } else {
-                console.log("Ce produit n'existe plus")
-                alert("Ce produit n'existe plus")
-            } 
-        })
-    }
-}
-
-recuperationDonneesApi()
-console.log(localStorage)
 
 /* TEST DES FONCTIONS FORMULAIRE */
 
@@ -258,7 +203,6 @@ var checkinvalid = function(champs, retour) {
 }
 
 /* TEST FORM OPTION 1 dans le draft*/
-
 /* TEST FORM OPTION 2 */
 var controleFormulaire = function (element) {
 /* Je recupere le champs a verifier ainsi que l'element pour inserer visuellement la reponse */
@@ -305,7 +249,7 @@ var controleFormulaireEmail = function (element) {
 }
 
 /* CREATION DE L'OBJET CONTACT */
-
+var mycontact
 var objetContactEnvoie = function (firstName, lastName, address, city, email) {
 
     class contact {
@@ -316,17 +260,15 @@ var objetContactEnvoie = function (firstName, lastName, address, city, email) {
             this.address = address;
             this.city = city;
             this.email = email;
-            
         }
     }
-    
-    var mycontact = new contact (firstName, lastName, address, city, email)
-    console.log(mycontact)
+    mycontact = new contact (firstName, lastName, address, city, email)
+    console.log(tableauDonneesPanier)
 }
 
 
 var validationForm = false
-var recupdonneecontact = function() {
+var recupDonneeContact = function() {
 
 /* Si validationForm renvoie true alors toutes les donnees sont bonnes */
 /* Si un champs n'est pas saisie c'est l'attribut required html qui prend le relais */
@@ -358,10 +300,63 @@ var recupdonneecontact = function() {
     }) 
     
 }
-console.log(recupdonneecontact())
 
+/* == RECUPERATION DES DONNEES API == */
 
+var recuperationDonneesApi = async function () {
 
+    let idproduit = window.location.search
+
+    let getid = new URLSearchParams(idproduit)
+
+    let identifiantProduit = getid.get("id")
+    
+    if (identifiantProduit === null) {
+        let request = await fetch ("http://localhost:3000/api/teddies/")
+        .then (async function(response) {
+
+            if (response.ok) {
+
+                let data = await response.json()
+
+                .then (function(donnees) {
+                    
+                    nombreProduitsPanier()
+                    viderPanier()
+                    ListeProduitsPanier(donnees)
+                    recupDonneeContact()
+                    console.log(mycontact)
+                    
+
+                })
+
+            } else {
+                console.log("Cette URL n'est pas disponible")
+                alert("Cette URL n'est pas disponible")
+            }            
+        })
+    }   else {
+        let request = await fetch ("http://localhost:3000/api/teddies/" + identifiantProduit)
+        .then (async function(response) {
+
+            if (response.ok) {
+
+                let data = await response.json()
+
+                .then (function(donnees) {
+
+                })
+
+            } else {
+                console.log("Ce produit n'existe plus")
+                alert("Ce produit n'existe plus")
+            } 
+        })
+    }
+}
+
+recuperationDonneesApi()
+console.log(localStorage)
 
 
 
@@ -382,6 +377,6 @@ var testcontact = {
     contact,
     product_5beaa8bf1c9d440000a57d94
 }
-console.log(JSON.stringify(contact))
+/* console.log(JSON.stringify(contact)) */
 
 

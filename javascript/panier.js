@@ -294,29 +294,50 @@ var formulaireControle = function() {
     })  
 }
 
-console.log(formulaireControle())
+var controleFormulaire = function (element) {
 
+    var element = document.getElementById(element)
+}
 
+/* CREATION DE L'OBJET CONTACT */
 
-var objetContactEnvoie = function (prenom, nom, adresse, ville, email) {
+var objetContactEnvoie = function (firstName, lastName, address, city, email) {
+
+    var email = document.getElementById("email")
+    console.log(email.value)
 
     class contact {
         constructor(firstname, lastname, adress, city, email) {
     
-            this.firstname = firstname;
-            this.lastname = lastname;
-            this.adress = adress;
+            this.firstName = firstname;
+            this.lastName = lastname;
+            this.address = address;
             this.city = city;
             this.email = email;
             
         }
     }
     
-    let mycontact = new contact (prenom, nom, adresse, ville, email)
-    
-    console.log(mycontact)
+    var mycontact = new contact (firstName, lastName, address, city, email)
 
 }
+
+/* console.log(objetContactEnvoie()) */
+
+/* TEST BOUTON SUBMIT */
+
+/* var testSubmit = function () {
+
+    var boutonSubmit = document.getElementById("submit")
+
+    boutonSubmit.addEventListener("click", function(){
+        var email = document.getElementById("email")
+        console.log(email.value)
+    })
+
+}
+
+console.log(testSubmit()) */
 
 
 var contact = {
@@ -335,6 +356,6 @@ var testcontact = {
     contact,
     product_5beaa8bf1c9d440000a57d94
 }
-console.log(JSON.stringify(testcontact))
+console.log(JSON.stringify(contact))
 
 

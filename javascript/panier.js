@@ -127,6 +127,7 @@ var nombreProduitsPanier = function() {
     if (compteur > 0) {
         quantiteTotale.innerHTML = compteur
         iconeCompteur.style.backgroundColor = "yellow"
+        iconeCompteur.style.border = "1px solid grey"
         iconeCompteur.innerHTML = compteur
        
     } else {
@@ -238,15 +239,28 @@ var recuperationDonneesApi = async function () {
 recuperationDonneesApi()
 console.log(localStorage)
 
+/* TEST DES FONCTIONS FORMULAIRE */
 
+var checkvalid = function(champs, retour) {
+    champs.style.border = "#49f09c 2px solid"
+    retour.style.display = "unset"
+    retour.style.color = "#49f09c"
+    retour.setAttribute('class', "far fa-check-circle")
+    retour.classList.add("col-2", "pt-2")
+} 
+
+var checkinvalid = function(champs, retour) {
+    champs.style.border = "#fc7878 2px solid"
+    retour.style.display = "unset"
+    retour.style.color = "#fc7878"
+    retour.setAttribute('class', "fas fa-times-circle")
+    retour.classList.add("col-2", "pt-2")
+}
 
 var formulaireControle = function() {
         
-    var inputForm = document.getElementsByClassName("form-control") /* tous les champs ont la meme classe */
+    var inputForm = document.getElementsByClassName("champs") /* tous les champs ont la meme classe */
     var checkValid = document.getElementsByClassName("feedback")
-    let reg = /^[a-zA-Z\u00C0-\u00FF]*$/; /* exclue tous les chiffres */
-    
-    var recuperationFormulaire = []
 
     for (i=0; i < inputForm.length; i++) {
         
@@ -255,30 +269,33 @@ var formulaireControle = function() {
 
         champsText.addEventListener('change', function(e){
             
-            if (reg.test(e.target.value)){
-                console.log(champsText);
-                champsText.style.border = "#49f09c 2px solid"
-                feedback.style.display = "unset"
-                feedback.style.color = "#49f09c"
-                feedback.setAttribute('class', "far fa-check-circle")
-                feedback.classList.add("col-2", "pt-2")
-                
-                recuperationFormulaire = "true"
-                console.log(recuperationFormulaire)
+            if ((e.target.value) === ""){
+                checkinvalid(champsText, feedback)
                
-            } else {
-
-                champsText.style.border = "#fc7878 2px solid"
-                feedback.style.display = "unset"
-                feedback.style.color = "#fc7878"
-                feedback.setAttribute('class', "fas fa-times-circle")
-                feedback.classList.add("col-2", "pt-2")
+            } else {              
+                checkvalid(champsText, feedback)
             }
         })
     }
+    
+    var email = document.getElementById("email") /* tous les champs ont la meme classe */
+    var emailValid = document.getElementById("feedback--mail")
+    let regMail = /^\S+@\S+$/; 
+
+    email.addEventListener('change', function(e){
+            
+        if (regMail.test(e.target.value)){
+            checkvalid(email, emailValid)
+               
+        } else {
+            checkinvalid(email, emailValid)
+        }
+    })  
 }
 
 console.log(formulaireControle())
+
+
 
 var objetContactEnvoie = function (prenom, nom, adresse, ville, email) {
 

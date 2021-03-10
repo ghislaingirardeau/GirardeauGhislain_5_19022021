@@ -23,7 +23,6 @@ article a:hover {
     padding: 2px 7px;
     border-radius: 30px;
     font-size: 12px;
-    border: 1px solid black;
 }
 .feedback {
     display: none;

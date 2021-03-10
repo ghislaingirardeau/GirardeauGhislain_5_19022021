@@ -44,7 +44,7 @@ main {
     background: linear-gradient(#FFA469, #9866FA);
 }
 
-nav p:hover {
+header nav p:hover {
     border-bottom: #8349F2 2px solid;
 }
 
@@ -54,5 +54,11 @@ nav i {
 
 nav p {
     color:#8349F2;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    transform: translateX(0px);
+    transition: transform 150ms;
+}
+
+nav div ul p:hover {
+    transform: translateX(10px);
 }

@@ -115,19 +115,24 @@ var nouvelOngletPersonnalisation = function (element) {
     itemMenu.classList.add("nav-item", "border-bottom", "border-dark")
 
     var contenuItem = document.createElement("a")
-    contenuItem.classList.add("lien_nav", "nav-link", "text-primary", "font-weight-bold", "m-2")
+    contenuItem.classList.add("nav-link", "text-primary", "font-weight-bold", "m-2")
     contenuItem.setAttribute("href", "#")
+
+    var textItem = document.createElement("p")
+    textItem.classList.add("lien_nav")
+
 
     ongletMenu.appendChild(itemMenu)
     itemMenu.appendChild(contenuItem)
+    contenuItem.appendChild(textItem)
 
-    contenuItem.innerHTML = element
+    textItem.innerHTML = element
 }
 
 var menuPresonnalisation = function (donnees) {
 
     var boutonPersonnalisation = document.getElementById("btn_personnalisation")
-    var premierItemMenu = document.querySelector("#navbarContent ul li a")
+    var premierItemMenu = document.querySelector("#navbarContent ul li a p")
 
     if (donnees == undefined || donnees.length == 0) { /* Si il n'y a pas de données ou que le tableau n'existe pas */
         boutonPersonnalisation.setAttribute("disabled", "")

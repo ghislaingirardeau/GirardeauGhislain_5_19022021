@@ -40,3 +40,41 @@
     imageUrl: "http://localhost:3000/images/teddy_3.jpg"
 }
 ] */
+
+
+/* TEST FORM OPTION 1 */
+var formulaireControle = function() {
+        
+    var inputForm = document.getElementsByClassName("champs") /* tous les champs ont la meme classe */
+    var checkValid = document.getElementsByClassName("feedback")
+
+    for (i=0; i < inputForm.length; i++) {
+        
+        let champsText = inputForm[i]
+        let feedback = checkValid[i]
+
+        champsText.addEventListener('change', function(e){
+            
+            if ((e.target.value) === ""){
+                checkinvalid(champsText, feedback)
+               
+            } else {              
+                checkvalid(champsText, feedback)
+            }
+        })
+    }
+    
+    var email = document.getElementById("email") /* tous les champs ont la meme classe */
+    var emailValid = document.getElementById("email--feedback")
+    let regMail = /^\S+@\S+$/; 
+
+    email.addEventListener('change', function(e){
+            
+        if (regMail.test(e.target.value)){
+            checkvalid(email, emailValid)
+               
+        } else {
+            checkinvalid(email, emailValid)
+        }
+    })  
+}

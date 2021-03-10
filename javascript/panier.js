@@ -118,6 +118,7 @@ var nombreProduitsPanier = function() {
     var quantiteTotale = document.getElementsByTagName('table')[0].rows[2].cells[1];
     var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
     var compteur = 0
+
     for (i=0; i < localStorage.length; i++) {
         
         var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
@@ -244,7 +245,6 @@ console.log(localStorage)
 
 var checkvalid = function(champs, retour) {
     champs.style.border = "#49f09c 2px solid"
-    retour.style.display = "unset"
     retour.style.color = "#49f09c"
     retour.setAttribute('class', "far fa-check-circle")
     retour.classList.add("col-2", "pt-2")
@@ -252,62 +252,64 @@ var checkvalid = function(champs, retour) {
 
 var checkinvalid = function(champs, retour) {
     champs.style.border = "#fc7878 2px solid"
-    retour.style.display = "unset"
     retour.style.color = "#fc7878"
     retour.setAttribute('class', "fas fa-times-circle")
     retour.classList.add("col-2", "pt-2")
 }
 
-var formulaireControle = function() {
-        
-    var inputForm = document.getElementsByClassName("champs") /* tous les champs ont la meme classe */
-    var checkValid = document.getElementsByClassName("feedback")
+/* TEST FORM OPTION 1 dans le draft*/
 
-    for (i=0; i < inputForm.length; i++) {
-        
-        let champsText = inputForm[i]
-        let feedback = checkValid[i]
+/* TEST FORM OPTION 2 */
+var controleFormulaire = function (element) {
+/* Je recupere le champs a verifier ainsi que l'element pour inserer visuellement la reponse */
+    var champsText = document.getElementById(element)
+    var checkValid = document.querySelector("#" + element + "--feedback") 
+    var reponse = 0
 
-        champsText.addEventListener('change', function(e){
+    champsText.addEventListener('change', function(e){
             
-            if ((e.target.value) === ""){
-                checkinvalid(champsText, feedback)
-               
-            } else {              
-                checkvalid(champsText, feedback)
-            }
-        })
-    }
-    
-    var email = document.getElementById("email") /* tous les champs ont la meme classe */
-    var emailValid = document.getElementById("feedback--mail")
-    let regMail = /^\S+@\S+$/; 
-
-    email.addEventListener('change', function(e){
+        if ((e.target.value) === ""){   /* Si pas de texte dans le champs = erreur + retour false */
+            checkinvalid(champsText, checkValid)
+            reponse = false 
+            validationForm = reponse 
             
-        if (regMail.test(e.target.value)){
-            checkvalid(email, emailValid)
-               
-        } else {
-            checkinvalid(email, emailValid)
+        } else {              
+            checkvalid(champsText, checkValid) /* Si presence de texte alors retourne true */
+            reponse = true
+            validationForm = reponse
+            
         }
-    })  
+    })
 }
 
-var controleFormulaire = function (element) {
+var controleFormulaireEmail = function (element) {
+/* fonction specifique pour la verification du caractere @ dans le champs de texte */
+    var champsText = document.getElementById(element)
+    var checkValid = document.querySelector("#" + element + "--feedback") 
+    var reponse
+    let regMail = /^\S+@\S+$/;
 
-    var element = document.getElementById(element)
+    champsText.addEventListener('change', function(e){
+            
+        if (regMail.test(e.target.value)) {  /* Si @ est present */      
+            checkvalid(champsText, checkValid)
+            reponse = true
+            validationForm = reponse /* Renvoie la reponse a la variable hors de la fonction*/
+
+        } else {              
+            checkinvalid(champsText, checkValid)
+            reponse = false 
+            validationForm = reponse 
+        }
+    })
 }
 
 /* CREATION DE L'OBJET CONTACT */
 
 var objetContactEnvoie = function (firstName, lastName, address, city, email) {
 
-    var email = document.getElementById("email")
-    console.log(email.value)
-
     class contact {
-        constructor(firstname, lastname, adress, city, email) {
+        constructor(firstname, lastname, address, city, email) {
     
             this.firstName = firstname;
             this.lastName = lastname;
@@ -319,25 +321,49 @@ var objetContactEnvoie = function (firstName, lastName, address, city, email) {
     }
     
     var mycontact = new contact (firstName, lastName, address, city, email)
-
+    console.log(mycontact)
 }
 
-/* console.log(objetContactEnvoie()) */
 
-/* TEST BOUTON SUBMIT */
+var validationForm = false
+var recupdonneecontact = function() {
 
-/* var testSubmit = function () {
+/* Si validationForm renvoie true alors toutes les donnees sont bonnes */
+/* Si un champs n'est pas saisie c'est l'attribut required html qui prend le relais */
+    
+    controleFormulaire("firstName")
+    controleFormulaire("lastName")
+    controleFormulaire("address")
+    controleFormulaire("city")
+    controleFormulaireEmail("email")
+    
 
     var boutonSubmit = document.getElementById("submit")
-
+    
     boutonSubmit.addEventListener("click", function(){
-        var email = document.getElementById("email")
-        console.log(email.value)
-    })
 
+        if (validationForm == true) {
+            var firstName = document.getElementById("firstName").value
+            var lastName = document.getElementById("lastName").value
+            var address = document.getElementById("address").value
+            var city = document.getElementById("city").value
+            var email = document.getElementById("email").value
+
+            objetContactEnvoie(firstName, lastName, address, city, email)
+            
+        } 
+        else {
+            console.log("Un champs est manquant")
+        }
+    }) 
+    
 }
+console.log(recupdonneecontact())
 
-console.log(testSubmit()) */
+
+
+
+
 
 
 var contact = {

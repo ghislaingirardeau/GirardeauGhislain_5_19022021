@@ -75,7 +75,7 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
 
     const imageProduit = document.createElement("img") 
     imageProduit.setAttribute("src", image)
-    imageProduit.classList.add("col-md-7", "mb-3", "rounded")
+    imageProduit.classList.add("col-md-7", "mb-3")
 
     article.appendChild(nomProduit)
     
@@ -194,6 +194,8 @@ var nombreProduitsPanier = function() {
 
     if (compteur > 0) {
         iconeCompteur.style.backgroundColor = "yellow"
+        iconeCompteur.style.border = "1px solid grey"
+        iconeCompteur.style.color = "black"
         iconeCompteur.innerHTML = compteur
        
     } else {

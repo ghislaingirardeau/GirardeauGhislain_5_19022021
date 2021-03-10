@@ -128,6 +128,7 @@ var nombreProduitsPanier = function() {
         quantiteTotale.innerHTML = compteur
         iconeCompteur.style.backgroundColor = "yellow"
         iconeCompteur.style.border = "1px solid grey"
+        iconeCompteur.style.color = "black"
         iconeCompteur.innerHTML = compteur
        
     } else {

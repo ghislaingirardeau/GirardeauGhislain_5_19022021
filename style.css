@@ -8,11 +8,22 @@ img{
 }
 
 .lien_nav {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    color: blueviolet;
 }
 
 #btn_personnalisation {
     font-size: 1.1rem;
+}
+
+article a, .article--shadow, form {
+  box-shadow: 5px 5px 15px black;
+}
+
+.table--border, #navbarContent{
+    border: 3px white solid;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px black;
 }
 
 article a:hover {
@@ -26,4 +37,22 @@ article a:hover {
 }
 .feedback {
     display: none;
+}
+
+main {
+   
+    background: linear-gradient(#FFA469, #9866FA);
+}
+
+nav p:hover {
+    border-bottom: #8349F2 2px solid;
+}
+
+nav i {
+    color: black;
+}
+
+nav p {
+    color:#8349F2;
+    font-size: 1.3rem;
 }

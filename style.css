@@ -62,3 +62,7 @@ nav p {
 nav div ul p:hover {
     transform: translateX(10px);
 }
+
+article h3, p {
+    color: black;
+}

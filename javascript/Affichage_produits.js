@@ -15,13 +15,11 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* 
     elementProduit.classList.add ("col-sm-6")
 
     const nomProduit = document.createElement("h3")
-    nomProduit.classList.add("text-secondary")
 
     const descriptionProduit = document.createElement("p")
-    descriptionProduit.classList.add("text-secondary")
 
     const prixProduit = document.createElement("p")
-    prixProduit.classList.add("text-secondary")
+    prixProduit.classList.add("font-weight-bold")
 
     const imageProduit = document.createElement("img")
     imageProduit.classList.add("float-right", "col-sm-6")
@@ -61,17 +59,17 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
     const article = document.getElementById("article")
 
     const nomProduit = document.createElement("h3")
-    nomProduit.classList.add("text-secondary", "col-12", "p-3")
+    nomProduit.classList.add("col-12", "p-3")
 
     const elementProduit = document.createElement("div")
     elementProduit.classList.add("col-md-5", "mb-3")
 
     const descriptionProduit = document.createElement("p")
-    descriptionProduit.classList.add("text-secondary", "pt-5")
+    descriptionProduit.classList.add("pt-5")
 
     const prixProduit = document.createElement("p")
     prixProduit.setAttribute("id", "prix")
-    prixProduit.classList.add("text-secondary", "pt-5", "font-weight-bold")
+    prixProduit.classList.add("pt-5", "font-weight-bold")
 
     const imageProduit = document.createElement("img") 
     imageProduit.setAttribute("src", image)

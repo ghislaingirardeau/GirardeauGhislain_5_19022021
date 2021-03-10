@@ -16,16 +16,16 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     imageProduit.classList.add ("w-md-75")
 
     const nomProduit = document.createElement("td")
-    nomProduit.classList.add("text-secondary", "col-3", "col-sm-2", "pt-3", "pt-md-5")
+    nomProduit.classList.add("col-3", "col-sm-2", "pt-3", "pt-md-5")
 
     const prixProduit = document.createElement("td")
-    prixProduit.classList.add("text-secondary", "col-3", "col-sm-2", "pt-3", "pt-md-5")
+    prixProduit.classList.add("col-3", "col-sm-2", "pt-3", "pt-md-5")
 
     const quantiteProduit = document.createElement("td")
-    quantiteProduit.classList.add("text-secondary", "col-6", "col-sm-3", "pt-3", "pt-md-5")
+    quantiteProduit.classList.add("col-6", "col-sm-3", "pt-3", "pt-md-5")
 
     const totalProduit = document.createElement("td")
-    totalProduit.classList.add("text-secondary", "col-6", "col-sm-2", "pt-3", "pt-md-5")
+    totalProduit.classList.add("col-6", "col-sm-2", "pt-3", "pt-md-5", "font-weight-bold")
     totalProduit.setAttribute("id", "totalunitaire")
     
     produitPanier.appendChild(produit)
@@ -47,14 +47,14 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     var boutonChangeQuantite = function () {
 
         const boutonPlus = document.createElement("button")
-        boutonPlus.classList.add("text-secondary", "btn", "btn-light", "border")
+        boutonPlus.classList.add("btn", "btn-light", "border")
         boutonPlus.setAttribute("type", "button")
 
         const compteurQuantite = document.createElement("strong")
-        compteurQuantite.classList.add("text-secondary", "px-2")
+        compteurQuantite.classList.add("px-2")
     
         const boutonMoins = document.createElement("button")
-        boutonMoins.classList.add("text-secondary", "btn", "btn-light", "border")
+        boutonMoins.classList.add("btn", "btn-light", "border")
         boutonMoins.setAttribute("type", "button")
 
         quantiteProduit.appendChild(boutonMoins)

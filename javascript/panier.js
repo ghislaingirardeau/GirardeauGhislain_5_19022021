@@ -269,7 +269,26 @@ var objetContactEnvoie = function (firstName, lastName, address, city, email) {
     contact = new contacts (firstName, lastName, address, city, email) 
 }
 
-var objetJSONEnvoie
+/* ENVOIE DES DONNEES API */
+
+var envoieDonneesAPI = async function (objet) {
+
+    let response = await fetch ("http://localhost:3000/api/teddies/order", {
+        method: 'POST',
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify(objet)
+    })
+    if (response.ok) {
+
+    let data = await response.json()
+    console.log(data.orderId)         
+    } else {
+        alert("Impossible d'envoyer les donnees")
+    }
+}
+
+/* A LA VALIDATION DU FORMULAIRE ET AU CLICK APPLIQUE envoieDonneesAPI */
+
 var validationForm = false
 var recuperationDonneesContact = function() {
 
@@ -285,8 +304,9 @@ var recuperationDonneesContact = function() {
 
     var boutonSubmit = document.getElementById("submit")
     
-    boutonSubmit.addEventListener("click", function(){
+    boutonSubmit.addEventListener("click", function(event){
 
+        
         if (validationForm == true) {
             var firstName = document.getElementById("firstName").value
             var lastName = document.getElementById("lastName").value
@@ -296,13 +316,18 @@ var recuperationDonneesContact = function() {
 
             objetContactEnvoie(firstName, lastName, address, city, email)
 
-            objetJSONEnvoie = {
+            objetAEnvoyer = {
                 contact,
                 products
-            }            
+            }
+            
+            envoieDonneesAPI(objetAEnvoyer)
+            console.log(objetAEnvoyer)
         } 
         else {
+            event.preventDefault()
             console.log("Un champs est manquant")
+            alert("Veuillez remplir le formulaire de contact")
         }
     }) 
     
@@ -337,21 +362,6 @@ recuperationDonneesApi()
 
 
 
-var envoieDonneesAPI = async function (objet) {
 
-    let response = await fetch ("http://localhost:3000/api/teddies/order", {
-        method: 'POST',
-        headers: {"content-type": "application/json"},
-        body: JSON.stringify(objet)
-    })
-    if (response.ok) {
-
-    let data = await response.json()
-    console.log(data.orderId)         
-    } else {
-        alert("Impossible d'envoyer les donnees")
-    }
-}
-/* envoieDonneesAPI(testobjet) */
 
 

@@ -312,13 +312,6 @@ var recuperationDonneesContact = function() {
 
 var recuperationDonneesApi = async function () {
 
-    let idproduit = window.location.search
-
-    let getid = new URLSearchParams(idproduit)
-
-    let identifiantProduit = getid.get("id")
-    
-    if (identifiantProduit === null) {
         let request = await fetch ("http://localhost:3000/api/teddies/")
         .then (async function(response) {
 
@@ -331,34 +324,13 @@ var recuperationDonneesApi = async function () {
                     nombreProduitsPanier()
                     viderPanier()
                     ListeProduitsPanier(donnees)
-                    recuperationDonneesContact()
-                    console.log(JSON.stringify(objetJSONEnvoie))         
-
+                    recuperationDonneesContact()        
                 })
-
             } else {
                 console.log("Cette URL n'est pas disponible")
                 alert("Cette URL n'est pas disponible")
             }            
         })
-    }   else {
-        let request = await fetch ("http://localhost:3000/api/teddies/" + identifiantProduit)
-        .then (async function(response) {
-
-            if (response.ok) {
-
-                let data = await response.json()
-
-                .then (function(donnees) {
-
-                })
-
-            } else {
-                console.log("Ce produit n'existe plus")
-                alert("Ce produit n'existe plus")
-            } 
-        })
-    }
 }
 
 recuperationDonneesApi()

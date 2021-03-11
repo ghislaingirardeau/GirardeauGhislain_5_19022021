@@ -150,7 +150,7 @@ var viderPanier = function() {
 }
 
 /* == LISTE PRODUITS PAGE PANIER == */
-var tableauDonneesPanier
+var products
 var ListeProduitsPanier = function(donnees) {
    
     if (localStorage.length === 0) {
@@ -183,7 +183,7 @@ var ListeProduitsPanier = function(donnees) {
     var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[2];
     prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100) + " €"
 
-    tableauDonneesPanier = [...idEnCache]    
+    products = [...idEnCache]    
 } 
 
 /* FONCTIONS FORMULAIRE */
@@ -253,10 +253,10 @@ var controleFormulaireEmail = function (element) {
 }
 
 /* CREATION DE L'OBJET CONTACT */
-var mycontact
+var contact
 var objetContactEnvoie = function (firstName, lastName, address, city, email) {
 
-    class contact {
+    class contacts {
         constructor(firstname, lastname, address, city, email) {
     
             this.firstName = firstname;
@@ -266,10 +266,10 @@ var objetContactEnvoie = function (firstName, lastName, address, city, email) {
             this.email = email;
         }
     }
-    mycontact = new contact (firstName, lastName, address, city, email)
+    contact = new contacts (firstName, lastName, address, city, email) 
 }
 
-
+var objetJSONEnvoie
 var validationForm = false
 var recuperationDonneesContact = function() {
 
@@ -295,7 +295,11 @@ var recuperationDonneesContact = function() {
             var email = document.getElementById("email").value
 
             objetContactEnvoie(firstName, lastName, address, city, email)
-            
+
+            objetJSONEnvoie = {
+                contact,
+                products
+            }            
         } 
         else {
             console.log("Un champs est manquant")
@@ -328,7 +332,7 @@ var recuperationDonneesApi = async function () {
                     viderPanier()
                     ListeProduitsPanier(donnees)
                     recuperationDonneesContact()
-                    console.log(tableauDonneesPanier)                  
+                    console.log(JSON.stringify(objetJSONEnvoie))         
 
                 })
 
@@ -360,27 +364,6 @@ var recuperationDonneesApi = async function () {
 recuperationDonneesApi()
 console.log(localStorage)
 
-
-
-
-var contact = {
-firstName: "ghislain",
-lastName: "girardeau",
-address:"asd",
-city: "asd",
-email: "asd@toto.fr",
-
-} 
-
-
-
-var products = ["5beaa8bf1c9d440000a57d94"]
-var test = {
-    contact,
-    products
-}
-
-console.log(JSON.stringify(test))
 
 
 

@@ -79,7 +79,7 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
             var ajoutUnClick = valeurIDCache - 1
             localStorage.setItem(id, ajoutUnClick)
 
-            if(valeurIDCache === 0) {
+            if(valeurIDCache === 1) {
                 localStorage.removeItem(id)
             }
             document.location.reload();
@@ -183,10 +183,10 @@ var ListeProduitsPanier = function(donnees) {
     var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[2];
     prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100) + " €"
 
-    tableauDonneesPanier = [...idEnCache, ...valeurEnCache, totalCompteur]
+    tableauDonneesPanier = [...idEnCache]    
 } 
 
-/* TEST DES FONCTIONS FORMULAIRE */
+/* FONCTIONS FORMULAIRE */
 
 /* Fonction de gestion de l'affichage du champs suivant si la valeur est correcte ou non */
 
@@ -267,7 +267,6 @@ var objetContactEnvoie = function (firstName, lastName, address, city, email) {
         }
     }
     mycontact = new contact (firstName, lastName, address, city, email)
-    console.log(tableauDonneesPanier)
 }
 
 
@@ -328,7 +327,8 @@ var recuperationDonneesApi = async function () {
                     nombreProduitsPanier()
                     viderPanier()
                     ListeProduitsPanier(donnees)
-                    recuperationDonneesContact()                  
+                    recuperationDonneesContact()
+                    console.log(tableauDonneesPanier)                  
 
                 })
 
@@ -374,11 +374,14 @@ email: "asd@toto.fr",
 
 
 
-var products = ["5beaa8bf1c9d440000a57d94", "name", "descritpion", "imageurl", "quan"]
+var products = ["5beaa8bf1c9d440000a57d94"]
+var test = {
+    contact,
+    products
+}
 
+console.log(JSON.stringify(test))
 
-console.log(JSON.stringify(contact))
-console.log(JSON.stringify(products))
 
 
 

@@ -188,6 +188,8 @@ var ListeProduitsPanier = function(donnees) {
 
 /* TEST DES FONCTIONS FORMULAIRE */
 
+/* Fonction de gestion de l'affichage du champs suivant si la valeur est correcte ou non */
+
 var checkvalid = function(champs, retour) {
     champs.style.border = "#49f09c 2px solid"
     retour.style.color = "#49f09c"
@@ -195,15 +197,15 @@ var checkvalid = function(champs, retour) {
     retour.classList.add("col-2", "pt-2")
 } 
 
-var checkinvalid = function(champs, retour) {
+var checkInvalid = function(champs, retour) {
     champs.style.border = "#fc7878 2px solid"
     retour.style.color = "#fc7878"
     retour.setAttribute('class', "fas fa-times-circle")
     retour.classList.add("col-2", "pt-2")
 }
 
-/* TEST FORM OPTION 1 dans le draft*/
-/* TEST FORM OPTION 2 */
+/* Controle de la valeur des champs texte */
+
 var controleFormulaire = function (element) {
 /* Je recupere le champs a verifier ainsi que l'element pour inserer visuellement la reponse */
     var champsText = document.getElementById(element)
@@ -213,7 +215,7 @@ var controleFormulaire = function (element) {
     champsText.addEventListener('change', function(e){
             
         if ((e.target.value) === ""){   /* Si pas de texte dans le champs = erreur + retour false */
-            checkinvalid(champsText, checkValid)
+            checkInvalid(champsText, checkValid)
             reponse = false 
             validationForm = reponse 
             
@@ -225,6 +227,8 @@ var controleFormulaire = function (element) {
         }
     })
 }
+
+/* Controle de la valeur des champs email */
 
 var controleFormulaireEmail = function (element) {
 /* fonction specifique pour la verification du caractere @ dans le champs de texte */
@@ -241,7 +245,7 @@ var controleFormulaireEmail = function (element) {
             validationForm = reponse /* Renvoie la reponse a la variable hors de la fonction*/
 
         } else {              
-            checkinvalid(champsText, checkValid)
+            checkInvalid(champsText, checkValid)
             reponse = false 
             validationForm = reponse 
         }
@@ -268,7 +272,7 @@ var objetContactEnvoie = function (firstName, lastName, address, city, email) {
 
 
 var validationForm = false
-var recupDonneeContact = function() {
+var recuperationDonneesContact = function() {
 
 /* Si validationForm renvoie true alors toutes les donnees sont bonnes */
 /* Si un champs n'est pas saisie c'est l'attribut required html qui prend le relais */
@@ -324,9 +328,7 @@ var recuperationDonneesApi = async function () {
                     nombreProduitsPanier()
                     viderPanier()
                     ListeProduitsPanier(donnees)
-                    recupDonneeContact()
-                    console.log(mycontact)
-                    
+                    recuperationDonneesContact()                  
 
                 })
 
@@ -370,13 +372,14 @@ email: "asd@toto.fr",
 
 } 
 
-var product_5beaa8bf1c9d440000a57d94 = ["trois"]
 
-var testcontact = {
 
-    contact,
-    product_5beaa8bf1c9d440000a57d94
-}
-/* console.log(JSON.stringify(contact)) */
+var products = ["5beaa8bf1c9d440000a57d94", "name", "descritpion", "imageurl", "quan"]
+
+
+console.log(JSON.stringify(contact))
+console.log(JSON.stringify(products))
+
+
 
 

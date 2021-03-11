@@ -334,10 +334,24 @@ var recuperationDonneesApi = async function () {
 }
 
 recuperationDonneesApi()
-console.log(localStorage)
 
 
 
+var envoieDonneesAPI = async function (objet) {
 
+    let response = await fetch ("http://localhost:3000/api/teddies/order", {
+        method: 'POST',
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify(objet)
+    })
+    if (response.ok) {
+
+    let data = await response.json()
+    console.log(data.orderId)         
+    } else {
+        alert("Impossible d'envoyer les donnees")
+    }
+}
+/* envoieDonneesAPI(testobjet) */
 
 

@@ -9,11 +9,13 @@ img{
 
 .lien_nav {
     font-size: 1.2rem;
-    color: blueviolet;
+    color: 8349F2;
 }
 
 #btn_personnalisation {
     font-size: 1.1rem;
+    color: #8349F2;
+    border:#8349F2 2px solid;
 }
 
 article a, .article--shadow, form {

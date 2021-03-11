@@ -283,7 +283,8 @@ var envoieDonneesAPI = async function (objet) {
     let data = await response.json()
     console.log(data.orderId)         
     } else {
-        alert("Impossible d'envoyer les donnees")
+        alert("Veuillez saisir tous les champs du formulaire")
+        event.preventDefault() 
     }
 }
 
@@ -306,8 +307,8 @@ var recuperationDonneesContact = function() {
     
     boutonSubmit.addEventListener("click", function(event){
 
-        
-        if (validationForm == true) {
+        if (validationForm == true && localStorage.length != 0) {
+
             var firstName = document.getElementById("firstName").value
             var lastName = document.getElementById("lastName").value
             var address = document.getElementById("address").value
@@ -316,18 +317,22 @@ var recuperationDonneesContact = function() {
 
             objetContactEnvoie(firstName, lastName, address, city, email)
 
-            objetAEnvoyer = {
-                contact,
-                products
-            }
+            objetAEnvoyer = {contact, products}
             
             envoieDonneesAPI(objetAEnvoyer)
             console.log(objetAEnvoyer)
-        } 
-        else {
-            event.preventDefault()
-            console.log("Un champs est manquant")
-            alert("Veuillez remplir le formulaire de contact")
+            event.preventDefault() 
+
+            /* A CORRIGER SI UN SEUL CHAMPS EST REMPLI, FAIRE UNE CONDITION SI LE CHAMPS NEST PAS DU TOUT EN FOCUS */
+
+
+        }
+        if (localStorage.length === 0) {
+            alert("Votre panier est vide")
+            event.preventDefault() 
+        }
+        else {  
+            console.log("Veuillez remplir le formulaire ou ajouter un produit dans votre panier")
         }
     }) 
     

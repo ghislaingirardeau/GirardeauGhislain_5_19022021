@@ -151,6 +151,7 @@ var viderPanier = function() {
 
 /* == LISTE PRODUITS PAGE PANIER == */
 var products
+var totalCompteur
 var ListeProduitsPanier = function(donnees) {
    
     if (localStorage.length === 0) {
@@ -161,7 +162,7 @@ var ListeProduitsPanier = function(donnees) {
 
     var idEnCache = Object.keys(localStorage)   /* Je charge le localstorage dans 1 tableau regroupant les cles */
     var valeurEnCache = Object.values(localStorage) /* puis dans un tableau regroupant les valeurs. L'index permet d'associer l'id a sa valeur */
-    var totalCompteur = 0
+    totalCompteur = 0
 
     for (i=0; i < donnees.length; i++) {
 
@@ -269,6 +270,16 @@ var objetContactEnvoie = function (firstName, lastName, address, city, email) {
     contact = new contacts (firstName, lastName, address, city, email) 
 }
 
+/* PAGE CONFIRMATION */
+
+var confirmationCommande = function() {
+    localStorage.clear()
+    localStorage.setItem(data.orderId, totalCompteur)
+
+    console.log(localStorage)
+}
+
+
 /* ENVOIE DES DONNEES API */
 
 var envoieDonneesAPI = async function (objet) {
@@ -281,7 +292,11 @@ var envoieDonneesAPI = async function (objet) {
     if (response.ok) {
 
     let data = await response.json()
-    console.log(data.orderId)         
+    console.log(data.orderId)
+    console.log(totalCompteur)
+    localStorage.clear()
+    localStorage.setItem(data.orderId, totalCompteur)
+
     } 
     else {
         alert("Le formulaire est incorrecte ou l'URL ne répond pas correctement")
@@ -321,9 +336,8 @@ var recuperationDonneesEtContact = function() {
             
             envoieDonneesAPI(objetAEnvoyer)
             console.log(objetAEnvoyer)
-            event.preventDefault() 
+            event.preventDefault()
 
-            /* A CORRIGER SI UN SEUL CHAMPS EST REMPLI, FAIRE UNE CONDITION SI LE CHAMPS NEST PAS DU TOUT EN FOCUS */
         }
         if (localStorage.length === 0) {
             alert("Votre panier est vide")
@@ -366,10 +380,20 @@ var recuperationDonneesApi = async function () {
 
 recuperationDonneesApi()
 
+/* effacer le localstorage
+envoyer dans l'local storage l'id comme cle
+    montant totale comme la valeur
+Afficher leur contenu avec le message de felicitation 
+*/
 
 
 
 
+/* var confirmationCommande = function() {
+    localStorage.clear()
+    localStorage.setItem(data.orderId, totalCompteur)
+    console.log(localStorage)
+} */
 
     
     

@@ -13,19 +13,19 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     const imageProduit = document.createElement("img")
     imageProduit.setAttribute("src", image) /* AJOUT DU PARAMETRE IMAGE QUI RECUPERE L'URL DE L'IMAGE CORRESPONDANTE */
     imageProduit.setAttribute("alt", "image de l'ourson " + nom) /* AJOUT DU NOM DE L'OURSON */
-    imageProduit.classList.add ("w-md-75")
+    imageProduit.classList.add ("w-md-75", "order-0", "order-sm-0")
 
     const nomProduit = document.createElement("td")
-    nomProduit.classList.add("col-3", "col-sm-2", "pt-3", "pt-md-5")
+    nomProduit.classList.add("col-3", "col-sm-2", "pt-3", "pt-md-5", "order-2", "order-sm-1")
 
     const prixProduit = document.createElement("td")
-    prixProduit.classList.add("col-3", "col-sm-2", "pt-3", "pt-md-5")
+    prixProduit.classList.add("col-3", "col-sm-2", "pt-3", "pt-md-5", "order-3", "order-sm-2")
 
     const quantiteProduit = document.createElement("td")
-    quantiteProduit.classList.add("col-6", "col-sm-3", "pt-3", "pt-md-5")
+    quantiteProduit.classList.add("col-6", "col-sm-3", "pt-3", "pt-md-5", "order-1", "order-sm-3")
 
     const totalProduit = document.createElement("td")
-    totalProduit.classList.add("col-6", "col-sm-2", "pt-3", "pt-md-5", "font-weight-bold")
+    totalProduit.classList.add("col-6", "col-sm-2", "pt-3", "pt-md-5", "font-weight-bold", "order-4", "order-sm-4")
     totalProduit.setAttribute("id", "totalunitaire")
     
     produitPanier.appendChild(produit)

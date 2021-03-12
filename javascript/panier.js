@@ -284,7 +284,7 @@ var envoieDonneesAPI = async function (objet) {
     console.log(data.orderId)         
     } 
     else {
-        alert("Cette URL n'est pas valide")
+        alert("Le formulaire est incorrecte ou l'URL ne répond pas correctement")
     }
 }
 
@@ -331,7 +331,7 @@ var recuperationDonneesEtContact = function() {
         }
         if (validationForm == false) {  
             console.log("Veuillez remplir tous les champs du formulaire")
-            event.preventDefault() 
+            
             var erreurMessage = document.getElementById("erreur__form")
             erreurMessage.style.display = "inherit"
         }
@@ -365,7 +365,6 @@ var recuperationDonneesApi = async function () {
 }
 
 recuperationDonneesApi()
-
 
 
 

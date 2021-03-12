@@ -68,3 +68,10 @@ nav div ul p:hover {
 article h3, p {
     color: black;
 }
+
+#erreur__form {
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+    display: none;
+}

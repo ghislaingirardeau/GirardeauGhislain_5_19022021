@@ -282,16 +282,16 @@ var envoieDonneesAPI = async function (objet) {
 
     let data = await response.json()
     console.log(data.orderId)         
-    } else {
-        alert("Veuillez saisir tous les champs du formulaire")
-        event.preventDefault() 
+    } 
+    else {
+        alert("Cette URL n'est pas valide")
     }
 }
 
 /* A LA VALIDATION DU FORMULAIRE ET AU CLICK APPLIQUE envoieDonneesAPI */
 
 var validationForm = false
-var recuperationDonneesContact = function() {
+var recuperationDonneesEtContact = function() {
 
 /* Si validationForm renvoie true alors toutes les donnees sont bonnes */
 /* Si un champs n'est pas saisie c'est l'attribut required html qui prend le relais */
@@ -324,15 +324,16 @@ var recuperationDonneesContact = function() {
             event.preventDefault() 
 
             /* A CORRIGER SI UN SEUL CHAMPS EST REMPLI, FAIRE UNE CONDITION SI LE CHAMPS NEST PAS DU TOUT EN FOCUS */
-
-
         }
         if (localStorage.length === 0) {
             alert("Votre panier est vide")
             event.preventDefault() 
         }
-        else {  
-            console.log("Veuillez remplir le formulaire ou ajouter un produit dans votre panier")
+        if (validationForm == false) {  
+            console.log("Veuillez remplir tous les champs du formulaire")
+            event.preventDefault() 
+            var erreurMessage = document.getElementById("erreur__form")
+            erreurMessage.style.display = "inherit"
         }
     }) 
     
@@ -354,7 +355,7 @@ var recuperationDonneesApi = async function () {
                     nombreProduitsPanier()
                     viderPanier()
                     ListeProduitsPanier(donnees)
-                    recuperationDonneesContact()        
+                    recuperationDonneesEtContact()        
                 })
             } else {
                 console.log("Cette URL n'est pas disponible")
@@ -365,6 +366,14 @@ var recuperationDonneesApi = async function () {
 
 recuperationDonneesApi()
 
+
+
+
+
+
+
+    
+    
 
 
 

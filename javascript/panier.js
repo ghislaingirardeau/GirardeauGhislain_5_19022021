@@ -292,10 +292,8 @@ var envoieDonneesAPI = async function (objet) {
     if (response.ok) {
 
     let data = await response.json()
-    console.log(data.orderId)
-    console.log(totalCompteur)
-    localStorage.clear()
-    localStorage.setItem(data.orderId, totalCompteur)
+
+    window.open("Confirmation.html?id=" + data.orderId + "&total=" + totalCompteur)
 
     } 
     else {
@@ -336,7 +334,6 @@ var recuperationDonneesEtContact = function() {
             
             envoieDonneesAPI(objetAEnvoyer)
             console.log(objetAEnvoyer)
-            event.preventDefault()
 
         }
         if (localStorage.length === 0) {
@@ -380,20 +377,10 @@ var recuperationDonneesApi = async function () {
 
 recuperationDonneesApi()
 
-/* effacer le localstorage
-envoyer dans l'local storage l'id comme cle
-    montant totale comme la valeur
-Afficher leur contenu avec le message de felicitation 
-*/
 
 
 
 
-/* var confirmationCommande = function() {
-    localStorage.clear()
-    localStorage.setItem(data.orderId, totalCompteur)
-    console.log(localStorage)
-} */
 
     
     

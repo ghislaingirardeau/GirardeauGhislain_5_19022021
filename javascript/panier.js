@@ -294,6 +294,7 @@ var envoieDonneesAPI = async function (objet) {
     let data = await response.json()
 
     window.open("Confirmation.html?id=" + data.orderId + "&total=" + totalCompteur, "_self")
+    localStorage.clear()
 
     } 
     else {

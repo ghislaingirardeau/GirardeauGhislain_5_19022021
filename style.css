@@ -22,7 +22,7 @@ article a, .article--shadow, form {
   box-shadow: 5px 5px 15px black;
 }
 
-.table--border, #navbarContent{
+.table--border, #navbarContent, .bloc_order {
     border: 3px white solid;
     border-radius: 5px;
     box-shadow: 5px 5px 15px black;
@@ -74,4 +74,18 @@ article h3, p {
     font-weight: bold;
     font-style: italic;
     display: none;
+}
+
+.bloc_order h3, strong {
+    color: seagreen;
+}
+
+.bloc_order p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#prixtotal {
+    font-size: 1.5rem;
 }

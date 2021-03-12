@@ -9,7 +9,7 @@ img{
 
 .lien_nav {
     font-size: 1.2rem;
-    color: 8349F2;
+    color: #8349F2;
 }
 
 #btn_personnalisation {
@@ -88,4 +88,7 @@ article h3, p {
 
 #prixtotal {
     font-size: 1.5rem;
+}
+#idorder {
+    font-size: 1.2rem;
 }

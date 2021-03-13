@@ -270,16 +270,6 @@ var objetContactEnvoie = function (firstName, lastName, address, city, email) {
     contact = new contacts (firstName, lastName, address, city, email) 
 }
 
-/* PAGE CONFIRMATION */
-
-var confirmationCommande = function() {
-    localStorage.clear()
-    localStorage.setItem(data.orderId, totalCompteur)
-
-    console.log(localStorage)
-}
-
-
 /* ENVOIE DES DONNEES API */
 
 var envoieDonneesAPI = async function (objet) {
@@ -296,6 +286,7 @@ var envoieDonneesAPI = async function (objet) {
     window.open("Confirmation.html?id=" + data.orderId + "&total=" + totalCompteur, "_self")
     localStorage.clear()
         /* Je charge la réponse du serveur dans le search parametre de l'URL */
+        /* Je nettoie le localstorage si la réponse est OK */
     } 
     else {
         alert("Le formulaire est incorrecte ou l'URL ne répond pas correctement")

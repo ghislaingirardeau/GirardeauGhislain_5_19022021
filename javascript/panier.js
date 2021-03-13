@@ -115,7 +115,7 @@ var panierVide = function() {
 
 var nombreProduitsPanier = function() {
     
-    var quantiteTotale = document.getElementsByTagName('table')[0].rows[2].cells[3];
+    var quantiteTotale = document.getElementsByTagName('table')[0].rows[2].cells[3]; /* cells figé car recupere le nombre dans le localstorage */
     var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
     var compteur = 0
 
@@ -138,7 +138,7 @@ var nombreProduitsPanier = function() {
     }
 }
 
-/* VIDER LE PANIER */
+/* BOUTON VIDER LE PANIER */
 
 var viderPanier = function() {
     
@@ -180,11 +180,12 @@ var ListeProduitsPanier = function(donnees) {
             totalCompteur += calculTotal
         }        
     }
+    /* Insérer les totaux dans les cells de table correspondantes */
     var nombreLigne = document.getElementsByTagName('table')[0].rows.length - 1
-    var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[4];
+    var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[4]; /* Cells dynamique car valeur en fonction de ligne de produit dans le panier */
     prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100) + " €"
 
-    products = [...idEnCache]    
+    products = [...idEnCache] /* Inserer seulement les id dans le tableau final product */   
 } 
 
 /* FONCTIONS FORMULAIRE */
@@ -204,14 +205,6 @@ var checkInvalid = function(champs, retour) {
     retour.setAttribute('class', "fas fa-times-circle")
     retour.classList.add("col-2", "pt-2")
 }
-
-var check = function(champs, retour, col, icone) {
-    champs.style.border = col + " 2px solid"
-    retour.style.color = col
-    retour.setAttribute('class', icone)
-    retour.classList.add("col-2", "pt-2")
-}
-
 
 /* Controle de la valeur des champs texte */
 
@@ -353,25 +346,24 @@ var recuperationDonneesEtContact = function() {
 
 var recuperationDonneesApi = async function () {
 
-        let request = await fetch ("http://localhost:3000/api/teddies/")
-        .then (async function(response) {
+    let request = await fetch ("http://localhost:3000/api/teddies/")
+    .then (async function(response) {
 
-            if (response.ok) {
+        if (response.ok) {
 
-                let data = await response.json()
+            let data = await response.json()
 
-                .then (function(donnees) {
+            .then (function(donnees) {
                     
-                    nombreProduitsPanier()
-                    viderPanier()
-                    ListeProduitsPanier(donnees)
-                    recuperationDonneesEtContact()        
-                })
-            } else {
-                console.log("Cette URL n'est pas disponible")
-                alert("Cette URL n'est pas disponible")
-            }            
-        })
+                nombreProduitsPanier()
+                viderPanier()
+                ListeProduitsPanier(donnees)
+                recuperationDonneesEtContact()        
+            })
+        } else {
+            alert("Cette URL n'est pas disponible")
+        }            
+    })
 }
 
 recuperationDonneesApi()

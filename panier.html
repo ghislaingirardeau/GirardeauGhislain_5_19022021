@@ -46,66 +46,82 @@
             Récapitulatif de mon panier
         </h2>
         <section class="table--border">
-        <table class="container">
-            <thead class="bg-light font-weight-bold font-italic container border-dark border-bottom">
-                <tr class="row text-center py-3 justify-content-end">
-                    <td class="col-0 col-sm-3 order-0 order-sm-0"></td>
-                    <td class="col-6 col-sm-2 order-1 order-sm-1">Nom</td>
-                    <td class="col-6 col-sm-2 order-3 order-sm-2">Prix</td>
-                    <td class="col-6 col-sm-3 order-2 order-sm-3">Quantités</td>
-                    <td class="col-6 col-sm-2 order-4 order-sm-4">Total Unitaire</td>
-                </tr>
-            </thead>
-            <tbody id="produit_Panier" class="bg-light container">
+            <table class="container">
+                <thead class="bg-light font-weight-bold font-italic container border-dark border-bottom">
+                    <tr class="row text-center py-3 justify-content-end">
+                        <td class="col-0 col-sm-3 order-0 order-sm-0"></td>
+                        <td class="col-6 col-sm-2 order-1 order-sm-1">Nom</td>
+                        <td class="col-6 col-sm-2 order-3 order-sm-2">Prix</td>
+                        <td class="col-6 col-sm-3 order-2 order-sm-3">Quantités</td>
+                        <td class="col-6 col-sm-2 order-4 order-sm-4">Total Unitaire</td>
+                    </tr>
+                </thead>
+                <tbody id="produit_Panier" class="bg-light container">
                 <!-- Bloc HTML recevant le contenu javascript -->
-            </tbody>
+                </tbody>
 
-            <tfoot class="bg-light pb-4 font-weight-bold container border-dark border-top">
-                <tr class="row justify-content-end text-center">
-
-                    <td class="col-4 col-sm-3">Quantité total <strong></strong></td>
-                    <td class="col-4 col-sm-2">Prix total <strong></strong></td>
-                </tr>
-                <tr class="row justify-content-end text-center">
-                    <td class="col-4 col-sm-7 mt-n4 text-right" rowspan="2">
-                        <button type="button" id="btn_paniervide" class="btn btn-secondary">Vider le panier</button>
-                    </td>
-                    <td class="col-4 col-sm-3"></td>
-                    <td class="col-4 col-sm-2"></td>
-                </tr>
-            </tfoot>
-        </table>
-        
+                <tfoot class="bg-light pb-4 font-weight-bold container border-dark border-top">
+                    <tr class="row justify-content-end text-center">
+                        <td class="col-4 col-sm-3">Quantité total <strong></strong></td>
+                        <td class="col-4 col-sm-2">Prix total <strong></strong></td>
+                    </tr>
+                    <tr class="row justify-content-end text-center">
+                        <td class="col-4 col-sm-7 mt-n4 text-right" rowspan="2">
+                            <button type="button" id="btn_paniervide" class="btn btn-secondary">Vider le panier</button>
+                        </td>
+                        <td class="col-4 col-sm-3"></td>
+                        <td class="col-4 col-sm-2"></td>
+                    </tr>
+                </tfoot>
+            </table>
         </section>
 
-        <h2 class="row col-12 px-md-5 py-4 border-bottom border-dark">Finaliser votre commande</h2>
+        <h2 class="row col-12 px-md-5 py-4 border-bottom border-dark">
+            Finaliser votre commande
+        </h2>
         
         <form class="py-5 bg-light rounded container">
-            <label for="firstName" class="row">
-                <p class="col-12, col-sm-4">Prénom</p> 
-                <input type="text" id="firstName" class="form-control champs col-9 ml-3 ml-sm-0 col-sm-6" required>
-                <div id="firstName--feedback" class="col-1 col-sm-2"></div>
-            </label>
-            <label for="lastName" class="row">
-                <p class="col-12, col-sm-4">Nom</p>
-                <input type="text" id="lastName" class="form-control champs col-9 ml-3 ml-sm-0 col-sm-6" required>
-                <div id="lastName--feedback" class="col-1 col-sm-2"></div>
-            </label>
-            <label for="address" class="row">
-                <p class="col-12, col-sm-4">Votre adresse postale</p>
-                <input type="text" id="address" class="form-control champs col-9 ml-3 ml-sm-0 col-sm-6" required>
-                <div id="address--feedback" class="col-1 col-sm-2"></div>
-            </label>
-            <label for="city" class="row">
-                <p class="col-12, col-sm-4">Votre ville</p>
-                <input type="text" id="city" class="form-control champs col-9 ml-3 ml-sm-0 col-sm-6" required>
-                <div id="city--feedback" class="col-1 col-sm-2"></div>
-            </label>
-            <label for="email" class="row">
-                <p class="col-12, col-sm-4">Votre adresse e-mail</p>
-                <input type="email" id="email" class="form-control col-9 ml-3 ml-sm-0 col-sm-6" placeholder="Jean-dupont@mail.fr" required>
-                <div id="email--feedback" class="col-1 col-sm-2"></div>
-            </label>
+
+            <div class="row my-2">            
+                <p class="col-12 col-sm-3 col-lg-2">Prénom</p>
+                <label for="firstName" class="col-10 col-sm-7">
+                    <input type="text" id="firstName" class="form-control champs" required>
+                </label>
+                <div id="firstName--feedback" class="col-2 col-sm-2"></div>
+            </div>
+
+            <div class="row my-2">            
+                <p class="col-12 col-sm-3 col-lg-2">Nom</p>
+                <label for="lastName" class="col-10 col-sm-7">
+                    <input type="text" id="lastName" class="form-control champs" required>
+                </label>
+                <div id="lastName--feedback" class="col-2 col-sm-2"></div>
+            </div>
+
+            <div class="row my-2">            
+                <p class="col-12 col-sm-3 col-lg-2">Votre adresse postale</p>
+                <label for="address" class="col-10 col-sm-7">
+                    <input type="text" id="address" class="form-control champs" required>
+                </label>
+                <div id="address--feedback" class="col-2 col-sm-2"></div>
+            </div>
+
+            <div class="row my-2">            
+                <p class="col-12 col-sm-3 col-lg-2">Votre ville</p>
+                <label for="city" class="col-10 col-sm-7">
+                    <input type="text" id="city" class="form-control champs" required>
+                </label>
+                <div id="city--feedback" class="col-2 col-sm-2"></div>
+            </div>
+
+            <div class="row my-2">            
+                <p class="col-12 col-sm-3 col-lg-2">Votre adresse e-mail</p>
+                <label for="email" class="col-10 col-sm-7">
+                    <input type="email" id="email" class="form-control champs" placeholder="Jean-dupont@mail.fr" required>
+                </label>
+                <div id="email--feedback" class="col-2 col-sm-2"></div>
+            </div>
+
             <label for="submit">
                 <input type="button" id="submit" value="Envoyer" class="btn btn-primary mt-3">
             </label>

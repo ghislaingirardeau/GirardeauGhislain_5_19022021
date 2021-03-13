@@ -205,10 +205,18 @@ var checkInvalid = function(champs, retour) {
     retour.classList.add("col-2", "pt-2")
 }
 
+var check = function(champs, retour, col, icone) {
+    champs.style.border = col + " 2px solid"
+    retour.style.color = col
+    retour.setAttribute('class', icone)
+    retour.classList.add("col-2", "pt-2")
+}
+
+
 /* Controle de la valeur des champs texte */
 
-var controleFormulaire = function (element) {
-/* Je recupere le champs a verifier ainsi que l'element pour inserer visuellement la reponse */
+var controleFormulaire = function (element) { /* Je recupere le champs a verifier ainsi que l'element pour inserer visuellement la reponse */
+
     var champsText = document.getElementById(element)
     var checkValid = document.querySelector("#" + element + "--feedback") 
     var reponse = 0
@@ -229,10 +237,10 @@ var controleFormulaire = function (element) {
     })
 }
 
-/* Controle de la valeur des champs email */
+/* Controle de la valeur du champs email */
 
-var controleFormulaireEmail = function (element) {
-/* fonction specifique pour la verification du caractere @ dans le champs de texte */
+var controleFormulaireEmail = function (element) {  /* fonction specifique pour la verification du caractere @ dans le champs de texte */
+
     var champsText = document.getElementById(element)
     var checkValid = document.querySelector("#" + element + "--feedback") 
     var reponse
@@ -277,7 +285,7 @@ var envoieDonneesAPI = async function (objet) {
     let response = await fetch ("http://localhost:3000/api/teddies/order", {
         method: 'POST',
         headers: {"content-type": "application/json"},
-        body: JSON.stringify(objet)
+        body: JSON.stringify(objet) /* Conertion de l'objet */
     })
     if (response.ok) {
 
@@ -320,21 +328,20 @@ var recuperationDonneesEtContact = function() {
             var city = document.getElementById("city").value
             var email = document.getElementById("email").value
 
-            objetContactEnvoie(firstName, lastName, address, city, email)
+            objetContactEnvoie(firstName, lastName, address, city, email) /* Recuperer la valeur de chaque champs pour l'envoyer en parametre a la fonction */
 
-            objetAEnvoyer = {contact, products}
+            objetAEnvoyer = {contact, products} /* L'objet js qui est à envoyer et qui se convertie en JSON */
             
             envoieDonneesAPI(objetAEnvoyer)
             console.log(objetAEnvoyer)
 
         }
-        if (localStorage.length === 0) {
+        if (localStorage.length === 0) {  /* Si le formulaire est rempli mais que le panier est vide */
             alert("Votre panier est vide")
             event.preventDefault() 
         }
         if (validationForm == false) {  
-            console.log("Veuillez remplir tous les champs du formulaire")
-            
+                        
             var erreurMessage = document.getElementById("erreur__form")
             erreurMessage.style.display = "inherit"
         }

@@ -115,7 +115,7 @@ var panierVide = function() {
 
 var nombreProduitsPanier = function() {
     
-    var quantiteTotale = document.getElementsByTagName('table')[0].rows[2].cells[1];
+    var quantiteTotale = document.getElementsByTagName('table')[0].rows[2].cells[3];
     var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
     var compteur = 0
 
@@ -181,7 +181,7 @@ var ListeProduitsPanier = function(donnees) {
         }        
     }
     var nombreLigne = document.getElementsByTagName('table')[0].rows.length - 1
-    var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[2];
+    var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[4];
     prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100) + " €"
 
     products = [...idEnCache]    
@@ -295,7 +295,7 @@ var envoieDonneesAPI = async function (objet) {
 
     window.open("Confirmation.html?id=" + data.orderId + "&total=" + totalCompteur, "_self")
     localStorage.clear()
-
+        /* Je charge la réponse du serveur dans le search parametre de l'URL */
     } 
     else {
         alert("Le formulaire est incorrecte ou l'URL ne répond pas correctement")

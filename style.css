@@ -81,7 +81,7 @@ article h3, p {
     display: none;
 }
 
-.bloc_order h3, strong {
+.bloc_order h3, .bloc_order strong {
     color: seagreen;
 }
 
@@ -97,4 +97,3 @@ article h3, p {
 #idorder {
     font-size: 1.2rem;
 }
-

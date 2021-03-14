@@ -44,7 +44,7 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     
     totalProduit.innerHTML = quantite * parseFloat(prix / 100) + " €"
     
-    var boutonChangeQuantite = function () {
+    var boutonChangeQuantite = function () { /* Bouton pour ajuster les quantités dans le localstorage en fonction de l'ID */
 
         const boutonPlus = document.createElement("button")
         boutonPlus.classList.add("btn", "btn-light", "border")

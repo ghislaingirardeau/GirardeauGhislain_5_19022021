@@ -89,8 +89,6 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     boutonChangeQuantite()
 }
 
-
-
 /* PANIER VIDE */
 
 var panierVide = function() {
@@ -150,14 +148,14 @@ var viderPanier = function() {
 }
 
 /* == LISTE PRODUITS PAGE PANIER == */
+
 var products
 var totalCompteur
 var ListeProduitsPanier = function(donnees) {
    
     if (localStorage.length === 0) {
 
-        panierVide()
-        
+        panierVide()   
     }
 
     var idEnCache = Object.keys(localStorage)   /* Je charge le localstorage dans 1 tableau regroupant les cles */
@@ -326,7 +324,6 @@ var recuperationDonneesEtContact = function() {
             objetAEnvoyer = {contact, products} /* L'objet js qui est à envoyer et qui se convertie en JSON */
             
             envoieDonneesAPI(objetAEnvoyer)
-            console.log(objetAEnvoyer)
 
         }
         if (localStorage.length === 0) {  /* Si le formulaire est rempli mais que le panier est vide */
@@ -339,7 +336,6 @@ var recuperationDonneesEtContact = function() {
             erreurMessage.style.display = "inherit"
         }
     }) 
-    
 }
 
 /* == RECUPERATION DES DONNEES API == */

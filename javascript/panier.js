@@ -210,7 +210,7 @@ var controleFormulaire = function (element) { /* Je recupere le champs a verifie
 
     var champsText = document.getElementById(element)
     var checkValid = document.querySelector("#" + element + "--feedback") 
-    var reponse = 0
+    var reponse = false
 
     champsText.addEventListener('change', function(e){
             
@@ -243,30 +243,12 @@ var controleFormulaireEmail = function (element) {  /* fonction specifique pour 
             checkvalid(champsText, checkValid)
             reponse = true
             validationForm = reponse /* Renvoie la reponse a la variable hors de la fonction*/
-
         } else {              
             checkInvalid(champsText, checkValid)
             reponse = false 
-            validationForm = reponse 
+            validationForm = reponse
         }
-    })
-}
-
-/* CREATION DE L'OBJET CONTACT */
-var contact
-var objetContactEnvoie = function (firstName, lastName, address, city, email) {
-
-    class contacts {
-        constructor(firstname, lastname, address, city, email) {
-    
-            this.firstName = firstname;
-            this.lastName = lastname;
-            this.address = address;
-            this.city = city;
-            this.email = email;
-        }
-    }
-    contact = new contacts (firstName, lastName, address, city, email) 
+    }) 
 }
 
 /* ENVOIE DES DONNEES API */
@@ -288,7 +270,7 @@ var envoieDonneesAPI = async function (objet) {
         /* Je nettoie le localstorage si la réponse est OK */
     } 
     else {
-        alert("Le formulaire est incorrecte ou l'URL ne répond pas correctement")
+        alert("L'URL ne répond pas correctement ou des champs du formulaire sont manquant")
     }
 }
 
@@ -305,7 +287,6 @@ var recuperationDonneesEtContact = function() {
     controleFormulaire("address")
     controleFormulaire("city")
     controleFormulaireEmail("email")
-    
 
     var boutonSubmit = document.getElementById("submit")
     
@@ -319,9 +300,15 @@ var recuperationDonneesEtContact = function() {
             var city = document.getElementById("city").value
             var email = document.getElementById("email").value
 
-            objetContactEnvoie(firstName, lastName, address, city, email) /* Recuperer la valeur de chaque champs pour l'envoyer en parametre a la fonction */
-
-            objetAEnvoyer = {contact, products} /* L'objet js qui est à envoyer et qui se convertie en JSON */
+            var contact = {
+                "firstName": firstName,
+                "lastName": lastName,
+                "address": address,
+                "city": city,
+                "email": email,
+            }
+            
+            objetAEnvoyer = {contact, products} /* L'objet js qui est à envoyer et qui sera convertie en JSON */
             
             envoieDonneesAPI(objetAEnvoyer)
 

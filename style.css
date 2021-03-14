@@ -6,6 +6,7 @@ header h1 i {
 
 h1{
     font-size: 4rem;
+    font-family: 'Patrick Hand', cursive;
 }
 
 img{
@@ -13,15 +14,11 @@ img{
     width: 100%;
 }
 
-.lien_nav {
-    font-size: 1.2rem;
-    color: #8349F2;
-}
-
 #btn_personnalisation {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #8349F2;
     border:#8349F2 2px solid;
+    font-family: 'Patrick Hand', cursive;
 }
 
 article a, .article--shadow, form {
@@ -50,6 +47,11 @@ article a:hover {
 main {
     background: linear-gradient(#FFA469, #9866FA);
 }
+header nav p {
+    color: #8349F2;
+    font-size: 1.7rem;
+    font-family: 'Patrick Hand', cursive;
+}
 
 header nav p:hover {
     border-bottom: #8349F2 2px solid;
@@ -59,9 +61,10 @@ nav i {
     color: black;
 }
 
-nav p {
+nav div ul p {
     color:#8349F2;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-family: 'Patrick Hand', cursive;
     transform: translateX(0px);
     transition: transform 150ms;
 }

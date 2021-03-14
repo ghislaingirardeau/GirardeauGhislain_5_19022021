@@ -29,12 +29,10 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* 
     categorie.appendChild(produit)
     produit.appendChild(lienProduit)
     lienProduit.appendChild(elementProduit)
-    
+    lienProduit.appendChild(imageProduit)
     elementProduit.appendChild(nomProduit)
     elementProduit.appendChild(descriptionProduit)
     elementProduit.appendChild(prixProduit)
-
-    lienProduit.appendChild(imageProduit)
 
     nomProduit.innerHTML = nom  /* INJECTE LES DONNEES EN PARAMETRES DANS LE HTML AUX EMPLACEMENTS DEFINIS */
     descriptionProduit.innerHTML = "Description: " + description
@@ -45,10 +43,9 @@ var creationBlocHtmlAccueil = function (nom, description, prix, id, image) { /* 
 
 const listeProduitsAccueil = function(tableau) {
     
-    for (let i=0; i < tableau.length; i++) {      
+    for (let i=0; i < tableau.length; i++) { /* Automatise la création de bloc d'ourson en fonction de chaque index des donnees backend */      
         creationBlocHtmlAccueil(tableau[i].name, tableau[i].description, 
         tableau[i].price, tableau[i]._id, tableau[i].imageUrl);
-       
     }
 }
 
@@ -72,16 +69,14 @@ var creationBlocHtmlProduit = function (nom, description, prix, image) {
 
     const imageProduit = document.createElement("img") 
     imageProduit.setAttribute("src", image)
+    imageProduit.setAttribute("alt", "image de l'ourson " + nom) /* AJOUT DU NOM DE L'OURSON */
     imageProduit.classList.add("col-md-7", "mb-3")
 
     article.appendChild(nomProduit)
-    
-
     article.appendChild(elementProduit)
+    article.appendChild(imageProduit)
     elementProduit.appendChild(descriptionProduit)
     elementProduit.appendChild(prixProduit)
-
-    article.appendChild(imageProduit)
 
     nomProduit.innerHTML = "Ourson : " + nom
     nomProduit.style.fontStyle = "italic"
@@ -99,7 +94,6 @@ const descriptifProduit = function(donnees) {
     
     creationBlocHtmlProduit(donnees.name, donnees.description, 
         donnees.price, donnees.imageUrl)
-
 }
 
 /* == LES FONCTION POUR LA PERSONNALISATION DU PRODUIT ET SON MENU DEROULANT == */
@@ -117,7 +111,6 @@ var nouvelOngletPersonnalisation = function (element) {
 
     var textItem = document.createElement("p")
     textItem.classList.add("lien_nav")
-
 
     ongletMenu.appendChild(itemMenu)
     itemMenu.appendChild(contenuItem)
@@ -166,7 +159,7 @@ var clickBoutonPanier = function (identifiantProduit) {
             } 
         }
 
-        if (result == "true") { /* Si l'id est présente, j'applique cette fonction */
+        if (result == "true") { /* Si l'id est présente, alors j'ajoute 1 a la valeur correspondante a sa clé */
                 
             click++
             var nombreClickFait = parseInt(localStorage.getItem(valeurCle))
@@ -174,7 +167,7 @@ var clickBoutonPanier = function (identifiantProduit) {
             localStorage.setItem(valeurCle, totalClick)
         }  
     
-        else { /* Si l'id n'est pas presente alors je l'insere dans le cache */
+        else { /* Si l'id n'est pas presente alors je l'insere dans le cache navigateur */
 
             localStorage.setItem(identifiantProduit, "1")
         }
@@ -188,9 +181,10 @@ var nombreProduitsPanier = function() {
     
     var iconeCompteur = document.getElementById("Compteur__panier")
     var compteur = 0
+
     for (i=0; i < localStorage.length; i++) {
         
-        var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
+        var nombreClick = parseInt(localStorage.getItem(localStorage.key(i))) /* valeur de chaque index qui s'ajoute au compteur */
         compteur += nombreClick
     }
 
@@ -213,7 +207,7 @@ var recuperationDonneesApi = async function () {
 
     let getid = new URLSearchParams(idproduit)
 
-    let identifiantProduit = getid.get("id")
+    let identifiantProduit = getid.get("id") /* Recupere l'existence ou non d'un ID */
     
     if (identifiantProduit === null) {
         let request = await fetch ("http://localhost:3000/api/teddies/")
@@ -221,28 +215,29 @@ var recuperationDonneesApi = async function () {
 
             if (response.ok) {
 
-                let data = await response.json()
+                let data = await response.json() /* Une fois ma promesse réussi, j'applique .then */
 
-                .then (function(donnees) {
+                .then (function(donnees) { /* SI il n'y a pas d'ID dans l'URL alors, j'exécute les fonctions lié a la page accueil */
 
                     listeProduitsAccueil(donnees)
                     nombreProduitsPanier()
                 })
 
-            } else {
+            } else { /* Si la reponse échoue */
                 console.log("Cette URL n'est pas disponible")
                 alert("Cette URL n'est pas disponible")
             }            
         })
+    
     }   else {
         let request = await fetch ("http://localhost:3000/api/teddies/" + identifiantProduit)
         .then (async function(response) {
 
             if (response.ok) {
 
-                let data = await response.json()
+                let data = await response.json() /* Une fois ma promesse réussi, j'applique .then */
 
-                .then (function(donnees) {
+                .then (function(donnees) { /* SI il y a une ID dans l'URL, alors j'applique les fonctions liées à la page produit */
 
                     descriptifProduit(donnees)
                     menuPresonnalisation(donnees.colors)
@@ -251,7 +246,7 @@ var recuperationDonneesApi = async function () {
                 })
 
             } else {
-                console.log("Ce produit n'existe plus")
+                console.log("Vérifier l'URL du produit")
                 alert("Ce produit n'existe plus")
             } 
         })
@@ -259,7 +254,6 @@ var recuperationDonneesApi = async function () {
 }
 
 recuperationDonneesApi()
-console.log(localStorage)
 
 
 

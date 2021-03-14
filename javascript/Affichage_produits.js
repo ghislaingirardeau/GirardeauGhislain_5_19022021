@@ -148,19 +148,19 @@ var clickBoutonPanier = function (identifiantProduit) {
     boutonPanier.addEventListener('click', function (){
 
         var click = 0
+        var result 
     
         for (i=0; i < localStorage.length; i++) { /* Je compare l'Id a chacune des clés du tableau, si l'ID est deja presente retourne true */
 
             var valeurCache = localStorage.key(i)
 
             if (identifiantProduit === valeurCache) {
-                var result = "true"
+                result = "true"
                 var valeurCle =  localStorage.key(i)
             } 
         }
 
-        if (result == "true") { /* Si l'id est présente, alors j'ajoute 1 a la valeur correspondante a sa clé */
-                
+        if (result == "true") { /* Si l'id est présente, alors j'ajoute 1 a la valeur correspondante a sa clé */   
             click++
             var nombreClickFait = parseInt(localStorage.getItem(valeurCle))
             var totalClick = nombreClickFait + click
@@ -168,7 +168,7 @@ var clickBoutonPanier = function (identifiantProduit) {
         }  
     
         else { /* Si l'id n'est pas presente alors je l'insere dans le cache navigateur */
-
+            result = "false"
             localStorage.setItem(identifiantProduit, "1")
         }
         document.location.reload()

@@ -168,15 +168,17 @@ var ListeProduitsPanier = function(donnees) {
 
         if (idEnCache.indexOf(IdDonneesAPI) != -1) { /* Si l'id correspond a un index du tableau regroupant les cles, alors je fais la fonction suivante (-1 veut dire qu'il ne trouve pas l'index)*/
             
-            var getIndexValeurCache = valeurEnCache[idEnCache.indexOf(IdDonneesAPI)]
-            var getIndexDonneesAPI = i
+            var getIndexValeurCache = valeurEnCache[idEnCache.indexOf(IdDonneesAPI)] /* quantite du produit */
+            var getIndexDonneesAPI = i /* Index dans le tableau de données pour affichage HTML */
 
             creationBlocHtmlPanier(donnees[getIndexDonneesAPI].imageUrl, donnees[getIndexDonneesAPI].name,
              donnees[getIndexDonneesAPI].price, getIndexValeurCache, donnees[getIndexDonneesAPI]._id)
             
             var calculTotal = donnees[getIndexDonneesAPI].price * getIndexValeurCache  /* pour le calcul du prix totale */
             totalCompteur += calculTotal
-        }        
+        } else {
+            console.log("Cette id n'est pas presente")
+        }       
     }
     /* Insérer les totaux dans les cells de table correspondantes */
     var nombreLigne = document.getElementsByTagName('table')[0].rows.length - 1

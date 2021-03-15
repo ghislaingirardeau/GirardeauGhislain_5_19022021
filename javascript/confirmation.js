@@ -1,3 +1,5 @@
+/* URLSearchParams pour envoyer les données en HTML */
+
 var params = new URLSearchParams (window.location.search)
 
 var idOrder = params.get("id")

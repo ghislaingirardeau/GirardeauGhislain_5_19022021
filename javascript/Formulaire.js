@@ -80,10 +80,15 @@ var envoieDonneesAPI = async function (objet) {
     localStorage.clear()
         /* Je charge la réponse du serveur dans le search parametre de l'URL */
         /* Je nettoie le localstorage si la réponse est OK */
-    } 
-    else {
-        alert("L'URL ne répond pas correctement ou des champs du formulaire sont manquant")
     }
+
+    if(response.status === 404) {
+        alert("L'URL ne répond pas correctement")
+    } 
+
+    if(response.status === 400) {
+        alert("Des champs du formulaire sont manquants")
+    } 
 }
 
 /* A LA VALIDATION DU FORMULAIRE ET AU CLICK APPLIQUE envoieDonneesAPI */

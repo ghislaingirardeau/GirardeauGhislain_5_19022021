@@ -1,14 +1,22 @@
-/* URLSearchParams pour envoyer les données en HTML */
+/* Enregistrer la variable du localstorage dans une constante, puis effacer celui-ci */
 
-var params = new URLSearchParams (window.location.search)
+const idOrder = localStorage.key('0')
+const montantTotal = localStorage.getItem(idOrder)
 
-var idOrder = params.get("id")
-var montantTotal = params.get("total")
-
-var numeroOrder = document.getElementById("idorder")
+const numeroOrder = document.getElementById("idorder")
 numeroOrder.innerHTML = idOrder
 
-var prixTotal = document.getElementById("prixtotal")
+const prixTotal = document.getElementById("prixtotal")
 prixTotal.innerHTML = parseInt(montantTotal) / 100 + " €"
+
+console.log(idOrder)
+console.log(montantTotal)
+
+localStorage.clear()
+console.log(localStorage)
+
+
+
+
 
 

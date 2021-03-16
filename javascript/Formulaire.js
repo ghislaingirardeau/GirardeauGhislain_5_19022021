@@ -75,11 +75,12 @@ var envoieDonneesAPI = async function (objet) {
     if (response.ok) {
 
     let data = await response.json()
-
-    window.open("Confirmation.html?id=" + data.orderId + "&total=" + totalCompteur, "_self")
-    localStorage.clear()
-        /* Je charge la réponse du serveur dans le search parametre de l'URL */
-        /* Je nettoie le localstorage si la réponse est OK */
+        
+        localStorage.clear()
+        localStorage.setItem(data.orderId, totalCompteur)
+        console.log(localStorage)
+        
+        window.open("Confirmation.html", "_self")
     }
 
     if(response.status === 404) {

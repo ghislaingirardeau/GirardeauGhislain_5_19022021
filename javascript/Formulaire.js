@@ -2,17 +2,10 @@
 
 /* Fonction de gestion de l'affichage du champs suivant si la valeur est correcte ou non */
 
-var checkvalid = function(champs, retour) {
-    champs.style.border = "#49f09c 2px solid"
-    retour.style.color = "#49f09c"
-    retour.setAttribute('class', "far fa-check-circle")
-    retour.classList.add("col-2", "pt-2")
-} 
-
-var checkInvalid = function(champs, retour) {
-    champs.style.border = "#fc7878 2px solid"
-    retour.style.color = "#fc7878"
-    retour.setAttribute('class', "fas fa-times-circle")
+var alertCheckChamps = function (champs, retour, couleur, icone){
+    champs.style.border = couleur + " 2px solid"
+    retour.style.color = couleur
+    retour.setAttribute('class', icone)
     retour.classList.add("col-2", "pt-2")
 }
 
@@ -21,18 +14,18 @@ var checkInvalid = function(champs, retour) {
 var controleFormulaire = function (element) { /* Je recupere le champs a verifier ainsi que l'element pour inserer visuellement la reponse */
 
     var champsText = document.getElementById(element)
-    var checkValid = document.querySelector("#" + element + "--feedback") 
+    var checkValidity = document.querySelector("#" + element + "--feedback") 
     var reponse = false
 
     champsText.addEventListener('change', function(e){
             
         if ((e.target.value) === ""){   /* Si pas de texte dans le champs = erreur + retour false */
-            checkInvalid(champsText, checkValid)
+            alertCheckChamps(champsText, checkValidity, "#fc7878", "fas fa-times-circle")
             reponse = false 
             validationForm = reponse 
             
         } else {              
-            checkvalid(champsText, checkValid) /* Si presence de texte alors retourne true */
+            alertCheckChamps(champsText, checkValidity, "#49f09c", "far fa-check-circle") /* Si presence de texte alors retourne true */
             reponse = true
             validationForm = reponse
             
@@ -45,18 +38,18 @@ var controleFormulaire = function (element) { /* Je recupere le champs a verifie
 var controleFormulaireEmail = function (element) {  /* fonction specifique pour la verification du caractere @ dans le champs de texte */
 
     var champsText = document.getElementById(element)
-    var checkValid = document.querySelector("#" + element + "--feedback") 
+    var checkValidity = document.querySelector("#" + element + "--feedback") 
     var reponse
     let regMail = /^\S+@\S+$/;
 
     champsText.addEventListener('change', function(e){
             
         if (regMail.test(e.target.value)) {  /* Si @ est present */      
-            checkvalid(champsText, checkValid)
+            alertCheckChamps(champsText, checkValidity, "#49f09c", "far fa-check-circle")
             reponse = true
             validationForm = reponse /* Renvoie la reponse a la variable hors de la fonction*/
         } else {              
-            checkInvalid(champsText, checkValid)
+            alertCheckChamps(champsText, checkValidity, "#fc7878", "fas fa-times-circle")
             reponse = false 
             validationForm = reponse
         }

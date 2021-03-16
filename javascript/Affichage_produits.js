@@ -247,7 +247,7 @@ var recuperationDonneesApi = async function () {
 
             } else {
                 console.log("Vérifier l'URL du produit")
-                alert("Ce produit n'existe plus")
+                alert("Cette URL n'existe pas")
             } 
         })
     }

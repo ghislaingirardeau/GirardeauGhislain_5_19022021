@@ -65,27 +65,25 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
         boutonMoins.innerHTML = "-"
         compteurQuantite.innerHTML = quantite
 
-        boutonPlus.addEventListener('click', function (){
-           
+        var changeQuantite = function(val) {
             var valeurIDCache = parseInt(localStorage.getItem(id)) 
-            var ajoutUnClick = valeurIDCache + 1
+            var ajoutUnClick = valeurIDCache + val
             localStorage.setItem(id, ajoutUnClick)
+
+                if (ajoutUnClick < 0 ) {
+                localStorage.removeItem(id)
+                }
             document.location.reload();
+        }
+
+        boutonPlus.addEventListener('click', function(){
+            changeQuantite(1)
         })
 
-        boutonMoins.addEventListener('click', function (){
-            
-            var valeurIDCache = parseInt(localStorage.getItem(id)) 
-            var ajoutUnClick = valeurIDCache - 1
-            localStorage.setItem(id, ajoutUnClick)
-
-            if(valeurIDCache === 1) {
-                localStorage.removeItem(id)
-            }
-            document.location.reload();
+        boutonMoins.addEventListener('click', function(){
+            changeQuantite(-1)
         })
     }
-
     boutonChangeQuantite()
 }
 

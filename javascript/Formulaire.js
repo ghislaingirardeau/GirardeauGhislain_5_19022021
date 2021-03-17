@@ -141,11 +141,11 @@ var recuperationDonneesEtContact = function() {
 var recuperationDonneesApi = async function () {
 
     let request = await fetch ("http://localhost:3000/api/teddies/")
-    .then (async function(response) {
+    .then (function(response) {
 
         if (response.ok) {
 
-            let data = await response.json()
+            let data = response.json()
 
             .then (function(donnees) {
                     

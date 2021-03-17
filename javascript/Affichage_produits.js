@@ -211,11 +211,11 @@ var recuperationDonneesApi = async function () {
     
     if (identifiantProduit === null) {
         let request = await fetch ("http://localhost:3000/api/teddies/")
-        .then (async function(response) {
+        .then (function(response) {
 
             if (response.ok) {
 
-                let data = await response.json() /* Une fois ma promesse réussi, j'applique .then */
+                let data = response.json() /* Une fois ma promesse réussi, j'applique .then */
 
                 .then (function(donnees) { /* SI il n'y a pas d'ID dans l'URL alors, j'exécute les fonctions lié a la page accueil */
 
@@ -231,11 +231,11 @@ var recuperationDonneesApi = async function () {
     
     }   else {
         let request = await fetch ("http://localhost:3000/api/teddies/" + identifiantProduit)
-        .then (async function(response) {
+        .then (function(response) {
 
             if (response.ok) {
 
-                let data = await response.json() /* Une fois ma promesse réussi, j'applique .then */
+                let data = response.json() /* Une fois ma promesse réussi, j'applique .then */
 
                 .then (function(donnees) { /* SI il y a une ID dans l'URL, alors j'applique les fonctions liées à la page produit */
 

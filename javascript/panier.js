@@ -110,12 +110,12 @@ var panierVide = function() {
 /* NOMBRE PRODUIT PANIER */
 
 var nombreProduitsPanier = function() {
-    
-    var quantiteTotale = document.getElementsByTagName('table')[0].rows[2].cells[3]; /* cells figé car recupere le nombre dans le localstorage */
+    var nombreLigne = document.getElementsByTagName('table')[0].rows.length - 1
+    var quantiteTotale = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[3]; 
     var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
     var compteur = 0
 
-    for (i=0; i < products.length; i++) {
+    for (i=0; i < localStorage.length; i++) {
         
         var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
         compteur += nombreClick

@@ -78,3 +78,6 @@ var formulaireControle = function() {
         }
     })  
 }
+
+[\s\S] tous les caracteres
+\d si il y a un chiffre

@@ -11,47 +11,23 @@ var alertCheckChamps = function (champs, retour, couleur, icone){
 
 /* Controle de la valeur des champs texte */
 
-var controleFormulaire = function (element) { /* Je recupere le champs a verifier ainsi que l'element pour inserer visuellement la reponse */
-
-    var champsText = document.getElementById(element)
-    var checkValidity = document.querySelector("#" + element + "--feedback") 
-    var reponse = false
-
-    champsText.addEventListener('change', function(e){
-            
-        if ((e.target.value) === ""){   /* Si pas de texte dans le champs = erreur + retour false */
-            alertCheckChamps(champsText, checkValidity, "#fc7878", "fas fa-times-circle")
-            reponse = false 
-            validationForm = reponse 
-            
-        } else {              
-            alertCheckChamps(champsText, checkValidity, "#49f09c", "far fa-check-circle") /* Si presence de texte alors retourne true */
-            reponse = true
-            validationForm = reponse
-            
-        }
-    })
-}
-
-/* Controle de la valeur du champs email */
-
-var controleFormulaireEmail = function (element) {  /* fonction specifique pour la verification du caractere @ dans le champs de texte */
+var controleChampsForm = function(element, texte, index) {
 
     var champsText = document.getElementById(element)
     var checkValidity = document.querySelector("#" + element + "--feedback") 
     var reponse
-    let regMail = /^\S+@\S+$/;
+    let regex = texte;
 
     champsText.addEventListener('change', function(e){
             
-        if (regMail.test(e.target.value)) {  /* Si @ est present */      
+        if (regex.test(e.target.value) && (e.target.value) != "") {  /* Si la condition de regex est valide */      
             alertCheckChamps(champsText, checkValidity, "#49f09c", "far fa-check-circle")
-            reponse = true
-            validationForm = reponse /* Renvoie la reponse a la variable hors de la fonction*/
+            reponse = 1
+            cumulReponseChamps[index] = reponse /* Renvoie la reponse dans un tableau, chaque champs texte a son index propre en parametre*/
         } else {              
             alertCheckChamps(champsText, checkValidity, "#fc7878", "fas fa-times-circle")
-            reponse = false 
-            validationForm = reponse
+            reponse = 0 
+            cumulReponseChamps[index] = reponse
         }
     }) 
 }
@@ -71,7 +47,6 @@ var envoieDonneesAPI = async function (objet) {
         
         localStorage.clear()
         localStorage.setItem(data.orderId, totalCompteur)
-        console.log(localStorage)
         
         window.open("Confirmation.html", "_self")
     }
@@ -87,24 +62,23 @@ var envoieDonneesAPI = async function (objet) {
 
 /* A LA VALIDATION DU FORMULAIRE ET AU CLICK APPLIQUE envoieDonneesAPI */
 
-var validationForm = false
+var cumulReponseChamps = [0, 0, 0, 0, 0] /* Si un champs n'est pas saisie alors tous sont a 0 par defaut */
 var recuperationDonneesEtContact = function() {
 
-/* Si validationForm renvoie true alors toutes les donnees sont bonnes */
-/* Si un champs n'est pas saisie c'est l'attribut required html qui prend le relais */
+/* Si cumulReponseChamps renvoie tous les index 1 alors toutes les donnees sont bonnes */
     
-    controleFormulaire("firstName")
-    controleFormulaire("lastName")
-    controleFormulaire("address")
-    controleFormulaire("city")
-    controleFormulaireEmail("email")
+    controleChampsForm("firstName", /^\D+$/, 0)
+    controleChampsForm("lastName", /^\D+$/, 1)
+    controleChampsForm("address", /[\s\S]/, 2)
+    controleChampsForm("city", /^\D+$/, 3)
+    controleChampsForm("email", /^\S+@\S+$/, 4)
 
     var boutonSubmit = document.getElementById("submit")
     
     boutonSubmit.addEventListener("click", function(event){
 
-        if (validationForm == true && localStorage.length != 0) {
-
+        if (cumulReponseChamps.reduce((a, b)=> a + b) === 5 && localStorage.length != 0) { /* Fonction qui fait la somme de tous les index du tableau de response */
+            /* Si la somme = 5, alors tous les champs ont ete correctement rempli */
             var firstName = document.getElementById("firstName").value
             var lastName = document.getElementById("lastName").value
             var address = document.getElementById("address").value
@@ -128,8 +102,8 @@ var recuperationDonneesEtContact = function() {
             alert("Votre panier est vide")
             event.preventDefault() 
         }
-        if (validationForm == false) {  
-                        
+        if (cumulReponseChamps.reduce((a, b)=> a + b) != 5) {  
+            /* Si la somme est different de 5, alors un champs est mal saisie */      
             var erreurMessage = document.getElementById("erreur__form")
             erreurMessage.style.display = "inherit"
         }

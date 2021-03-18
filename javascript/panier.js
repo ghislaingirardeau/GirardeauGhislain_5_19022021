@@ -118,12 +118,11 @@ var nombreProduitsPanier = function() {
     for (i=0; i < localStorage.length; i++) {
 
         if (products.indexOf(localStorage.key(i)) != -1){
-           
+            
             var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
             compteur += nombreClick
         }       
     }
-    console.log(compteur)
     localStorage.setItem("compteur", compteur)
 
     if (compteur > 0) {

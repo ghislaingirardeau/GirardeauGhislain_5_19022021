@@ -149,6 +149,7 @@ var clickBoutonPanier = function (identifiantProduit) {
 
         var click = 0
         var result 
+        console.log(compteur)
     
         for (i=0; i < localStorage.length; i++) { /* Je compare l'Id a chacune des clés du tableau, si l'ID est deja presente retourne true */
 
@@ -165,12 +166,22 @@ var clickBoutonPanier = function (identifiantProduit) {
             var nombreClickFait = parseInt(localStorage.getItem(valeurCle))
             var totalClick = nombreClickFait + click
             localStorage.setItem(valeurCle, totalClick)
+            
+            var nombreProduit = localStorage.getItem("compteur")
+            nombreProduit++
+            localStorage.setItem("compteur", nombreProduit)
+
         }  
     
         else { /* Si l'id n'est pas presente alors je l'insere dans le cache navigateur */
             result = "false"
             localStorage.setItem(identifiantProduit, "1")
+
+            var nombreProduit = localStorage.getItem("compteur")
+            nombreProduit++
+            localStorage.setItem("compteur", nombreProduit)
         }
+
         document.location.reload()
     })
 }
@@ -183,25 +194,39 @@ var nombreProduitsPanier = function(donnees) {
     var compteur = 0
     var Idproducts = []
 
-    for (i=1; i < donnees.length; i++) { 
+    for (i=0; i < donnees.length; i++) { 
             
         Idproducts.push(donnees[i]._id)
     }
+    console.log(Idproducts)
 
     for (i=0; i < localStorage.length; i++) {
 
-        if (Idproducts.indexOf(localStorage.key(i)) != -1){
-            console.log(Idproducts)
-            console.log(localStorage.key(i))
-            console.log(Idproducts.indexOf(localStorage.key(i)))
-            
+        if (Idproducts.indexOf(localStorage.key(i)) != -1) {
+
             var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
             compteur += nombreClick
         }       
     }
-    console.log(compteur)
+
     localStorage.setItem("compteur", compteur)
 
+    if (compteur > 0) {
+        iconeCompteur.style.backgroundColor = "yellow"
+        iconeCompteur.style.border = "1px solid grey"
+        iconeCompteur.style.color = "black"
+        iconeCompteur.innerHTML = compteur
+       
+    } else {
+        iconeCompteur.style.display = "none"
+    }
+}
+
+var panierPageProduit = function() {
+
+    var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
+    compteur = localStorage.getItem("compteur")
+    
     if (compteur > 0) {
         iconeCompteur.style.backgroundColor = "yellow"
         iconeCompteur.style.border = "1px solid grey"
@@ -255,8 +280,9 @@ var recuperationDonneesApi = async function () {
 
                     descriptifProduit(donnees)
                     menuPresonnalisation(donnees.colors)
+                    panierPageProduit()
                     clickBoutonPanier(identifiantProduit)
-                    nombreProduitsPanier(donnees)
+                    
                 })
 
             } else {

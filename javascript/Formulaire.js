@@ -49,7 +49,8 @@ var envoieDonneesAPI = async function (objet) {
             localStorage.removeItem(products[i])
         }
 
-        localStorage.setItem(data.orderId, totalCompteur)
+        localStorage.setItem('idOrder', data.orderId)
+        localStorage.setItem('totalCompteur', totalCompteur)
 
         window.open("Confirmation.html", "_self")
     }

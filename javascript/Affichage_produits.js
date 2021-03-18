@@ -166,7 +166,7 @@ var clickBoutonPanier = function (identifiantProduit) {
             var nombreClickFait = parseInt(localStorage.getItem(valeurCle))
             var totalClick = nombreClickFait + click
             localStorage.setItem(valeurCle, totalClick)
-            
+
             var nombreProduit = localStorage.getItem("compteur")
             nombreProduit++
             localStorage.setItem("compteur", nombreProduit)
@@ -184,6 +184,21 @@ var clickBoutonPanier = function (identifiantProduit) {
 
         document.location.reload()
     })
+}
+
+/* AFFICHAGE COMPTEUR */
+
+var affichageCompteur = function(compteur, iconeCompteur){
+    
+    if (compteur > 0) {
+        iconeCompteur.style.backgroundColor = "yellow"
+        iconeCompteur.style.border = "1px solid grey"
+        iconeCompteur.style.color = "black"
+        iconeCompteur.innerHTML = compteur
+       
+    } else {
+        iconeCompteur.style.display = "none"
+    }
 }
 
 /* NOMBRE PRODUIT PANIER */
@@ -211,31 +226,15 @@ var nombreProduitsPanier = function(donnees) {
 
     localStorage.setItem("compteur", compteur)
 
-    if (compteur > 0) {
-        iconeCompteur.style.backgroundColor = "yellow"
-        iconeCompteur.style.border = "1px solid grey"
-        iconeCompteur.style.color = "black"
-        iconeCompteur.innerHTML = compteur
-       
-    } else {
-        iconeCompteur.style.display = "none"
-    }
+    affichageCompteur(compteur, iconeCompteur)
 }
 
-var panierPageProduit = function() {
+var nombreProduits = function() {
 
     var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
     compteur = localStorage.getItem("compteur")
     
-    if (compteur > 0) {
-        iconeCompteur.style.backgroundColor = "yellow"
-        iconeCompteur.style.border = "1px solid grey"
-        iconeCompteur.style.color = "black"
-        iconeCompteur.innerHTML = compteur
-       
-    } else {
-        iconeCompteur.style.display = "none"
-    }
+    affichageCompteur(compteur, iconeCompteur)
 }
 
 /* == RECUPERATION DES DONNEES API == */
@@ -280,7 +279,7 @@ var recuperationDonneesApi = async function () {
 
                     descriptifProduit(donnees)
                     menuPresonnalisation(donnees.colors)
-                    panierPageProduit()
+                    nombreProduits()
                     clickBoutonPanier(identifiantProduit)
                     
                 })

@@ -177,16 +177,30 @@ var clickBoutonPanier = function (identifiantProduit) {
 
 /* NOMBRE PRODUIT PANIER */
 
-var nombreProduitsPanier = function() {
+var nombreProduitsPanier = function(donnees) {
     
     var iconeCompteur = document.getElementById("Compteur__panier")
     var compteur = 0
+    var Idproducts = []
+
+    for (i=1; i < donnees.length; i++) { 
+            
+        Idproducts.push(donnees[i]._id)
+    }
 
     for (i=0; i < localStorage.length; i++) {
-        
-        var nombreClick = parseInt(localStorage.getItem(localStorage.key(i))) /* valeur de chaque index qui s'ajoute au compteur */
-        compteur += nombreClick
+
+        if (Idproducts.indexOf(localStorage.key(i)) != -1){
+            console.log(Idproducts)
+            console.log(localStorage.key(i))
+            console.log(Idproducts.indexOf(localStorage.key(i)))
+            
+            var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
+            compteur += nombreClick
+        }       
     }
+    console.log(compteur)
+    localStorage.setItem("compteur", compteur)
 
     if (compteur > 0) {
         iconeCompteur.style.backgroundColor = "yellow"
@@ -220,7 +234,7 @@ var recuperationDonneesApi = async function () {
                 .then (function(donnees) { /* SI il n'y a pas d'ID dans l'URL alors, j'exécute les fonctions lié a la page accueil */
 
                     listeProduitsAccueil(donnees)
-                    nombreProduitsPanier()
+                    nombreProduitsPanier(donnees)
                 })
 
             } else { /* Si la reponse échoue */
@@ -242,7 +256,7 @@ var recuperationDonneesApi = async function () {
                     descriptifProduit(donnees)
                     menuPresonnalisation(donnees.colors)
                     clickBoutonPanier(identifiantProduit)
-                    nombreProduitsPanier()
+                    nombreProduitsPanier(donnees)
                 })
 
             } else {

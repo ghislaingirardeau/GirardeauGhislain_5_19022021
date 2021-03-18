@@ -116,10 +116,15 @@ var nombreProduitsPanier = function() {
     var compteur = 0
 
     for (i=0; i < localStorage.length; i++) {
-        
-        var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
-        compteur += nombreClick
+
+        if (products.indexOf(localStorage.key(i)) != -1){
+           
+            var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
+            compteur += nombreClick
+        }       
     }
+    console.log(compteur)
+    localStorage.setItem("compteur", compteur)
 
     if (compteur > 0) {
         quantiteTotale.innerHTML = compteur
@@ -152,7 +157,7 @@ var viderPanier = function(donnees) {
 
 /* == LISTE PRODUITS PAGE PANIER == */
 
-var products
+var products = []
 var totalCompteur
 var ListeProduitsPanier = function(donnees) {
 
@@ -174,6 +179,8 @@ var ListeProduitsPanier = function(donnees) {
             
             var calculTotal = donnees[getIndexDonneesAPI].price * getIndexValeurCache  /* pour le calcul du prix totale */
             totalCompteur += calculTotal
+
+            products.push(IdDonneesAPI)
         }     
     }
     /* Insérer les totaux dans les cells de table correspondantes */
@@ -181,12 +188,11 @@ var ListeProduitsPanier = function(donnees) {
     var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[4]; /* Cells dynamique car valeur en fonction de ligne de produit dans le panier */
     prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100) + " €"
 
-    products = [...idEnCache] /* Inserer seulement les id dans le tableau final product */  
-    
     if (products.length === 0) {
         
         panierVide()   
     }
+    
 } 
 
 

@@ -80,7 +80,7 @@ var recuperationDonneesEtContact = function() {
     
     boutonSubmit.addEventListener("click", function(event){
 
-        if (cumulReponseChamps.reduce((a, b)=> a + b) === 5 && localStorage.length != 0) { /* Fonction qui fait la somme de tous les index du tableau de response */
+        if (cumulReponseChamps.reduce((a, b)=> a + b) === 5 && products.length != 0) { /* Fonction qui fait la somme de tous les index du tableau de response */
             /* Si la somme = 5, alors tous les champs ont ete correctement rempli */
             var firstName = document.getElementById("firstName").value
             var lastName = document.getElementById("lastName").value
@@ -101,7 +101,7 @@ var recuperationDonneesEtContact = function() {
             envoieDonneesAPI(objetAEnvoyer)
         
         }
-        if (localStorage.length === 0) {  /* Si le formulaire est rempli mais que le panier est vide */
+        if (products.length === 0) {  /* Si le formulaire est rempli mais que le panier est vide */
             alert("Votre panier est vide")
             event.preventDefault() 
         }
@@ -126,9 +126,9 @@ var recuperationDonneesApi = async function () {
 
             .then (function(donnees) {
                     
-                nombreProduitsPanier()
                 viderPanier(donnees)
                 ListeProduitsPanier(donnees)
+                nombreProduitsPanier()
                 recuperationDonneesEtContact()        
             })
         } else {

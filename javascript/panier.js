@@ -115,7 +115,7 @@ var nombreProduitsPanier = function() {
     var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
     var compteur = 0
 
-    for (i=0; i < localStorage.length; i++) {
+    for (i=0; i < products.length; i++) {
         
         var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
         compteur += nombreClick
@@ -155,11 +155,6 @@ var viderPanier = function(donnees) {
 var products
 var totalCompteur
 var ListeProduitsPanier = function(donnees) {
-   
-    if (localStorage.length === 0) {
-
-        panierVide()   
-    }
 
     var idEnCache = Object.keys(localStorage)   /* Je charge le localstorage dans 1 tableau regroupant les cles */
     var valeurEnCache = Object.values(localStorage) /* puis dans un tableau regroupant les valeurs. L'index permet d'associer l'id a sa valeur */
@@ -186,7 +181,12 @@ var ListeProduitsPanier = function(donnees) {
     var prixTotalPanier = document.getElementsByTagName('table')[0].rows[nombreLigne].cells[4]; /* Cells dynamique car valeur en fonction de ligne de produit dans le panier */
     prixTotalPanier.innerHTML = parseFloat(totalCompteur / 100) + " €"
 
-    products = [...idEnCache] /* Inserer seulement les id dans le tableau final product */   
+    products = [...idEnCache] /* Inserer seulement les id dans le tableau final product */  
+    
+    if (products.length === 0) {
+        
+        panierVide()   
+    }
 } 
 
 

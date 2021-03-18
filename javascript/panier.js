@@ -174,9 +174,7 @@ var ListeProduitsPanier = function(donnees) {
             
             var calculTotal = donnees[getIndexDonneesAPI].price * getIndexValeurCache  /* pour le calcul du prix totale */
             totalCompteur += calculTotal
-        } else {
-            console.log("Cette id n'est pas presente")
-        }       
+        }     
     }
     /* Insérer les totaux dans les cells de table correspondantes */
     var nombreLigne = document.getElementsByTagName('table')[0].rows.length - 1

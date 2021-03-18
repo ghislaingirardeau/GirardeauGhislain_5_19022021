@@ -45,9 +45,12 @@ var envoieDonneesAPI = async function (objet) {
 
     let data = await response.json()
         
-        localStorage.clear()
+        for(i=0; i < products.length; i++) {
+            localStorage.removeItem(products[i])
+        }
+
         localStorage.setItem(data.orderId, totalCompteur)
-        
+
         window.open("Confirmation.html", "_self")
     }
 
@@ -96,7 +99,7 @@ var recuperationDonneesEtContact = function() {
             objetAEnvoyer = {contact, products} /* L'objet js qui est à envoyer et qui sera convertie en JSON */
             
             envoieDonneesAPI(objetAEnvoyer)
-
+        
         }
         if (localStorage.length === 0) {  /* Si le formulaire est rempli mais que le panier est vide */
             alert("Votre panier est vide")
@@ -124,7 +127,7 @@ var recuperationDonneesApi = async function () {
             .then (function(donnees) {
                     
                 nombreProduitsPanier()
-                viderPanier()
+                viderPanier(donnees)
                 ListeProduitsPanier(donnees)
                 recuperationDonneesEtContact()        
             })

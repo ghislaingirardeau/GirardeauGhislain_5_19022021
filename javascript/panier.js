@@ -136,11 +136,16 @@ var nombreProduitsPanier = function() {
 
 /* BOUTON VIDER LE PANIER */
 
-var viderPanier = function() {
+var viderPanier = function(donnees) {
     
     var boutonViderPanier = document.querySelector("#btn_paniervide")
+
     boutonViderPanier.addEventListener('click', function() {
-        localStorage.clear()
+
+        for(i=0; i < donnees.length; i++) {
+            var idproduit = donnees[i]._id
+            localStorage.removeItem(idproduit)
+        }
         document.location.reload();
     })
 }

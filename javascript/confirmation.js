@@ -9,12 +9,9 @@ numeroOrder.innerHTML = idOrder
 const prixTotal = document.getElementById("prixtotal")
 prixTotal.innerHTML = parseInt(montantTotal) / 100 + " €"
 
-console.log(idOrder)
-console.log(montantTotal)
-
 localStorage.removeItem("idOrder")
 localStorage.removeItem("totalCompteur")  /* Supprime la clé ID order et sa valeur*/
-console.log(localStorage)
+
 
 
 

@@ -1,3 +1,46 @@
+/* == FONCTION CHANGEMENT QUANTITE DANS LE PANIER == */
+
+var boutonChangeQuantite = function (quantiteProduit, quantite, id) { /* Bouton pour ajuster les quantités dans le localstorage en fonction de l'ID */
+
+        const boutonPlus = document.createElement("button")
+        boutonPlus.classList.add("btn", "btn-light", "border")
+        boutonPlus.setAttribute("type", "button")
+
+        const compteurQuantite = document.createElement("strong")
+        compteurQuantite.classList.add("px-2")
+    
+        const boutonMoins = document.createElement("button")
+        boutonMoins.classList.add("btn", "btn-light", "border")
+        boutonMoins.setAttribute("type", "button")
+
+        quantiteProduit.appendChild(boutonMoins)
+        quantiteProduit.appendChild(compteurQuantite)
+        quantiteProduit.appendChild(boutonPlus)
+
+        boutonPlus.innerHTML = "+"
+        boutonMoins.innerHTML = "-"
+        compteurQuantite.innerHTML = quantite
+
+        var changeQuantite = function(val) {
+            var valeurIDCache = parseInt(localStorage.getItem(id)) 
+            var ajoutUnClick = valeurIDCache + val
+            localStorage.setItem(id, ajoutUnClick)
+
+                if (ajoutUnClick < 0 ) {
+                localStorage.removeItem(id)
+                }
+            document.location.reload();
+        }
+
+        boutonPlus.addEventListener('click', function(){
+            changeQuantite(1)
+        })
+
+        boutonMoins.addEventListener('click', function(){
+            changeQuantite(-1)
+        })
+}
+
 /* == BLOC HTML PAGE PANIER == */
 
 var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Parametre correspondant aux donnees API de chaque element */
@@ -44,47 +87,7 @@ var creationBlocHtmlPanier = function (image, nom, prix, quantite, id) { /* Para
     
     totalProduit.innerHTML = quantite * parseFloat(prix / 100) + " €"
     
-    var boutonChangeQuantite = function () { /* Bouton pour ajuster les quantités dans le localstorage en fonction de l'ID */
-
-        const boutonPlus = document.createElement("button")
-        boutonPlus.classList.add("btn", "btn-light", "border")
-        boutonPlus.setAttribute("type", "button")
-
-        const compteurQuantite = document.createElement("strong")
-        compteurQuantite.classList.add("px-2")
-    
-        const boutonMoins = document.createElement("button")
-        boutonMoins.classList.add("btn", "btn-light", "border")
-        boutonMoins.setAttribute("type", "button")
-
-        quantiteProduit.appendChild(boutonMoins)
-        quantiteProduit.appendChild(compteurQuantite)
-        quantiteProduit.appendChild(boutonPlus)
-
-        boutonPlus.innerHTML = "+"
-        boutonMoins.innerHTML = "-"
-        compteurQuantite.innerHTML = quantite
-
-        var changeQuantite = function(val) {
-            var valeurIDCache = parseInt(localStorage.getItem(id)) 
-            var ajoutUnClick = valeurIDCache + val
-            localStorage.setItem(id, ajoutUnClick)
-
-                if (ajoutUnClick < 0 ) {
-                localStorage.removeItem(id)
-                }
-            document.location.reload();
-        }
-
-        boutonPlus.addEventListener('click', function(){
-            changeQuantite(1)
-        })
-
-        boutonMoins.addEventListener('click', function(){
-            changeQuantite(-1)
-        })
-    }
-    boutonChangeQuantite()
+    boutonChangeQuantite(quantiteProduit, quantite, id)
 }
 
 /* PANIER VIDE */

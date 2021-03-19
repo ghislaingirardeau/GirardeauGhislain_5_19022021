@@ -213,7 +213,6 @@ var nombreProduitsPanier = function(donnees) {
             
         Idproducts.push(donnees[i]._id)
     }
-    console.log(Idproducts)
 
     for (i=0; i < localStorage.length; i++) {
 

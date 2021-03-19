@@ -110,6 +110,7 @@ var recuperationDonneesEtContact = function() {
             /* Si la somme est different de 5, alors un champs est mal saisie */      
             var erreurMessage = document.getElementById("erreur__form")
             erreurMessage.style.display = "inherit"
+            event.preventDefault()
         }
     }) 
 }

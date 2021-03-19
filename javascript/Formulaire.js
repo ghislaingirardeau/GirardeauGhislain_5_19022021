@@ -11,7 +11,7 @@ var alertCheckChamps = function (champs, retour, couleur, icone){
 
 /* Controle de la valeur des champs texte */
 
-var controleChampsForm = function(element, texte, index) {
+var controleChampsForm = function(element, texte, index) { /* Index: pour que chaque champs envoie sa reponse a un index precis du tableau */
 
     var champsText = document.getElementById(element)
     var checkValidity = document.querySelector("#" + element + "--feedback") 
@@ -45,11 +45,11 @@ var envoieDonneesAPI = async function (objet) {
 
     let data = await response.json()
         
-        for(i=0; i < products.length; i++) {
+        for(i=0; i < products.length; i++) { /* Supprimer les items ID du localstorage pour repartir sur un cache propre*/
             localStorage.removeItem(products[i])
         }
 
-        localStorage.setItem('idOrder', data.orderId)
+        localStorage.setItem('idOrder', data.orderId) /* Envoyer les réponses serveur et data dans le localstorage */
         localStorage.setItem('totalCompteur', totalCompteur)
 
         window.open("Confirmation.html", "_self")
@@ -66,12 +66,12 @@ var envoieDonneesAPI = async function (objet) {
 
 /* A LA VALIDATION DU FORMULAIRE ET AU CLICK APPLIQUE envoieDonneesAPI */
 
-var cumulReponseChamps = [0, 0, 0, 0, 0] /* Si un champs n'est pas saisie alors tous sont a 0 par defaut */
+var cumulReponseChamps = [0, 0, 0, 0, 0] /* Tous les champs sont a 0 par defaut car non saisie */
 var recuperationDonneesEtContact = function() {
 
-/* Si cumulReponseChamps renvoie tous les index 1 alors toutes les donnees sont bonnes */
+/* Si cumulReponseChamps a tous ses index 1 alors toutes les donnees sont bonnes */
     
-    controleChampsForm("firstName", /^\D+$/, 0)
+    controleChampsForm("firstName", /^\D+$/, 0) /* Chaque champs renvoie sa reponse (0 ou 1) a son index */
     controleChampsForm("lastName", /^\D+$/, 1)
     controleChampsForm("address", /[\s\S]/, 2)
     controleChampsForm("city", /^\D+$/, 3)

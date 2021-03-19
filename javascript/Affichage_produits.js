@@ -149,7 +149,6 @@ var clickBoutonPanier = function (identifiantProduit) {
 
         var click = 0
         var result 
-        console.log(compteur)
     
         for (i=0; i < localStorage.length; i++) { /* Je compare l'Id a chacune des clés du tableau, si l'ID est deja presente retourne true */
 
@@ -166,21 +165,16 @@ var clickBoutonPanier = function (identifiantProduit) {
             var nombreClickFait = parseInt(localStorage.getItem(valeurCle))
             var totalClick = nombreClickFait + click
             localStorage.setItem(valeurCle, totalClick)
-
-            var nombreProduit = localStorage.getItem("compteur")
-            nombreProduit++
-            localStorage.setItem("compteur", nombreProduit)
-
         }  
     
         else { /* Si l'id n'est pas presente alors je l'insere dans le cache navigateur */
             result = "false"
             localStorage.setItem(identifiantProduit, "1")
-
-            var nombreProduit = localStorage.getItem("compteur")
-            nombreProduit++
-            localStorage.setItem("compteur", nombreProduit)
         }
+
+        var nombreProduit = localStorage.getItem("compteur") /* Au click, j'ajoute 1 au compteur */
+        nombreProduit++
+        localStorage.setItem("compteur", nombreProduit)
 
         document.location.reload()
     })
@@ -209,12 +203,13 @@ var nombreProduitsPanier = function(donnees) {
     var compteur = 0
     var Idproducts = []
 
-    for (i=0; i < donnees.length; i++) { 
+    for (i=0; i < donnees.length; i++) { /* Je stock dans un tableau toutes les id */
             
         Idproducts.push(donnees[i]._id)
     }
 
-    for (i=0; i < localStorage.length; i++) {
+    for (i=0; i < localStorage.length; i++) { /* Je compare ce tableau aux items du localstorage pour
+        ne recuperer que les valeurs des items ID du localstorage */
 
         if (Idproducts.indexOf(localStorage.key(i)) != -1) {
 
@@ -228,7 +223,7 @@ var nombreProduitsPanier = function(donnees) {
     affichageCompteur(compteur, iconeCompteur)
 }
 
-var nombreProduits = function() {
+var nombreProduits = function() { /* Compteur specifique a la page produit */
 
     var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
     compteur = localStorage.getItem("compteur")

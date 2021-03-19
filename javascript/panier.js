@@ -118,7 +118,7 @@ var nombreProduitsPanier = function() {
     var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
     var compteur = 0
 
-    for (i=0; i < localStorage.length; i++) {
+    for (i=0; i < localStorage.length; i++) { /* Je recupere uniquement les valeurs des items ID du localstorage */
 
         if (products.indexOf(localStorage.key(i)) != -1){
             

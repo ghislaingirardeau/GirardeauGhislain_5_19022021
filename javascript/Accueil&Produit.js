@@ -197,33 +197,7 @@ var affichageCompteur = function(compteur, iconeCompteur){
 
 /* NOMBRE PRODUIT PANIER */
 
-var nombreProduitsPanier = function(donnees) {
-    
-    var iconeCompteur = document.getElementById("Compteur__panier")
-    var compteur = 0
-    var Idproducts = []
-
-    for (i=0; i < donnees.length; i++) { /* Je stock dans un tableau toutes les id */
-            
-        Idproducts.push(donnees[i]._id)
-    }
-
-    for (i=0; i < localStorage.length; i++) { /* Je compare ce tableau aux items du localstorage pour
-        ne recuperer que les valeurs des items ID du localstorage */
-
-        if (Idproducts.indexOf(localStorage.key(i)) != -1) {
-
-            var nombreClick = parseInt(localStorage.getItem(localStorage.key(i)))
-            compteur += nombreClick
-        }       
-    }
-
-    localStorage.setItem("compteur", compteur)
-
-    affichageCompteur(compteur, iconeCompteur)
-}
-
-var nombreProduits = function() { /* Compteur specifique a la page produit */
+var nombreProduits = function() { 
 
     var iconeCompteur = document.getElementById("Compteur__panier") /* Icone qui apparait dés l'ajout d'un produit dans le panier */
     compteur = localStorage.getItem("compteur")
@@ -252,7 +226,7 @@ var recuperationDonneesApi = async function () {
                 .then (function(donnees) { /* SI il n'y a pas d'ID dans l'URL alors, j'exécute les fonctions lié a la page accueil */
 
                     listeProduitsAccueil(donnees)
-                    nombreProduitsPanier(donnees)
+                    nombreProduits()
                 })
 
             } else { /* Si la reponse échoue */

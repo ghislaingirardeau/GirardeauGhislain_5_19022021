@@ -11,6 +11,7 @@ prixTotal.innerHTML = parseInt(montantTotal) / 100 + " €"
 
 localStorage.removeItem("idOrder")
 localStorage.removeItem("totalCompteur")  /* Supprime la clé ID order et sa valeur*/
+localStorage.setItem("compteur", "0")
 
 
 

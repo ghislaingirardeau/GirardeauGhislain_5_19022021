@@ -71,10 +71,10 @@ var recuperationDonneesEtContact = function() {
 
 /* Si cumulReponseChamps a tous ses index 1 alors toutes les donnees sont bonnes */
     
-    controleChampsForm("firstName", /^\D+$/, 0) /* Chaque champs renvoie sa reponse (0 ou 1) a son index */
-    controleChampsForm("lastName", /^\D+$/, 1)
-    controleChampsForm("address", /[\s\S]/, 2)
-    controleChampsForm("city", /^\D+$/, 3)
+    controleChampsForm("firstName", /^\S\D+$/, 0) /* Chaque champs renvoie sa reponse (0 ou 1) a son index */
+    controleChampsForm("lastName", /^\S\D+$/, 1)
+    controleChampsForm("address", /^\S[\w\s]+$/, 2)
+    controleChampsForm("city", /^\S\D+$/, 3)
     controleChampsForm("email", /^\S+@\S+$/, 4)
 
     var boutonSubmit = document.getElementById("submit")

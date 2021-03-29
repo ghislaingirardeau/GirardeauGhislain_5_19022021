@@ -216,12 +216,12 @@ var recuperationDonneesApi = async function () {
     let identifiantProduit = getid.get("id") /* Recupere l'existence ou non d'un ID */
     
     if (identifiantProduit === null) {
-        let request = await fetch ("http://localhost:3000/api/teddies/")
+        let request = await fetch ("http://localhost:3000/api/teddies/")/* Une fois ma promesse réussi, j'applique .then */
         .then (function(response) {
 
             if (response.ok) {
 
-                let data = response.json() /* Une fois ma promesse réussi, j'applique .then */
+                let data = response.json() 
 
                 .then (function(donnees) { /* SI il n'y a pas d'ID dans l'URL alors, j'exécute les fonctions lié a la page accueil */
 
